@@ -1535,6 +1535,9 @@ async function enrichAllEvents(context, allEvents) {
       allEvents
         .map((e) => e.url)
         .filter((u) => u && /^https?:\/\//i.test(u) && u.split('?')[0] !== gateListing)
+        // Stage & Stem's own pages (listing / generic book-a-table) have nothing
+        // event-specific to enrich; its per-event DesignMyNight links still do.
+        .filter((u) => !/stageandstem\.com/i.test(u))
     ),
   ];
 
@@ -4051,6 +4054,9 @@ const GENERIC_LISTING_URLS = new Set([
 function isGenericListingUrl(normalizedUrl) {
   if (GENERIC_LISTING_URLS.has(normalizedUrl)) return true;
   if (/paradise-garden\.co\.uk\/events\/[a-z]+\d{4}$/.test(normalizedUrl)) return true;
+  // Stage & Stem: monthly events all share the generic book-a-table link, and
+  // "tickets soon" rows fall back to the listing page.
+  if (/stageandstem\.com\/(book-a-table|whats-on)/.test(normalizedUrl)) return true;
   return false;
 }
 
@@ -4378,6 +4384,90 @@ async function scrapeParadiseGarden(context) {
 }
 
 // ---------------------------------------------------------------------------
+// Stage & Stem
+// ---------------------------------------------------------------------------
+
+async function scrapeStageAndStem(context) {
+  console.log('Scraping Stage & Stem...');
+  const LISTING_URL = 'https://www.stageandstem.com/whats-on.html';
+  const page = await context.newPage();
+  await gotoAndSettle(page, LISTING_URL, 'div.event-row');
+  await new Promise((r) => setTimeout(r, 1_500));
+
+  const rows = await page.evaluate((listingUrl) => {
+    const clean = (t) => (t || '').replace(/ /g, ' ').trim();
+    return Array.from(document.querySelectorAll('.events-list .event-row, div.event-row')).map((item) => {
+      const href = item.querySelector('.event-row-action a.btn[href]')?.href || '';
+      const priceEl = item.querySelector('.event-row-price');
+      return {
+        day:       clean(item.querySelector('.event-row-day')?.textContent),
+        monthYear: clean(item.querySelector('.event-row-month')?.textContent), // e.g. "Oct 2026"
+        tag:       clean(item.querySelector('.event-row-tag')?.textContent),
+        title:     clean(item.querySelector('.event-row-name')?.textContent),
+        // textContent (not innerText) keeps the blank-line paragraph breaks intact
+        description: clean(item.querySelector('.event-row-detail')?.textContent)
+          .replace(/\n{3,}/g, '\n\n'),
+        priceText: clean(priceEl?.textContent),
+        categories: clean(item.getAttribute('data-category')),
+        ticketsSoon: item.classList.contains('tickets-soon') ||
+          !!item.querySelector('.btn--disabled'),
+        url: href || listingUrl,
+      };
+    }).filter((r) => r.title && r.day && r.monthYear);
+  }, LISTING_URL);
+
+  await page.close();
+
+  const seen = new Set();
+  const events = [];
+  for (const r of rows) {
+    const mo = parseMonthToken(r.monthYear.split(/\s+/)[0]);
+    const yearM = r.monthYear.match(/\d{4}/);
+    const day = Number(r.day);
+    if (mo < 0 || !yearM || !day) continue;
+    const iso = `${yearM[0]}-${String(mo + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+
+    // Same title on the same date twice = duplicate row on the page.
+    const key = `${r.title.toLowerCase()}|${iso}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+
+    const ev = {
+      title: r.title,
+      date: iso,
+      eventStartDate: iso,
+      description: r.description,
+      venue: 'Stage & Stem',
+      url: r.url,
+      scrapedAt: new Date().toISOString(),
+    };
+    if (r.tag) ev.subcategory = r.tag;
+    if (r.categories) ev.eventKeywords = r.categories;
+
+    // inferPrimaryCategory only needs a nudge for the two it can't see in the text
+    const cats = r.categories.toLowerCase();
+    if (/\blive music\b/.test(cats)) ev.category = 'Music';
+    else if (/\bkids\b/.test(cats)) ev.category = 'Family';
+
+    // "From £5.50", "£5 includes Popcorn!", "From £52 Per Head"
+    const pm = r.priceText.match(/£\s*(\d+(?:\.\d+)?)/);
+    if (pm) {
+      ev.ticketPriceFrom = Number(pm[1]);
+      ev.ticketCurrency = 'GBP';
+      ev.ticketPriceLabel = /per\s+head/i.test(r.priceText) ? `from £${pm[1]} per head`
+        : /^from/i.test(r.priceText) ? `from £${pm[1]}` : `£${pm[1]}`;
+    }
+
+    if (r.ticketsSoon) ev.availability = 'TICKETS AVAILABLE SOON';
+
+    events.push(ev);
+  }
+
+  console.log(`  Stage & Stem: ${events.length} events`);
+  return events;
+}
+
+// ---------------------------------------------------------------------------
 // Per-venue result sanity check
 // ---------------------------------------------------------------------------
 
@@ -4438,6 +4528,7 @@ const SCRAPERS = [
   { name: 'CultVR',              fn: scrapeCultVR              },
   { name: 'Llandaff Cathedral',  fn: scrapeLlandaffCathedral  },
   { name: 'Paradise Garden',    fn: scrapeParadiseGarden     },
+  { name: 'Stage & Stem',       fn: scrapeStageAndStem       },
   // { name: 'Acapela',          fn: scrapeAcapela             },
   // { name: 'Chapter Arts',     fn: scrapeChapterArts         },
 ];

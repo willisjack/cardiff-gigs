@@ -25,7 +25,7 @@ permissions:
 
 jobs:
   scrape:
-    runs-on: ubuntu-latest
+    runs-on: runs-on: ubuntu-24.04   # was: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v5

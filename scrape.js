@@ -4019,7 +4019,10 @@ async function scrapeClwb(context) {
       if (items.length > 0) return items.map(extractItem).filter(e => e.title);
     }
     return [];
-  });
+  });// <- end of the page.evaluate block
+
+  console.log('  Clwb count:', events.length);
+  console.log('  Clwb has Native James:', events.some(e => /native james/i.test(e.title)));
 
   await page.close();
   console.log(`  Clwb: ${events.length} events`);

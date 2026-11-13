@@ -21,7 +21,7 @@ concurrency:
 
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   scrape:
@@ -50,16 +50,22 @@ jobs:
           if [ -n "${{ inputs.venue }}" ]; then
             node scrape.js --venue "${{ inputs.venue }}"
           else
-            node scrape.js --venue Clwb
+            npm run scrape
           fi
 
-      - name: Clwb rows after run
+      - name: Enrich comedian data
+        # Run once a day on the 08:00 UTC scheduled cron only.
+        # Skipped on manual dispatches and the 14:00/20:00 scheduled runs.
+        if: github.event_name == 'schedule' && startsWith(github.event.schedule, '7 19')
+        run: node comedians.js
+        continue-on-error: true
+
+      - name: Commit results
         run: |
-          node -e '
-            const ev=require("./events.json");
-            const l=Array.isArray(ev)?ev:(ev.events||[]);
-            const c=l.filter(e=>/clwb/i.test(e.venue||""));
-            console.log("clwb rows:",c.length);
-            console.log("undated:",c.filter(e=>!e.date||!String(e.date).trim()).length);
-            console.log(JSON.stringify(c.slice(0,4).map(e=>({t:e.title,d:e.date,det:e.details})),null,1));
-          '
+          git config user.email "actions@github.com"
+          git config user.name "GitHub Actions"
+          git add events.json comedians.json comedian-review.json
+          git diff --staged --quiet && echo "No changes to commit" && exit 0
+          git commit -m "Update events $(date -u +%Y-%m-%d)"
+          git pull --rebase origin main
+          git push origin HEAD:main

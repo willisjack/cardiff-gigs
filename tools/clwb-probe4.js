@@ -1,61 +1,61 @@
-/* Temporary diagnostic round 5: what does one clwb.net event page actually
-   contain? Deliberately gentle — the site answers 429 under load, so this makes
-   a handful of requests with pauses and backs off when asked to. */
-const UA = 'cardiff-gigs-scraper/1.0 (+https://github.com/J-Hughes-In/cardiff-gigs)';
-const H = { 'User-Agent': UA, 'Accept': 'text/html,application/xhtml+xml,*/*', 'Accept-Language': 'en-GB,en;q=0.9' };
-const sleep = ms => new Promise(r => setTimeout(r, ms));
+/* Temporary diagnostic round 6: does enrichment still work on Clwb's ticket
+   links? Clwb wants an honest UA; See Tickets may want the opposite, and the
+   answer decides whether a sitemap fallback (title + ticket link, no date) can
+   recover dates downstream. */
+const { chromium } = require('playwright');
 
-async function politeGet(url, tries = 4) {
-  for (let i = 1; i <= tries; i++) {
-    const res = await fetch(url, { headers: H, redirect: 'manual' });
-    if (res.status === 429) {
-      const wait = 5000 * i;
-      console.log(`    429 Too Many Requests; waiting ${wait}ms (try ${i}/${tries})`);
-      await sleep(wait);
-      continue;
-    }
-    return res;
+const SPOOFED = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36';
+const HONEST  = 'cardiff-gigs-scraper/1.0 (+https://github.com/J-Hughes-In/cardiff-gigs)';
+
+const TARGETS = [
+  ['seetickets-event', 'https://clwbiforbach.seetickets.com/event/rammlied/clwb-ifor-bach/3569415'],
+  ['fatsoma-event',    'https://www.fatsoma.com/e/x3px83ec/rush'],
+];
+
+async function test(label, url, ua) {
+  let browser;
+  try {
+    browser = await chromium.launch({ args: ['--disable-dev-shm-usage'] });
+    const ctx = await browser.newContext({ userAgent: ua, viewport: { width: 1365, height: 900 } });
+    const page = await ctx.newPage();
+    const resp = await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 60_000 });
+    await page.waitForLoadState('load').catch(()=>{});
+    await new Promise(r => setTimeout(r, 1200));
+    const info = await page.evaluate(() => {
+      let ev = null;
+      for (const s of document.querySelectorAll('script[type="application/ld+json"]')) {
+        try {
+          (function walk(n, d) {
+            if (!n || typeof n !== 'object' || d > 12 || ev) return;
+            if (Array.isArray(n)) { n.forEach(x => walk(x, d + 1)); return; }
+            if ([].concat(n['@type'] || []).some(t => /Event$/.test(String(t)))) { ev = n; return; }
+            for (const v of Object.values(n)) if (v && typeof v === 'object') walk(v, d + 1);
+          })(JSON.parse(s.textContent), 0);
+        } catch {}
+      }
+      return {
+        title: document.title,
+        ldEvent: ev ? { name: ev.name, startDate: ev.startDate, offers: ev.offers ? 'yes' : 'no' } : null,
+        bodySnippet: (document.body?.innerText || '').slice(0, 140).replace(/\s+/g, ' '),
+      };
+    });
+    console.log(`  [${label}] UA=${ua === SPOOFED ? 'SPOOFED' : 'HONEST'} -> status ${resp ? resp.status() : 'null'} | title "${info.title}"`);
+    console.log(`      ld Event: ${JSON.stringify(info.ldEvent)}`);
+    console.log(`      body: ${info.bodySnippet}`);
+    await browser.close();
+  } catch (e) {
+    console.log(`  [${label}] UA=${ua === SPOOFED ? 'SPOOFED' : 'HONEST'} -> ERROR ${e.message.split('\n')[0]}`);
+    if (browser) await browser.close().catch(()=>{});
   }
-  return null;
 }
 
 (async () => {
-  console.log('######## CLWB EVENT PAGE STRUCTURE (gentle) ########');
-  await sleep(3000);
-
-  const smRes = await politeGet('https://clwb.net/tm-events-sitemap.xml');
-  if (!smRes) { console.log('sitemap still rate-limited; aborting'); return; }
-  const xml = await smRes.text();
-  const locs = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m => m[1])
-    .filter(u => /\/events\/[^/]+\/$/.test(u));
-  console.log(`sitemap status ${smRes.status} | event URLs: ${locs.length}`);
-
-  // Two pages only, well spaced.
-  for (const url of locs.slice(0, 2)) {
-    await sleep(4000);
-    console.log(`\n==== ${url}`);
-    const res = await politeGet(url);
-    if (!res) { console.log('    gave up (rate limited)'); continue; }
-    console.log(`    status ${res.status}`);
-    if (res.status >= 300 && res.status < 400) {
-      console.log(`    REDIRECTS TO: ${res.headers.get('location')}`);
-      continue;
-    }
-    const html = await res.text();
-    console.log(`    bytes ${html.length}`);
-    console.log(`    <title> ${((html.match(/<title>([\s\S]*?)<\/title>/)||[])[1]||'').trim().slice(0,120)}`);
-    for (const prop of ['og:title','og:image','og:url','og:description']) {
-      const v = (html.match(new RegExp(`property=["']${prop}["'][^>]*content=["']([^"']*)`))||[])[1]
-             || (html.match(new RegExp(`content=["']([^"']*)["'][^>]*property=["']${prop}["']`))||[])[1] || '';
-      console.log(`    ${prop}: ${v.slice(0,120)}`);
-    }
-    console.log(`    ld+json blocks: ${(html.match(/application\/ld\+json/g)||[]).length}`);
-    console.log(`    h1: ${JSON.stringify([...html.matchAll(/<h1[^>]*>([\s\S]*?)<\/h1>/g)].map(m=>m[1].replace(/<[^>]*>/g,'').trim().slice(0,80)).slice(0,4))}`);
-    console.log(`    h2: ${JSON.stringify([...html.matchAll(/<h2[^>]*>([\s\S]*?)<\/h2>/g)].map(m=>m[1].replace(/<[^>]*>/g,'').trim().slice(0,80)).slice(0,6))}`);
-    console.log(`    date-translate present: ${/date-translate/.test(html)}`);
-    console.log(`    grid-item present: ${/grid-item/.test(html)}`);
-    const tickets = [...new Set([...html.matchAll(/href=["'](https?:\/\/[^"']*(?:seetickets|fatsoma)[^"']*)["']/g)].map(m=>m[1]))];
-    console.log(`    ticket links (${tickets.length}): ${JSON.stringify(tickets.slice(0,5))}`);
+  console.log('######## TICKET-PLATFORM ENRICHMENT CHECK ########');
+  for (const [label, url] of TARGETS) {
+    console.log(`\n=== ${url}`);
+    await test(label, url, SPOOFED);
+    await new Promise(r => setTimeout(r, 2000));
+    await test(label, url, HONEST);
   }
   console.log('\n######## COMPLETE ########');
 })();

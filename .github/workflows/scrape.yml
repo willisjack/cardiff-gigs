@@ -21,7 +21,7 @@ concurrency:
 
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   scrape:
@@ -50,25 +50,22 @@ jobs:
           if [ -n "${{ inputs.venue }}" ]; then
             node scrape.js --venue "${{ inputs.venue }}"
           else
-            SCRAPE_NO_ENRICH=1 node scrape.js --venue Clwb --venue Globe --venue Fuel
+            npm run scrape
           fi
 
-      - name: Show status.json
+      - name: Enrich comedian data
+        # Run once a day on the 08:00 UTC scheduled cron only.
+        # Skipped on manual dispatches and the 14:00/20:00 scheduled runs.
+        if: github.event_name == 'schedule' && startsWith(github.event.schedule, '7 19')
+        run: node comedians.js
+        continue-on-error: true
+
+      - name: Commit results
         run: |
-          echo "--- summary / totals / alerts ---"
-          node -e '
-            const s=require("./status.json");
-            console.log("generatedAt:",s.generatedAt);
-            console.log("run:",JSON.stringify(s.run));
-            console.log("totals:",JSON.stringify(s.totals));
-            console.log("summary:",JSON.stringify(s.summary));
-            console.log("alerts:",JSON.stringify(s.alerts,null,1));
-            console.log("--- venue rows (problems first) ---");
-            for(const v of s.venues) console.log(
-              String(v.status).padEnd(9), String(v.venue).padEnd(26),
-              "ret="+String(v.eventsReturned).padStart(3),
-              "prev="+String(v.previousCount).padStart(3),
-              "now="+String(v.currentCount).padStart(3),
-              "chg="+String(v.change).padStart(4),
-              v.dataFrom, v.error?("| "+v.error):"");
-          '
+          git config user.email "actions@github.com"
+          git config user.name "GitHub Actions"
+          git add events.json status.json comedians.json comedian-review.json
+          git diff --staged --quiet && echo "No changes to commit" && exit 0
+          git commit -m "Update events $(date -u +%Y-%m-%d)"
+          git pull --rebase origin main
+          git push origin HEAD:main

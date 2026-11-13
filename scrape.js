@@ -3918,23 +3918,19 @@ async function scrapeClwb(context) {
   console.log('Scraping Clwb Ifor Bach...');
   const page = await context.newPage();
 
-  // Wait for any recognisable event container
+let loaded = false;
+for (let attempt = 1; attempt <= 3 && !loaded; attempt++) {
   await page.goto('https://clwb.net/whats-on/', { waitUntil: 'domcontentloaded', timeout: 45_000 });
-  await page.waitForLoadState('load').catch(() => {});
-  await page.waitForSelector(
-    [
-      '#eventsListings li.grid-item',
-      'li.grid-item',
-      'article.type-tribe_events',
-      '.tribe-events-pro-grid__event',
-      '.tribe-common-l-container article',
-      'article[class*="event"]',
-      '.event-item',
-    ].join(', '),
-    { state: 'attached', timeout: 20_000 }
-  ).catch(() => {});
-  await new Promise(r => setTimeout(r, 2_000));
-
+  loaded = await page
+    .waitForSelector('#eventsListings li.grid-item', { state: 'attached', timeout: 20_000 })
+    .then(() => true)
+    .catch(() => false);
+  if (!loaded) {
+    console.log(`  Clwb attempt ${attempt} blocked, retrying...`);
+    await page.waitForTimeout(5_000 * attempt);
+  }
+}
+if (!loaded) throw new Error('Clwb blocked: no event list after 3 attempts');
   // Diagnostic dump when needed
   const selectorAudit = await page.evaluate(() => {
     const checks = [

@@ -4638,29 +4638,158 @@ function reportVenueCountDrops(previousEvents, freshEvents) {
 }
 
 // ---------------------------------------------------------------------------
+// Run status report
+// ---------------------------------------------------------------------------
+
+const STATUS_FILE = 'status.json';
+
+/**
+ * Write a per-scraper account of the run to status.json.
+ *
+ * A failing scraper is not visible in events.json: scrapeAll deliberately keeps
+ * a venue's previous events when its scraper returns nothing, so the venue
+ * still looks populated and its count does not move. Clwb was refused by the
+ * site from 2026-08-25 and nothing showed it for two and a half months. This
+ * file is the place that shows it.
+ *
+ * `lastSuccess` carries forward from the previous status.json whenever a
+ * scraper does not succeed, so the file says how long a venue has been quiet
+ * rather than only that it is quiet right now.
+ */
+function writeStatusReport({
+  selectedScrapers, runStats, failedScrapers, previousEvents, finalEvents,
+  newCount, partial, runStartedAt,
+}) {
+  let prevStatus = {};
+  if (fs.existsSync(STATUS_FILE)) {
+    try { prevStatus = JSON.parse(fs.readFileSync(STATUS_FILE, 'utf8')) || {}; } catch { /* rebuild from scratch */ }
+  }
+  const prevByScraper = new Map(
+    (Array.isArray(prevStatus.venues) ? prevStatus.venues : []).map((v) => [v.scraper, v])
+  );
+
+  const prevCounts = countEventsByVenue(previousEvents);
+  const nowCounts = countEventsByVenue(finalEvents);
+  const attempted = new Set(selectedScrapers.map((s) => s.name));
+  const generatedAt = new Date().toISOString();
+
+  const venues = SCRAPERS.map((s) => {
+    const stats = runStats.get(s.name);
+    const prior = prevByScraper.get(s.name) || {};
+    const previousCount = prevCounts.get(s.venue) || 0;
+    const currentCount = nowCounts.get(s.venue) || 0;
+
+    let status;
+    if (!attempted.has(s.name)) status = 'not-run';
+    else if (failedScrapers.has(s.name)) status = 'failed';
+    // No record despite being attempted means the bookkeeping missed it, not
+    // that the venue had nothing on; say so rather than calling it empty.
+    else if (!stats) status = 'unknown';
+    else if (stats.eventsReturned === 0) status = 'empty';
+    else status = 'ok';
+
+    const succeeded = status === 'ok';
+    const priorFailures = Number(prior.consecutiveFailures) || 0;
+
+    return {
+      scraper: s.name,
+      venue: s.venue,
+      status,
+      // Whether this venue's rows in events.json came from this run or are
+      // being held over from an earlier one.
+      dataFrom: succeeded ? 'this-run' : (currentCount > 0 ? 'preserved-from-earlier-run' : 'none'),
+      eventsReturned: stats?.eventsReturned ?? 0,
+      previousCount,
+      currentCount,
+      change: currentCount - previousCount,
+      lastSuccess: succeeded ? generatedAt : (prior.lastSuccess ?? null),
+      consecutiveFailures: status === 'not-run' ? priorFailures
+                         : succeeded ? 0 : priorFailures + 1,
+      attempts: stats?.attempts ?? 0,
+      durationMs: stats?.durationMs ?? 0,
+      error: stats?.error ?? null,
+    };
+  });
+
+  // A venue that dropped a lot can still report "ok", so flag it alongside the
+  // outright failures rather than leaving it to be spotted by eye.
+  for (const v of venues) {
+    if (v.status !== 'ok') continue;
+    if (v.previousCount >= VENUE_DROP_MIN_BASELINE && v.currentCount < v.previousCount * VENUE_DROP_RATIO) {
+      v.status = 'degraded';
+      v.error = `event count fell from ${v.previousCount} to ${v.currentCount}`;
+    }
+  }
+
+  const alerts = venues
+    .filter((v) => v.status === 'failed' || v.status === 'empty' ||
+                   v.status === 'degraded' || v.status === 'unknown')
+    .map((v) => `${v.venue} (${v.scraper}): ${v.status}${v.error ? ` — ${v.error}` : ''}` +
+                (v.lastSuccess ? `; last succeeded ${v.lastSuccess}` : '; no recorded success'));
+
+  const rank = { failed: 0, empty: 1, degraded: 2, unknown: 3, 'not-run': 4, ok: 5 };
+  venues.sort((a, b) => (rank[a.status] - rank[b.status]) || a.venue.localeCompare(b.venue));
+
+  const report = {
+    generatedAt,
+    run: {
+      mode: partial ? 'partial' : 'full',
+      durationMs: Date.now() - runStartedAt,
+      scrapersAttempted: selectedScrapers.length,
+      scrapersTotal: SCRAPERS.length,
+    },
+    totals: {
+      previousEvents: previousEvents.length,
+      currentEvents: finalEvents.length,
+      change: finalEvents.length - previousEvents.length,
+      newEvents: newCount,
+    },
+    summary: {
+      ok: venues.filter((v) => v.status === 'ok').length,
+      degraded: venues.filter((v) => v.status === 'degraded').length,
+      empty: venues.filter((v) => v.status === 'empty').length,
+      unknown: venues.filter((v) => v.status === 'unknown').length,
+      failed: venues.filter((v) => v.status === 'failed').length,
+      notRun: venues.filter((v) => v.status === 'not-run').length,
+    },
+    alerts,
+    venues,
+  };
+
+  fs.writeFileSync(STATUS_FILE, JSON.stringify(report, null, 2));
+  console.log(`\nStatus written to ${STATUS_FILE}: ` +
+    `${report.summary.ok} ok, ${report.summary.degraded} degraded, ` +
+    `${report.summary.empty} empty, ${report.summary.failed} failed, ${report.summary.notRun} not run`);
+  for (const a of alerts) console.log(`::warning title=Scraper needs attention::${a}`);
+}
+
+// ---------------------------------------------------------------------------
 // Venue registry — single source of truth for name → scraper mapping
 // ---------------------------------------------------------------------------
 
+// `venue` is the label the scraper stamps on its events. It lets status.json
+// name the venue behind a scraper that failed and so returned nothing to read
+// a label from — without it, a silent venue has no entry to show.
 const SCRAPERS = [
-  { name: 'Globe',          fn: scrapeGlobe         },
-  { name: 'WMC',            fn: scrapeWMC            },
-  { name: 'New Theatre',    fn: scrapeNewTheatre     },
-  { name: 'Tramshed',       fn: scrapeTramshed       },
-  { name: 'Utilita Arena',  fn: scrapeUtilitaArena   },
-  { name: 'Depot',          fn: scrapeDepot          },
-  { name: 'Cardiff SU',     fn: scrapeCardiffSU      },
-  { name: 'The Gate',       fn: scrapeTheGate        },
-  { name: 'Clwb',           fn: scrapeClwb           },
-  { name: 'Fuel',           fn: scrapeFuel           },
-  { name: 'Principality',   fn: scrapePrincipality   },
-  { name: 'Sherman',        fn: scrapeSherman        },
-  { name: 'Canopi',         fn: scrapeCanopi         },
-  { name: 'CultVR',              fn: scrapeCultVR              },
-  { name: 'Llandaff Cathedral',  fn: scrapeLlandaffCathedral  },
-  { name: 'Paradise Garden',    fn: scrapeParadiseGarden     },
-  { name: 'Stage & Stem',       fn: scrapeStageAndStem       },
-  // { name: 'Acapela',          fn: scrapeAcapela             },
-  // { name: 'Chapter Arts',     fn: scrapeChapterArts         },
+  { name: 'Globe',              fn: scrapeGlobe,             venue: 'The Globe Cardiff'        },
+  { name: 'WMC',                fn: scrapeWMC,               venue: 'Wales Millennium Centre'  },
+  { name: 'New Theatre',        fn: scrapeNewTheatre,        venue: 'New Theatre Cardiff'      },
+  { name: 'Tramshed',           fn: scrapeTramshed,          venue: 'Tramshed Cardiff'         },
+  { name: 'Utilita Arena',      fn: scrapeUtilitaArena,      venue: 'Utilita Arena Cardiff'    },
+  { name: 'Depot',              fn: scrapeDepot,             venue: 'Depot Cardiff'            },
+  { name: 'Cardiff SU',         fn: scrapeCardiffSU,         venue: 'Cardiff SU'               },
+  { name: 'The Gate',           fn: scrapeTheGate,           venue: 'The Gate Cardiff'         },
+  { name: 'Clwb',               fn: scrapeClwb,              venue: 'Clwb Ifor Bach'           },
+  { name: 'Fuel',               fn: scrapeFuel,              venue: 'Fuel Rock Club'           },
+  { name: 'Principality',       fn: scrapePrincipality,      venue: 'Principality Stadium'     },
+  { name: 'Sherman',            fn: scrapeSherman,           venue: 'Sherman Theatre'          },
+  { name: 'Canopi',             fn: scrapeCanopi,            venue: 'Canopi Cardiff'           },
+  { name: 'CultVR',             fn: scrapeCultVR,            venue: 'CultVR'                   },
+  { name: 'Llandaff Cathedral', fn: scrapeLlandaffCathedral, venue: 'Llandaff Cathedral'       },
+  { name: 'Paradise Garden',    fn: scrapeParadiseGarden,    venue: 'Paradise Garden'          },
+  { name: 'Stage & Stem',       fn: scrapeStageAndStem,      venue: 'Stage & Stem'             },
+  // { name: 'Acapela',         fn: scrapeAcapela,           venue: 'Acapela Studio'           },
+  // { name: 'Chapter Arts',    fn: scrapeChapterArts,       venue: 'Chapter Arts Centre'      },
 ];
 
 /**
@@ -4698,6 +4827,7 @@ function resolveScrapers(argv) {
 }
 
 async function scrapeAll(selectedScrapers) {
+  const runStartedAt = Date.now();
   const browser = await chromium.launch({ args: ['--disable-dev-shm-usage'] });
   const context = await browser.newContext({
     userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
@@ -4705,11 +4835,21 @@ async function scrapeAll(selectedScrapers) {
   });
 
   const failedScrapers = new Set();
+  // Per-scraper record of how the run went, for status.json.
+  const runStats = new Map();
 
   async function safeScrap(fn, name, retries = 2) {
     let lastErr;
+    const startedAt = Date.now();
     for (let attempt = 0; attempt <= retries; attempt++) {
-      try { return await fn(); } catch (e) {
+      try {
+        const events = await fn();
+        runStats.set(name, {
+          attempts: attempt + 1, durationMs: Date.now() - startedAt,
+          eventsReturned: events.length, error: null,
+        });
+        return events;
+      } catch (e) {
         lastErr = e;
         if (attempt < retries) {
           console.log(`  ${name}: attempt ${attempt + 1} failed (${e.message.split('\n')[0]}), retrying...`);
@@ -4719,6 +4859,10 @@ async function scrapeAll(selectedScrapers) {
     }
     console.log(`  ${name} failed: ${lastErr.message.split('\n')[0]}`);
     failedScrapers.add(name);
+    runStats.set(name, {
+      attempts: retries + 1, durationMs: Date.now() - startedAt,
+      eventsReturned: 0, error: lastErr.message.split('\n')[0],
+    });
     return [];
   }
 
@@ -4806,6 +4950,11 @@ async function scrapeAll(selectedScrapers) {
 
   fs.writeFileSync('events.json', JSON.stringify(final, null, 2));
   console.log(`Total: ${final.length} events saved to events.json`);
+
+  writeStatusReport({
+    selectedScrapers, runStats, failedScrapers,
+    previousEvents, finalEvents: final, newCount, partial, runStartedAt,
+  });
 }
 
 // ---------------------------------------------------------------------------

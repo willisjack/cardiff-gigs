@@ -1,6 +1,13 @@
 name: Scrape Cardiff Gigs
 
 on:
+  schedule:
+    
+    - cron: '3 4 * * *'
+    - cron: '3 7 * * *'
+    - cron: '3 10 * * *'
+    - cron: '3 14 * * *'
+    - cron: '3 19 * * *'
   workflow_dispatch:
     inputs:
       venue:
@@ -9,15 +16,16 @@ on:
         default: ''
 
 concurrency:
-  group: clwb-probe
+  group: update-events
   cancel-in-progress: false
 
+
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   scrape:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-24.04   # was: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v5
@@ -26,11 +34,38 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Probe Clwb
+        run: |
+          curl -sS -o /dev/null -w "sitemap: %{http_code}\n" https://clwb.net/tm-events-sitemap.xml
+          curl -sS -o /dev/null -w "whats-on: %{http_code}\n" -A "Mozilla/5.0" https://clwb.net/whats-on/
+
       - name: Install dependencies
         run: npm install
 
       - name: Install Playwright browsers
         run: npx playwright install chromium --with-deps
 
-      - name: Event-page structure probe
-        run: node tools/clwb-probe4.js
+      - name: Run scraper
+        run: |
+          if [ -n "${{ inputs.venue }}" ]; then
+            node scrape.js --venue "${{ inputs.venue }}"
+          else
+            npm run scrape
+          fi
+
+      - name: Enrich comedian data
+        # Run once a day on the 08:00 UTC scheduled cron only.
+        # Skipped on manual dispatches and the 14:00/20:00 scheduled runs.
+        if: github.event_name == 'schedule' && startsWith(github.event.schedule, '7 19')
+        run: node comedians.js
+        continue-on-error: true
+
+      - name: Commit results
+        run: |
+          git config user.email "actions@github.com"
+          git config user.name "GitHub Actions"
+          git add events.json comedians.json comedian-review.json
+          git diff --staged --quiet && echo "No changes to commit" && exit 0
+          git commit -m "Update events $(date -u +%Y-%m-%d)"
+          git pull --rebase origin main
+          git push origin HEAD:main

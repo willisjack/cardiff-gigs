@@ -3925,7 +3925,9 @@ function isChapterJunk(e) {
 // quiet after 2026-08-25 while every other scraper kept working.
 const CLWB_UA = 'cardiff-gigs-scraper/1.0 (+https://github.com/J-Hughes-In/cardiff-gigs)';
 const CLWB_SITEMAP = 'https://clwb.net/tm-events-sitemap.xml';
-const CLWB_SITEMAP_CONCURRENCY = 4;
+// The host answers 429 under load, so the fallback walks event pages one at a
+// time with a pause between them rather than fanning out.
+const CLWB_SITEMAP_DELAY_MS = 1_200;
 
 /** A context that identifies itself consistently, as clwb.net requires. */
 function newClwbContext(context) {
@@ -3938,17 +3940,24 @@ function newClwbContext(context) {
 }
 
 /**
- * Fallback source: the venue's own tm-events sitemap, then each event page.
+ * Last-resort source: the venue's own tm-events sitemap, then each event page.
  *
- * The listing stays the primary source because it carries title, date and the
- * support line (time, price, age) in one block. The sitemap yields only links,
- * so every event page has to be opened to recover a title and date — slower,
- * and the support details are thinner. Used only when the listing yields
- * nothing, so a future change to the filter or the listing markup degrades the
- * venue instead of dropping it.
+ * The listing is the only place that carries a date, so it stays primary. Event
+ * pages give a title and a ticket link but no date of their own, and the two
+ * ticket platforms differ: Fatsoma serves its event JSON-LD (startDate and all)
+ * to a runner, while See Tickets answers 403 to this IP range whatever the
+ * User-Agent, and See Tickets covers most of the venue's listings. So most rows
+ * recovered this way cannot be dated at all.
+ *
+ * Every one of the events we hold has a date, and the merge in scrapeAll
+ * replaces a venue wholesale once its scraper returns anything, so emitting
+ * undated rows would overwrite good events with worse ones. A row is therefore
+ * only emitted when it has both a title and a date; if that leaves nothing, the
+ * caller raises instead and the previous events are kept. Should the venue ever
+ * publish dates on its event pages, this starts contributing on its own.
  */
 async function scrapeClwbFromSitemap(context) {
-  console.log('  Clwb: listing unavailable, falling back to tm-events sitemap...');
+  console.log('  Clwb: listing unavailable, trying the tm-events sitemap...');
   let xml;
   try {
     const res = await axios.get(CLWB_SITEMAP, {
@@ -3968,76 +3977,75 @@ async function scrapeClwbFromSitemap(context) {
   if (!urls.length) return [];
 
   const ctx = await newClwbContext(context);
+  const page = await ctx.newPage();
   const out = [];
-  const queue = [...urls];
+  let undated = 0;
 
-  async function worker() {
-    const page = await ctx.newPage();
-    try {
-      while (queue.length) {
-        const url = queue.shift();
-        try {
-          await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 45_000 });
-          const ev = await page.evaluate(() => {
-            const meta = (p) =>
-              document.querySelector(`meta[property="${p}"], meta[name="${p}"]`)?.content?.trim() || '';
+  try {
+    for (const url of urls) {
+      try {
+        await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 45_000 });
+        const ev = await page.evaluate(() => {
+          const meta = (p) =>
+            document.querySelector(`meta[property="${p}"], meta[name="${p}"]`)?.content?.trim() || '';
 
-            // Prefer an Event node from the page's own structured data.
-            let ld = null;
-            for (const s of document.querySelectorAll('script[type="application/ld+json"]')) {
-              try {
-                (function walk(n, d) {
-                  if (!n || typeof n !== 'object' || d > 10 || ld) return;
-                  if (Array.isArray(n)) { n.forEach((x) => walk(x, d + 1)); return; }
-                  if ([].concat(n['@type'] || []).some((t) => /Event$/.test(String(t)))) { ld = n; return; }
-                  for (const v of Object.values(n)) if (v && typeof v === 'object') walk(v, d + 1);
-                })(JSON.parse(s.textContent), 0);
-              } catch { /* ignore a malformed block */ }
-            }
-
-            const title =
-              (ld && typeof ld.name === 'string' && ld.name.trim()) ||
-              document.querySelector('h1')?.innerText?.trim() ||
-              meta('og:title') || '';
-
-            const dateText =
-              document.querySelector('p.date-translate, .date-translate, .event-date')?.innerText?.trim() ||
-              document.querySelector('time[datetime]')?.innerText?.trim() || '';
-
-            const details = [...document.querySelectorAll('p.grid-item-support:not(.date-translate), .event-support')]
-              .map((p) => p.innerText.trim()).filter(Boolean).join(' • ');
-
-            return {
-              title,
-              date: dateText,
-              startDate: (ld && typeof ld.startDate === 'string') ? ld.startDate : '',
-              details,
-              ticketUrl: document.querySelector('a.tickets-button, a[href*="seetickets"], a[href*="fatsoma"]')?.href || '',
-              imageUrl: meta('og:image'),
-            };
-          });
-
-          if (ev.title) {
-            out.push({
-              title: ev.title,
-              date: ev.date || ev.startDate || '',
-              details: ev.details,
-              // Keep the ticket link where the page offers one so enrichment has
-              // the same target it gets from the listing; else the event page.
-              url: ev.ticketUrl || url,
-              venue: 'Clwb Ifor Bach',
-              scrapedAt: new Date().toISOString(),
-              ...(ev.imageUrl ? { imageUrl: ev.imageUrl } : {}),
-            });
+          let ld = null;
+          for (const s of document.querySelectorAll('script[type="application/ld+json"]')) {
+            try {
+              (function walk(n, d) {
+                if (!n || typeof n !== 'object' || d > 10 || ld) return;
+                if (Array.isArray(n)) { n.forEach((x) => walk(x, d + 1)); return; }
+                if ([].concat(n['@type'] || []).some((t) => /Event$/.test(String(t)))) { ld = n; return; }
+                for (const v of Object.values(n)) if (v && typeof v === 'object') walk(v, d + 1);
+              })(JSON.parse(s.textContent), 0);
+            } catch { /* ignore a malformed block */ }
           }
-        } catch { /* one unreachable event page shouldn't sink the fallback */ }
-      }
-    } finally { await page.close(); }
+
+          // The page titles itself "<Event> - Clwb Ifor Bach", and its first h1
+          // is the venue's own name, so the event's h1 is the second one.
+          const ogTitle = meta('og:title').replace(/\s*[-–]\s*Clwb Ifor Bach\s*$/i, '').trim();
+          const h1s = [...document.querySelectorAll('h1')]
+            .map((h) => h.innerText.trim())
+            .filter((t) => t && !/^clwb ifor bach$/i.test(t));
+
+          const ticket = [...document.querySelectorAll('a[href*="seetickets"], a[href*="fatsoma"]')]
+            .map((a) => a.href)
+            // Every page carries the venue's generic box-office and Fatsoma
+            // profile links; only a per-event link is worth keeping.
+            .filter((h) => !/\/search\/all|\/p\/clwb-ifor-bach/i.test(h))[0] || '';
+
+          return {
+            title: (ld && typeof ld.name === 'string' && ld.name.trim()) || ogTitle || h1s[0] || '',
+            date: document.querySelector('p.date-translate, .date-translate, .event-date')?.innerText?.trim()
+               || (ld && typeof ld.startDate === 'string' ? ld.startDate : ''),
+            ticketUrl: ticket,
+            imageUrl: meta('og:image'),
+          };
+        });
+
+        if (ev.title && ev.date) {
+          out.push({
+            title: ev.title,
+            date: ev.date,
+            details: '',
+            url: ev.ticketUrl || url,
+            venue: 'Clwb Ifor Bach',
+            scrapedAt: new Date().toISOString(),
+            ...(ev.imageUrl ? { imageUrl: ev.imageUrl } : {}),
+          });
+        } else if (ev.title) {
+          undated++;
+        }
+      } catch { /* one unreachable event page shouldn't sink the fallback */ }
+
+      await new Promise((r) => setTimeout(r, CLWB_SITEMAP_DELAY_MS));
+    }
+  } finally {
+    await page.close().catch(() => {});
+    await ctx.close().catch(() => {});
   }
 
-  await Promise.all(Array.from({ length: CLWB_SITEMAP_CONCURRENCY }, () => worker()));
-  await ctx.close();
-  console.log(`  Clwb sitemap fallback: ${out.length} events`);
+  console.log(`  Clwb sitemap fallback: ${out.length} usable, ${undated} without a date (skipped)`);
   return out;
 }
 
@@ -4066,9 +4074,14 @@ async function scrapeClwb(context) {
     if (!loaded) {
       await page.close();
       await ctx.close();
+      console.log(
+        '::warning title=Clwb listing unreadable::clwb.net returned no event list. ' +
+        'If the page title read "Security Verification", its bot filter is refusing ' +
+        'this client — check CLWB_UA still describes us accurately.'
+      );
       const viaSitemap = await scrapeClwbFromSitemap(context);
       if (viaSitemap.length) return viaSitemap;
-      throw new Error('Clwb blocked: no event list after 3 attempts, and the sitemap fallback returned nothing');
+      throw new Error('Clwb: no event list after 3 attempts, and the sitemap fallback produced no dated events');
     }
 
     const events = await page.evaluate(() => {
@@ -4125,9 +4138,13 @@ async function scrapeClwb(context) {
     // The listing can load while yielding nothing usable if its markup changes;
     // fall back rather than reporting an empty success and wiping the venue.
     if (!events.length) {
+      console.log(
+        '::warning title=Clwb listing empty::clwb.net served the listing but no events ' +
+        'could be read from it — its markup has probably changed.'
+      );
       const viaSitemap = await scrapeClwbFromSitemap(context);
       if (viaSitemap.length) return viaSitemap;
-      throw new Error('Clwb listing loaded but produced no events, and the sitemap fallback returned nothing');
+      throw new Error('Clwb listing loaded but produced no events, and the sitemap fallback produced no dated events');
     }
 
     console.log(`  Clwb: ${events.length} events`);

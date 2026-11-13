@@ -32,15 +32,7 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install chromium --with-deps
 
-      - name: UA comparison probe
-        run: node tools/clwb-probe3.js
-        continue-on-error: true
-
-      - name: Alternate-source probe
-        run: node tools/clwb-probe2.js
-        continue-on-error: true
-
-      - name: Real scraper, Clwb only
+      - name: Fixed scraper, Clwb only
         env:
           SCRAPE_NO_ENRICH: '1'
         run: node scrape.js --venue Clwb
@@ -53,7 +45,14 @@ jobs:
             const l=Array.isArray(ev)?ev:(ev.events||[]);
             const c=l.filter(e=>/clwb/i.test(e.venue||""));
             console.log("clwb events:",c.length);
-            const last=c.map(e=>e.scrapedAt||"").filter(Boolean).sort().pop();
-            console.log("newest scrapedAt:",last);
-            console.log(JSON.stringify(c.slice(0,5).map(e=>({t:e.title,d:e.date,u:e.url})),null,1));
+            console.log(JSON.stringify(c.slice(0,8).map(e=>({t:e.title,d:e.date,det:e.details,u:e.url})),null,1));
           '
+        continue-on-error: true
+
+      - name: Sitemap fallback data check
+        run: node tools/clwb-verify.js
+        continue-on-error: true
+
+      - name: Event-page structure probe
+        run: node tools/clwb-probe4.js
+        continue-on-error: true

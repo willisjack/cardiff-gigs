@@ -3914,115 +3914,229 @@ function isChapterJunk(e) {
   return false;
 }
 
+// Clwb's host runs a bot filter that answers "Security Verification" (401, and
+// 403 on repeat requests) to any client claiming to be a desktop browser: the
+// shared context's spoofed "Chrome/131.0.0.0 ... Windows NT 10.0" string and
+// Playwright's own HeadlessChrome default are both turned away, because neither
+// matches the Sec-CH-UA version and platform Chromium really sends. A request
+// that plainly says what it is gets the listing at 200. robots.txt is
+// "Disallow:" with nothing listed, so the listing is ours to read — we only
+// have to stop misdescribing ourselves to get it. This is why the venue went
+// quiet after 2026-08-25 while every other scraper kept working.
+const CLWB_UA = 'cardiff-gigs-scraper/1.0 (+https://github.com/J-Hughes-In/cardiff-gigs)';
+const CLWB_SITEMAP = 'https://clwb.net/tm-events-sitemap.xml';
+const CLWB_SITEMAP_CONCURRENCY = 4;
+
+/** A context that identifies itself consistently, as clwb.net requires. */
+function newClwbContext(context) {
+  return context.browser().newContext({
+    userAgent: CLWB_UA,
+    viewport: { width: 1365, height: 900 },
+    locale: 'en-GB',
+    timezoneId: 'Europe/London',
+  });
+}
+
+/**
+ * Fallback source: the venue's own tm-events sitemap, then each event page.
+ *
+ * The listing stays the primary source because it carries title, date and the
+ * support line (time, price, age) in one block. The sitemap yields only links,
+ * so every event page has to be opened to recover a title and date — slower,
+ * and the support details are thinner. Used only when the listing yields
+ * nothing, so a future change to the filter or the listing markup degrades the
+ * venue instead of dropping it.
+ */
+async function scrapeClwbFromSitemap(context) {
+  console.log('  Clwb: listing unavailable, falling back to tm-events sitemap...');
+  let xml;
+  try {
+    const res = await axios.get(CLWB_SITEMAP, {
+      headers: { 'User-Agent': CLWB_UA, Accept: 'application/xml,text/xml,*/*' },
+      timeout: 20_000,
+    });
+    xml = String(res.data);
+  } catch (e) {
+    console.log(`  Clwb sitemap unreachable: ${e.message}`);
+    return [];
+  }
+
+  const urls = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)]
+    .map((m) => m[1].trim())
+    .filter((u) => /\/events\/[^/]+\/?$/.test(u));
+  console.log(`  Clwb sitemap: ${urls.length} event page(s)`);
+  if (!urls.length) return [];
+
+  const ctx = await newClwbContext(context);
+  const out = [];
+  const queue = [...urls];
+
+  async function worker() {
+    const page = await ctx.newPage();
+    try {
+      while (queue.length) {
+        const url = queue.shift();
+        try {
+          await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 45_000 });
+          const ev = await page.evaluate(() => {
+            const meta = (p) =>
+              document.querySelector(`meta[property="${p}"], meta[name="${p}"]`)?.content?.trim() || '';
+
+            // Prefer an Event node from the page's own structured data.
+            let ld = null;
+            for (const s of document.querySelectorAll('script[type="application/ld+json"]')) {
+              try {
+                (function walk(n, d) {
+                  if (!n || typeof n !== 'object' || d > 10 || ld) return;
+                  if (Array.isArray(n)) { n.forEach((x) => walk(x, d + 1)); return; }
+                  if ([].concat(n['@type'] || []).some((t) => /Event$/.test(String(t)))) { ld = n; return; }
+                  for (const v of Object.values(n)) if (v && typeof v === 'object') walk(v, d + 1);
+                })(JSON.parse(s.textContent), 0);
+              } catch { /* ignore a malformed block */ }
+            }
+
+            const title =
+              (ld && typeof ld.name === 'string' && ld.name.trim()) ||
+              document.querySelector('h1')?.innerText?.trim() ||
+              meta('og:title') || '';
+
+            const dateText =
+              document.querySelector('p.date-translate, .date-translate, .event-date')?.innerText?.trim() ||
+              document.querySelector('time[datetime]')?.innerText?.trim() || '';
+
+            const details = [...document.querySelectorAll('p.grid-item-support:not(.date-translate), .event-support')]
+              .map((p) => p.innerText.trim()).filter(Boolean).join(' • ');
+
+            return {
+              title,
+              date: dateText,
+              startDate: (ld && typeof ld.startDate === 'string') ? ld.startDate : '',
+              details,
+              ticketUrl: document.querySelector('a.tickets-button, a[href*="seetickets"], a[href*="fatsoma"]')?.href || '',
+              imageUrl: meta('og:image'),
+            };
+          });
+
+          if (ev.title) {
+            out.push({
+              title: ev.title,
+              date: ev.date || ev.startDate || '',
+              details: ev.details,
+              // Keep the ticket link where the page offers one so enrichment has
+              // the same target it gets from the listing; else the event page.
+              url: ev.ticketUrl || url,
+              venue: 'Clwb Ifor Bach',
+              scrapedAt: new Date().toISOString(),
+              ...(ev.imageUrl ? { imageUrl: ev.imageUrl } : {}),
+            });
+          }
+        } catch { /* one unreachable event page shouldn't sink the fallback */ }
+      }
+    } finally { await page.close(); }
+  }
+
+  await Promise.all(Array.from({ length: CLWB_SITEMAP_CONCURRENCY }, () => worker()));
+  await ctx.close();
+  console.log(`  Clwb sitemap fallback: ${out.length} events`);
+  return out;
+}
+
 async function scrapeClwb(context) {
   console.log('Scraping Clwb Ifor Bach...');
-  const page = await context.newPage();
+  // Own context: the shared one's spoofed UA is refused here, and changing the
+  // UA on a shared context would alter every other venue's requests too.
+  const ctx = await newClwbContext(context);
+  const page = await ctx.newPage();
 
-let loaded = false;
-for (let attempt = 1; attempt <= 3 && !loaded; attempt++) {
-  await page.goto('https://clwb.net/whats-on/', { waitUntil: 'domcontentloaded', timeout: 45_000 });
-  loaded = await page
-    .waitForSelector('#eventsListings li.grid-item', { state: 'attached', timeout: 20_000 })
-    .then(() => true)
-    .catch(() => false);
-  if (!loaded) {
-    console.log(`  Clwb attempt ${attempt} blocked, retrying...`);
-    await page.waitForTimeout(5_000 * attempt);
-  }
-}
-if (!loaded) throw new Error('Clwb blocked: no event list after 3 attempts');
-  // Diagnostic dump when needed
-  const selectorAudit = await page.evaluate(() => {
-    const checks = [
-      '#eventsListings li.grid-item',
-      'li.grid-item',
-      'article.type-tribe_events',
-      '.tribe-events-pro-grid__event',
-      '.tribe-common-l-container article',
-      'article[class*="event"]',
-      '.event-item',
-      'a[href*="/event"]',
-      'a[href*="seetickets"]',
-    ];
-    return checks.map(sel => ({ sel, count: document.querySelectorAll(sel).length }));
-  });
-  console.log('  Clwb selector audit:', JSON.stringify(selectorAudit));
-
-  if (selectorAudit.every(r => r.count === 0)) {
-    const pageDump = await page.evaluate(() => {
-      const bodyText = (document.body?.innerText || '').slice(0, 800).replace(/\s+/g, ' ');
-      const allLinks = Array.from(document.querySelectorAll('a[href]'))
-        .map(a => a.getAttribute('href') || '')
-        .filter(h => h && !h.startsWith('#') && !h.startsWith('javascript'))
-        .slice(0, 40);
-      const tagClasses = {};
-      for (const tag of ['article', 'li', 'div', 'section']) {
-        const els = document.querySelectorAll(tag + '[class]');
-        const cls = new Set();
-        for (const el of els) for (const c of el.classList) cls.add(c);
-        if (cls.size) tagClasses[tag] = [...cls].slice(0, 30).join(' ');
+  try {
+    let loaded = false;
+    for (let attempt = 1; attempt <= 3 && !loaded; attempt++) {
+      await page.goto('https://clwb.net/whats-on/', { waitUntil: 'domcontentloaded', timeout: 45_000 });
+      loaded = await page
+        .waitForSelector('#eventsListings li.grid-item', { state: 'attached', timeout: 20_000 })
+        .then(() => true)
+        .catch(() => false);
+      if (!loaded) {
+        const status = await page.evaluate(() => document.title).catch(() => '');
+        console.log(`  Clwb attempt ${attempt} returned no event list (page title: "${status}"), retrying...`);
+        await page.waitForTimeout(5_000 * attempt);
       }
-      return { bodyText, allLinks, tagClasses };
-    });
-    console.log('  Clwb body snippet:', pageDump.bodyText);
-    console.log('  Clwb all links (sample):', pageDump.allLinks);
-    console.log('  Clwb element classes:', JSON.stringify(pageDump.tagClasses));
-  }
+    }
 
-  const events = await page.evaluate(() => {
-    function extractItem(item) {
-      let imageUrl = '';
-      const img = item.querySelector('figure img, .grid-item-image img, img[src], img[data-src], img[data-lazy-src]');
-      if (img) {
-        const raw = img.getAttribute('src') || img.getAttribute('data-src') || img.getAttribute('data-lazy-src') || '';
-        if (raw && !raw.startsWith('data:')) {
-          try { imageUrl = new URL(raw, location.href).href; } catch { imageUrl = raw.trim(); }
+    if (!loaded) {
+      await page.close();
+      await ctx.close();
+      const viaSitemap = await scrapeClwbFromSitemap(context);
+      if (viaSitemap.length) return viaSitemap;
+      throw new Error('Clwb blocked: no event list after 3 attempts, and the sitemap fallback returned nothing');
+    }
+
+    const events = await page.evaluate(() => {
+      function extractItem(item) {
+        let imageUrl = '';
+        const img = item.querySelector('figure img, .grid-item-image img, img[src], img[data-src], img[data-lazy-src]');
+        if (img) {
+          const raw = img.getAttribute('src') || img.getAttribute('data-src') || img.getAttribute('data-lazy-src') || '';
+          if (raw && !raw.startsWith('data:')) {
+            try { imageUrl = new URL(raw, location.href).href; } catch { imageUrl = raw.trim(); }
+          }
         }
+        const title = item.querySelector('h3.grid-item-title, h2, h3, .tribe-event-url, .event-title')?.innerText?.trim() || '';
+        const dateEl = item.querySelector(
+          'p.grid-item-support.date-translate, p.date-translate, .tribe-event-date-start, time, .event-date, span[class*="date"]'
+        );
+        const details = Array.from(item.querySelectorAll('p.grid-item-support:not(.date-translate)'))
+          .map(p => p.innerText.trim()).filter(Boolean).join(' • ');
+        const url =
+          item.querySelector('a.tickets-button, a[href*="seetickets"], a[href*="fatsoma"], figure a, .grid-item-image a')?.href ||
+          item.querySelector('a.url, a[href*="/event"]')?.href ||
+          item.querySelector('a[href^="http"]')?.href || '';
+        return {
+          title,
+          date: dateEl?.innerText?.trim() || dateEl?.getAttribute('datetime') || '',
+          details,
+          url,
+          venue: 'Clwb Ifor Bach',
+          scrapedAt: new Date().toISOString(),
+          ...(imageUrl ? { imageUrl } : {}),
+        };
       }
-      const title = item.querySelector('h3.grid-item-title, h2, h3, .tribe-event-url, .event-title')?.innerText?.trim() || '';
-      const dateEl = item.querySelector(
-        'p.grid-item-support.date-translate, p.date-translate, .tribe-event-date-start, time, .event-date, span[class*="date"]'
-      );
-      const details = Array.from(item.querySelectorAll('p.grid-item-support:not(.date-translate)'))
-        .map(p => p.innerText.trim()).filter(Boolean).join(' • ');
-      const url =
-        item.querySelector('a.tickets-button, a[href*="seetickets"], a[href*="fatsoma"], figure a, .grid-item-image a')?.href ||
-        item.querySelector('a.url, a[href*="/event"]')?.href ||
-        item.querySelector('a[href^="http"]')?.href || '';
-      return {
-        title,
-        date: dateEl?.innerText?.trim() || dateEl?.getAttribute('datetime') || '',
-        details,
-        url,
-        venue: 'Clwb Ifor Bach',
-        scrapedAt: new Date().toISOString(),
-        ...(imageUrl ? { imageUrl } : {}),
-      };
+
+      const strategies = [
+        '#eventsListings li.grid-item',
+        'li.grid-item',
+        'article.type-tribe_events',
+        '.tribe-events-pro-grid__event',
+        '.tribe-common-l-container article',
+        'article[class*="event"]',
+        '.event-item',
+      ];
+
+      for (const sel of strategies) {
+        const items = Array.from(document.querySelectorAll(sel));
+        if (items.length > 0) return items.map(extractItem).filter(e => e.title);
+      }
+      return [];
+    });
+
+    await page.close();
+    await ctx.close();
+
+    // The listing can load while yielding nothing usable if its markup changes;
+    // fall back rather than reporting an empty success and wiping the venue.
+    if (!events.length) {
+      const viaSitemap = await scrapeClwbFromSitemap(context);
+      if (viaSitemap.length) return viaSitemap;
+      throw new Error('Clwb listing loaded but produced no events, and the sitemap fallback returned nothing');
     }
 
-    const strategies = [
-      '#eventsListings li.grid-item',
-      'li.grid-item',
-      'article.type-tribe_events',
-      '.tribe-events-pro-grid__event',
-      '.tribe-common-l-container article',
-      'article[class*="event"]',
-      '.event-item',
-    ];
-
-    for (const sel of strategies) {
-      const items = Array.from(document.querySelectorAll(sel));
-      if (items.length > 0) return items.map(extractItem).filter(e => e.title);
-    }
-    return [];
-  });// <- end of the page.evaluate block
-
-  console.log('  Clwb count:', events.length);
-  console.log('  Clwb has Native James:', events.some(e => /native james/i.test(e.title)));
-
-  await page.close();
-  console.log(`  Clwb: ${events.length} events`);
-  return events;
+    console.log(`  Clwb: ${events.length} events`);
+    return events;
+  } catch (e) {
+    await page.close().catch(() => {});
+    await ctx.close().catch(() => {});
+    throw e;
+  }
 }
 
 // ---------------------------------------------------------------------------

@@ -3914,115 +3914,246 @@ function isChapterJunk(e) {
   return false;
 }
 
+// Clwb's host runs a bot filter that answers "Security Verification" (401, and
+// 403 on repeat requests) to any client claiming to be a desktop browser: the
+// shared context's spoofed "Chrome/131.0.0.0 ... Windows NT 10.0" string and
+// Playwright's own HeadlessChrome default are both turned away, because neither
+// matches the Sec-CH-UA version and platform Chromium really sends. A request
+// that plainly says what it is gets the listing at 200. robots.txt is
+// "Disallow:" with nothing listed, so the listing is ours to read — we only
+// have to stop misdescribing ourselves to get it. This is why the venue went
+// quiet after 2026-08-25 while every other scraper kept working.
+const CLWB_UA = 'cardiff-gigs-scraper/1.0 (+https://github.com/J-Hughes-In/cardiff-gigs)';
+const CLWB_SITEMAP = 'https://clwb.net/tm-events-sitemap.xml';
+// The host answers 429 under load, so the fallback walks event pages one at a
+// time with a pause between them rather than fanning out.
+const CLWB_SITEMAP_DELAY_MS = 1_200;
+
+/** A context that identifies itself consistently, as clwb.net requires. */
+function newClwbContext(context) {
+  return context.browser().newContext({
+    userAgent: CLWB_UA,
+    viewport: { width: 1365, height: 900 },
+    locale: 'en-GB',
+    timezoneId: 'Europe/London',
+  });
+}
+
+/**
+ * Last-resort source: the venue's own tm-events sitemap, then each event page.
+ *
+ * The listing is the only place that carries a date, so it stays primary. Event
+ * pages give a title and a ticket link but no date of their own, and the two
+ * ticket platforms differ: Fatsoma serves its event JSON-LD (startDate and all)
+ * to a runner, while See Tickets answers 403 to this IP range whatever the
+ * User-Agent, and See Tickets covers most of the venue's listings. So most rows
+ * recovered this way cannot be dated at all.
+ *
+ * Every one of the events we hold has a date, and the merge in scrapeAll
+ * replaces a venue wholesale once its scraper returns anything, so emitting
+ * undated rows would overwrite good events with worse ones. A row is therefore
+ * only emitted when it has both a title and a date; if that leaves nothing, the
+ * caller raises instead and the previous events are kept. Should the venue ever
+ * publish dates on its event pages, this starts contributing on its own.
+ */
+async function scrapeClwbFromSitemap(context) {
+  console.log('  Clwb: listing unavailable, trying the tm-events sitemap...');
+  let xml;
+  try {
+    const res = await axios.get(CLWB_SITEMAP, {
+      headers: { 'User-Agent': CLWB_UA, Accept: 'application/xml,text/xml,*/*' },
+      timeout: 20_000,
+    });
+    xml = String(res.data);
+  } catch (e) {
+    console.log(`  Clwb sitemap unreachable: ${e.message}`);
+    return [];
+  }
+
+  const urls = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)]
+    .map((m) => m[1].trim())
+    .filter((u) => /\/events\/[^/]+\/?$/.test(u));
+  console.log(`  Clwb sitemap: ${urls.length} event page(s)`);
+  if (!urls.length) return [];
+
+  const ctx = await newClwbContext(context);
+  const page = await ctx.newPage();
+  const out = [];
+  let undated = 0;
+
+  try {
+    for (const url of urls) {
+      try {
+        await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 45_000 });
+        const ev = await page.evaluate(() => {
+          const meta = (p) =>
+            document.querySelector(`meta[property="${p}"], meta[name="${p}"]`)?.content?.trim() || '';
+
+          let ld = null;
+          for (const s of document.querySelectorAll('script[type="application/ld+json"]')) {
+            try {
+              (function walk(n, d) {
+                if (!n || typeof n !== 'object' || d > 10 || ld) return;
+                if (Array.isArray(n)) { n.forEach((x) => walk(x, d + 1)); return; }
+                if ([].concat(n['@type'] || []).some((t) => /Event$/.test(String(t)))) { ld = n; return; }
+                for (const v of Object.values(n)) if (v && typeof v === 'object') walk(v, d + 1);
+              })(JSON.parse(s.textContent), 0);
+            } catch { /* ignore a malformed block */ }
+          }
+
+          // The page titles itself "<Event> - Clwb Ifor Bach", and its first h1
+          // is the venue's own name, so the event's h1 is the second one.
+          const ogTitle = meta('og:title').replace(/\s*[-–]\s*Clwb Ifor Bach\s*$/i, '').trim();
+          const h1s = [...document.querySelectorAll('h1')]
+            .map((h) => h.innerText.trim())
+            .filter((t) => t && !/^clwb ifor bach$/i.test(t));
+
+          const ticket = [...document.querySelectorAll('a[href*="seetickets"], a[href*="fatsoma"]')]
+            .map((a) => a.href)
+            // Every page carries the venue's generic box-office and Fatsoma
+            // profile links; only a per-event link is worth keeping.
+            .filter((h) => !/\/search\/all|\/p\/clwb-ifor-bach/i.test(h))[0] || '';
+
+          return {
+            title: (ld && typeof ld.name === 'string' && ld.name.trim()) || ogTitle || h1s[0] || '',
+            date: document.querySelector('p.date-translate, .date-translate, .event-date')?.innerText?.trim()
+               || (ld && typeof ld.startDate === 'string' ? ld.startDate : ''),
+            ticketUrl: ticket,
+            imageUrl: meta('og:image'),
+          };
+        });
+
+        if (ev.title && ev.date) {
+          out.push({
+            title: ev.title,
+            date: ev.date,
+            details: '',
+            url: ev.ticketUrl || url,
+            venue: 'Clwb Ifor Bach',
+            scrapedAt: new Date().toISOString(),
+            ...(ev.imageUrl ? { imageUrl: ev.imageUrl } : {}),
+          });
+        } else if (ev.title) {
+          undated++;
+        }
+      } catch { /* one unreachable event page shouldn't sink the fallback */ }
+
+      await new Promise((r) => setTimeout(r, CLWB_SITEMAP_DELAY_MS));
+    }
+  } finally {
+    await page.close().catch(() => {});
+    await ctx.close().catch(() => {});
+  }
+
+  console.log(`  Clwb sitemap fallback: ${out.length} usable, ${undated} without a date (skipped)`);
+  return out;
+}
+
 async function scrapeClwb(context) {
   console.log('Scraping Clwb Ifor Bach...');
-  const page = await context.newPage();
+  // Own context: the shared one's spoofed UA is refused here, and changing the
+  // UA on a shared context would alter every other venue's requests too.
+  const ctx = await newClwbContext(context);
+  const page = await ctx.newPage();
 
-let loaded = false;
-for (let attempt = 1; attempt <= 3 && !loaded; attempt++) {
-  await page.goto('https://clwb.net/whats-on/', { waitUntil: 'domcontentloaded', timeout: 45_000 });
-  loaded = await page
-    .waitForSelector('#eventsListings li.grid-item', { state: 'attached', timeout: 20_000 })
-    .then(() => true)
-    .catch(() => false);
-  if (!loaded) {
-    console.log(`  Clwb attempt ${attempt} blocked, retrying...`);
-    await page.waitForTimeout(5_000 * attempt);
-  }
-}
-if (!loaded) throw new Error('Clwb blocked: no event list after 3 attempts');
-  // Diagnostic dump when needed
-  const selectorAudit = await page.evaluate(() => {
-    const checks = [
-      '#eventsListings li.grid-item',
-      'li.grid-item',
-      'article.type-tribe_events',
-      '.tribe-events-pro-grid__event',
-      '.tribe-common-l-container article',
-      'article[class*="event"]',
-      '.event-item',
-      'a[href*="/event"]',
-      'a[href*="seetickets"]',
-    ];
-    return checks.map(sel => ({ sel, count: document.querySelectorAll(sel).length }));
-  });
-  console.log('  Clwb selector audit:', JSON.stringify(selectorAudit));
-
-  if (selectorAudit.every(r => r.count === 0)) {
-    const pageDump = await page.evaluate(() => {
-      const bodyText = (document.body?.innerText || '').slice(0, 800).replace(/\s+/g, ' ');
-      const allLinks = Array.from(document.querySelectorAll('a[href]'))
-        .map(a => a.getAttribute('href') || '')
-        .filter(h => h && !h.startsWith('#') && !h.startsWith('javascript'))
-        .slice(0, 40);
-      const tagClasses = {};
-      for (const tag of ['article', 'li', 'div', 'section']) {
-        const els = document.querySelectorAll(tag + '[class]');
-        const cls = new Set();
-        for (const el of els) for (const c of el.classList) cls.add(c);
-        if (cls.size) tagClasses[tag] = [...cls].slice(0, 30).join(' ');
+  try {
+    let loaded = false;
+    for (let attempt = 1; attempt <= 3 && !loaded; attempt++) {
+      await page.goto('https://clwb.net/whats-on/', { waitUntil: 'domcontentloaded', timeout: 45_000 });
+      loaded = await page
+        .waitForSelector('#eventsListings li.grid-item', { state: 'attached', timeout: 20_000 })
+        .then(() => true)
+        .catch(() => false);
+      if (!loaded) {
+        const status = await page.evaluate(() => document.title).catch(() => '');
+        console.log(`  Clwb attempt ${attempt} returned no event list (page title: "${status}"), retrying...`);
+        await page.waitForTimeout(5_000 * attempt);
       }
-      return { bodyText, allLinks, tagClasses };
-    });
-    console.log('  Clwb body snippet:', pageDump.bodyText);
-    console.log('  Clwb all links (sample):', pageDump.allLinks);
-    console.log('  Clwb element classes:', JSON.stringify(pageDump.tagClasses));
-  }
+    }
 
-  const events = await page.evaluate(() => {
-    function extractItem(item) {
-      let imageUrl = '';
-      const img = item.querySelector('figure img, .grid-item-image img, img[src], img[data-src], img[data-lazy-src]');
-      if (img) {
-        const raw = img.getAttribute('src') || img.getAttribute('data-src') || img.getAttribute('data-lazy-src') || '';
-        if (raw && !raw.startsWith('data:')) {
-          try { imageUrl = new URL(raw, location.href).href; } catch { imageUrl = raw.trim(); }
-        }
-      }
-      const title = item.querySelector('h3.grid-item-title, h2, h3, .tribe-event-url, .event-title')?.innerText?.trim() || '';
-      const dateEl = item.querySelector(
-        'p.grid-item-support.date-translate, p.date-translate, .tribe-event-date-start, time, .event-date, span[class*="date"]'
+    if (!loaded) {
+      await page.close();
+      await ctx.close();
+      console.log(
+        '::warning title=Clwb listing unreadable::clwb.net returned no event list. ' +
+        'If the page title read "Security Verification", its bot filter is refusing ' +
+        'this client — check CLWB_UA still describes us accurately.'
       );
-      const details = Array.from(item.querySelectorAll('p.grid-item-support:not(.date-translate)'))
-        .map(p => p.innerText.trim()).filter(Boolean).join(' • ');
-      const url =
-        item.querySelector('a.tickets-button, a[href*="seetickets"], a[href*="fatsoma"], figure a, .grid-item-image a')?.href ||
-        item.querySelector('a.url, a[href*="/event"]')?.href ||
-        item.querySelector('a[href^="http"]')?.href || '';
-      return {
-        title,
-        date: dateEl?.innerText?.trim() || dateEl?.getAttribute('datetime') || '',
-        details,
-        url,
-        venue: 'Clwb Ifor Bach',
-        scrapedAt: new Date().toISOString(),
-        ...(imageUrl ? { imageUrl } : {}),
-      };
+      const viaSitemap = await scrapeClwbFromSitemap(context);
+      if (viaSitemap.length) return viaSitemap;
+      throw new Error('Clwb: no event list after 3 attempts, and the sitemap fallback produced no dated events');
     }
 
-    const strategies = [
-      '#eventsListings li.grid-item',
-      'li.grid-item',
-      'article.type-tribe_events',
-      '.tribe-events-pro-grid__event',
-      '.tribe-common-l-container article',
-      'article[class*="event"]',
-      '.event-item',
-    ];
+    const events = await page.evaluate(() => {
+      function extractItem(item) {
+        let imageUrl = '';
+        const img = item.querySelector('figure img, .grid-item-image img, img[src], img[data-src], img[data-lazy-src]');
+        if (img) {
+          const raw = img.getAttribute('src') || img.getAttribute('data-src') || img.getAttribute('data-lazy-src') || '';
+          if (raw && !raw.startsWith('data:')) {
+            try { imageUrl = new URL(raw, location.href).href; } catch { imageUrl = raw.trim(); }
+          }
+        }
+        const title = item.querySelector('h3.grid-item-title, h2, h3, .tribe-event-url, .event-title')?.innerText?.trim() || '';
+        const dateEl = item.querySelector(
+          'p.grid-item-support.date-translate, p.date-translate, .tribe-event-date-start, time, .event-date, span[class*="date"]'
+        );
+        const details = Array.from(item.querySelectorAll('p.grid-item-support:not(.date-translate)'))
+          .map(p => p.innerText.trim()).filter(Boolean).join(' • ');
+        const url =
+          item.querySelector('a.tickets-button, a[href*="seetickets"], a[href*="fatsoma"], figure a, .grid-item-image a')?.href ||
+          item.querySelector('a.url, a[href*="/event"]')?.href ||
+          item.querySelector('a[href^="http"]')?.href || '';
+        return {
+          title,
+          date: dateEl?.innerText?.trim() || dateEl?.getAttribute('datetime') || '',
+          details,
+          url,
+          venue: 'Clwb Ifor Bach',
+          scrapedAt: new Date().toISOString(),
+          ...(imageUrl ? { imageUrl } : {}),
+        };
+      }
 
-    for (const sel of strategies) {
-      const items = Array.from(document.querySelectorAll(sel));
-      if (items.length > 0) return items.map(extractItem).filter(e => e.title);
+      const strategies = [
+        '#eventsListings li.grid-item',
+        'li.grid-item',
+        'article.type-tribe_events',
+        '.tribe-events-pro-grid__event',
+        '.tribe-common-l-container article',
+        'article[class*="event"]',
+        '.event-item',
+      ];
+
+      for (const sel of strategies) {
+        const items = Array.from(document.querySelectorAll(sel));
+        if (items.length > 0) return items.map(extractItem).filter(e => e.title);
+      }
+      return [];
+    });
+
+    await page.close();
+    await ctx.close();
+
+    // The listing can load while yielding nothing usable if its markup changes;
+    // fall back rather than reporting an empty success and wiping the venue.
+    if (!events.length) {
+      console.log(
+        '::warning title=Clwb listing empty::clwb.net served the listing but no events ' +
+        'could be read from it — its markup has probably changed.'
+      );
+      const viaSitemap = await scrapeClwbFromSitemap(context);
+      if (viaSitemap.length) return viaSitemap;
+      throw new Error('Clwb listing loaded but produced no events, and the sitemap fallback produced no dated events');
     }
-    return [];
-  });// <- end of the page.evaluate block
 
-  console.log('  Clwb count:', events.length);
-  console.log('  Clwb has Native James:', events.some(e => /native james/i.test(e.title)));
-
-  await page.close();
-  console.log(`  Clwb: ${events.length} events`);
-  return events;
+    console.log(`  Clwb: ${events.length} events`);
+    return events;
+  } catch (e) {
+    await page.close().catch(() => {});
+    await ctx.close().catch(() => {});
+    throw e;
+  }
 }
 
 // ---------------------------------------------------------------------------
@@ -4507,29 +4638,158 @@ function reportVenueCountDrops(previousEvents, freshEvents) {
 }
 
 // ---------------------------------------------------------------------------
+// Run status report
+// ---------------------------------------------------------------------------
+
+const STATUS_FILE = 'status.json';
+
+/**
+ * Write a per-scraper account of the run to status.json.
+ *
+ * A failing scraper is not visible in events.json: scrapeAll deliberately keeps
+ * a venue's previous events when its scraper returns nothing, so the venue
+ * still looks populated and its count does not move. Clwb was refused by the
+ * site from 2026-08-25 and nothing showed it for two and a half months. This
+ * file is the place that shows it.
+ *
+ * `lastSuccess` carries forward from the previous status.json whenever a
+ * scraper does not succeed, so the file says how long a venue has been quiet
+ * rather than only that it is quiet right now.
+ */
+function writeStatusReport({
+  selectedScrapers, runStats, failedScrapers, previousEvents, finalEvents,
+  newCount, partial, runStartedAt,
+}) {
+  let prevStatus = {};
+  if (fs.existsSync(STATUS_FILE)) {
+    try { prevStatus = JSON.parse(fs.readFileSync(STATUS_FILE, 'utf8')) || {}; } catch { /* rebuild from scratch */ }
+  }
+  const prevByScraper = new Map(
+    (Array.isArray(prevStatus.venues) ? prevStatus.venues : []).map((v) => [v.scraper, v])
+  );
+
+  const prevCounts = countEventsByVenue(previousEvents);
+  const nowCounts = countEventsByVenue(finalEvents);
+  const attempted = new Set(selectedScrapers.map((s) => s.name));
+  const generatedAt = new Date().toISOString();
+
+  const venues = SCRAPERS.map((s) => {
+    const stats = runStats.get(s.name);
+    const prior = prevByScraper.get(s.name) || {};
+    const previousCount = prevCounts.get(s.venue) || 0;
+    const currentCount = nowCounts.get(s.venue) || 0;
+
+    let status;
+    if (!attempted.has(s.name)) status = 'not-run';
+    else if (failedScrapers.has(s.name)) status = 'failed';
+    // No record despite being attempted means the bookkeeping missed it, not
+    // that the venue had nothing on; say so rather than calling it empty.
+    else if (!stats) status = 'unknown';
+    else if (stats.eventsReturned === 0) status = 'empty';
+    else status = 'ok';
+
+    const succeeded = status === 'ok';
+    const priorFailures = Number(prior.consecutiveFailures) || 0;
+
+    return {
+      scraper: s.name,
+      venue: s.venue,
+      status,
+      // Whether this venue's rows in events.json came from this run or are
+      // being held over from an earlier one.
+      dataFrom: succeeded ? 'this-run' : (currentCount > 0 ? 'preserved-from-earlier-run' : 'none'),
+      eventsReturned: stats?.eventsReturned ?? 0,
+      previousCount,
+      currentCount,
+      change: currentCount - previousCount,
+      lastSuccess: succeeded ? generatedAt : (prior.lastSuccess ?? null),
+      consecutiveFailures: status === 'not-run' ? priorFailures
+                         : succeeded ? 0 : priorFailures + 1,
+      attempts: stats?.attempts ?? 0,
+      durationMs: stats?.durationMs ?? 0,
+      error: stats?.error ?? null,
+    };
+  });
+
+  // A venue that dropped a lot can still report "ok", so flag it alongside the
+  // outright failures rather than leaving it to be spotted by eye.
+  for (const v of venues) {
+    if (v.status !== 'ok') continue;
+    if (v.previousCount >= VENUE_DROP_MIN_BASELINE && v.currentCount < v.previousCount * VENUE_DROP_RATIO) {
+      v.status = 'degraded';
+      v.error = `event count fell from ${v.previousCount} to ${v.currentCount}`;
+    }
+  }
+
+  const alerts = venues
+    .filter((v) => v.status === 'failed' || v.status === 'empty' ||
+                   v.status === 'degraded' || v.status === 'unknown')
+    .map((v) => `${v.venue} (${v.scraper}): ${v.status}${v.error ? ` — ${v.error}` : ''}` +
+                (v.lastSuccess ? `; last succeeded ${v.lastSuccess}` : '; no recorded success'));
+
+  const rank = { failed: 0, empty: 1, degraded: 2, unknown: 3, 'not-run': 4, ok: 5 };
+  venues.sort((a, b) => (rank[a.status] - rank[b.status]) || a.venue.localeCompare(b.venue));
+
+  const report = {
+    generatedAt,
+    run: {
+      mode: partial ? 'partial' : 'full',
+      durationMs: Date.now() - runStartedAt,
+      scrapersAttempted: selectedScrapers.length,
+      scrapersTotal: SCRAPERS.length,
+    },
+    totals: {
+      previousEvents: previousEvents.length,
+      currentEvents: finalEvents.length,
+      change: finalEvents.length - previousEvents.length,
+      newEvents: newCount,
+    },
+    summary: {
+      ok: venues.filter((v) => v.status === 'ok').length,
+      degraded: venues.filter((v) => v.status === 'degraded').length,
+      empty: venues.filter((v) => v.status === 'empty').length,
+      unknown: venues.filter((v) => v.status === 'unknown').length,
+      failed: venues.filter((v) => v.status === 'failed').length,
+      notRun: venues.filter((v) => v.status === 'not-run').length,
+    },
+    alerts,
+    venues,
+  };
+
+  fs.writeFileSync(STATUS_FILE, JSON.stringify(report, null, 2));
+  console.log(`\nStatus written to ${STATUS_FILE}: ` +
+    `${report.summary.ok} ok, ${report.summary.degraded} degraded, ` +
+    `${report.summary.empty} empty, ${report.summary.failed} failed, ${report.summary.notRun} not run`);
+  for (const a of alerts) console.log(`::warning title=Scraper needs attention::${a}`);
+}
+
+// ---------------------------------------------------------------------------
 // Venue registry — single source of truth for name → scraper mapping
 // ---------------------------------------------------------------------------
 
+// `venue` is the label the scraper stamps on its events. It lets status.json
+// name the venue behind a scraper that failed and so returned nothing to read
+// a label from — without it, a silent venue has no entry to show.
 const SCRAPERS = [
-  { name: 'Globe',          fn: scrapeGlobe         },
-  { name: 'WMC',            fn: scrapeWMC            },
-  { name: 'New Theatre',    fn: scrapeNewTheatre     },
-  { name: 'Tramshed',       fn: scrapeTramshed       },
-  { name: 'Utilita Arena',  fn: scrapeUtilitaArena   },
-  { name: 'Depot',          fn: scrapeDepot          },
-  { name: 'Cardiff SU',     fn: scrapeCardiffSU      },
-  { name: 'The Gate',       fn: scrapeTheGate        },
-  { name: 'Clwb',           fn: scrapeClwb           },
-  { name: 'Fuel',           fn: scrapeFuel           },
-  { name: 'Principality',   fn: scrapePrincipality   },
-  { name: 'Sherman',        fn: scrapeSherman        },
-  { name: 'Canopi',         fn: scrapeCanopi         },
-  { name: 'CultVR',              fn: scrapeCultVR              },
-  { name: 'Llandaff Cathedral',  fn: scrapeLlandaffCathedral  },
-  { name: 'Paradise Garden',    fn: scrapeParadiseGarden     },
-  { name: 'Stage & Stem',       fn: scrapeStageAndStem       },
-  // { name: 'Acapela',          fn: scrapeAcapela             },
-  // { name: 'Chapter Arts',     fn: scrapeChapterArts         },
+  { name: 'Globe',              fn: scrapeGlobe,             venue: 'The Globe Cardiff'        },
+  { name: 'WMC',                fn: scrapeWMC,               venue: 'Wales Millennium Centre'  },
+  { name: 'New Theatre',        fn: scrapeNewTheatre,        venue: 'New Theatre Cardiff'      },
+  { name: 'Tramshed',           fn: scrapeTramshed,          venue: 'Tramshed Cardiff'         },
+  { name: 'Utilita Arena',      fn: scrapeUtilitaArena,      venue: 'Utilita Arena Cardiff'    },
+  { name: 'Depot',              fn: scrapeDepot,             venue: 'Depot Cardiff'            },
+  { name: 'Cardiff SU',         fn: scrapeCardiffSU,         venue: 'Cardiff SU'               },
+  { name: 'The Gate',           fn: scrapeTheGate,           venue: 'The Gate Cardiff'         },
+  { name: 'Clwb',               fn: scrapeClwb,              venue: 'Clwb Ifor Bach'           },
+  { name: 'Fuel',               fn: scrapeFuel,              venue: 'Fuel Rock Club'           },
+  { name: 'Principality',       fn: scrapePrincipality,      venue: 'Principality Stadium'     },
+  { name: 'Sherman',            fn: scrapeSherman,           venue: 'Sherman Theatre'          },
+  { name: 'Canopi',             fn: scrapeCanopi,            venue: 'Canopi Cardiff'           },
+  { name: 'CultVR',             fn: scrapeCultVR,            venue: 'CultVR'                   },
+  { name: 'Llandaff Cathedral', fn: scrapeLlandaffCathedral, venue: 'Llandaff Cathedral'       },
+  { name: 'Paradise Garden',    fn: scrapeParadiseGarden,    venue: 'Paradise Garden'          },
+  { name: 'Stage & Stem',       fn: scrapeStageAndStem,      venue: 'Stage & Stem'             },
+  // { name: 'Acapela',         fn: scrapeAcapela,           venue: 'Acapela Studio'           },
+  // { name: 'Chapter Arts',    fn: scrapeChapterArts,       venue: 'Chapter Arts Centre'      },
 ];
 
 /**
@@ -4567,6 +4827,7 @@ function resolveScrapers(argv) {
 }
 
 async function scrapeAll(selectedScrapers) {
+  const runStartedAt = Date.now();
   const browser = await chromium.launch({ args: ['--disable-dev-shm-usage'] });
   const context = await browser.newContext({
     userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
@@ -4574,11 +4835,21 @@ async function scrapeAll(selectedScrapers) {
   });
 
   const failedScrapers = new Set();
+  // Per-scraper record of how the run went, for status.json.
+  const runStats = new Map();
 
   async function safeScrap(fn, name, retries = 2) {
     let lastErr;
+    const startedAt = Date.now();
     for (let attempt = 0; attempt <= retries; attempt++) {
-      try { return await fn(); } catch (e) {
+      try {
+        const events = await fn();
+        runStats.set(name, {
+          attempts: attempt + 1, durationMs: Date.now() - startedAt,
+          eventsReturned: events.length, error: null,
+        });
+        return events;
+      } catch (e) {
         lastErr = e;
         if (attempt < retries) {
           console.log(`  ${name}: attempt ${attempt + 1} failed (${e.message.split('\n')[0]}), retrying...`);
@@ -4588,6 +4859,10 @@ async function scrapeAll(selectedScrapers) {
     }
     console.log(`  ${name} failed: ${lastErr.message.split('\n')[0]}`);
     failedScrapers.add(name);
+    runStats.set(name, {
+      attempts: retries + 1, durationMs: Date.now() - startedAt,
+      eventsReturned: 0, error: lastErr.message.split('\n')[0],
+    });
     return [];
   }
 
@@ -4675,6 +4950,11 @@ async function scrapeAll(selectedScrapers) {
 
   fs.writeFileSync('events.json', JSON.stringify(final, null, 2));
   console.log(`Total: ${final.length} events saved to events.json`);
+
+  writeStatusReport({
+    selectedScrapers, runStats, failedScrapers,
+    previousEvents, finalEvents: final, newCount, partial, runStartedAt,
+  });
 }
 
 // ---------------------------------------------------------------------------

@@ -34,6 +34,11 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Probe Clwb
+        run: |
+          curl -sS -o /dev/null -w "sitemap: %{http_code}\n" https://clwb.net/tm-events-sitemap.xml
+          curl -sS -o /dev/null -w "whats-on: %{http_code}\n" -A "Mozilla/5.0" https://clwb.net/whats-on/
+
       - name: Install dependencies
         run: npm install
 

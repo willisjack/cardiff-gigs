@@ -32,27 +32,5 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install chromium --with-deps
 
-      - name: Fixed scraper, Clwb only
-        env:
-          SCRAPE_NO_ENRICH: '1'
-        run: node scrape.js --venue Clwb
-        continue-on-error: true
-
-      - name: Clwb rows in events.json after run
-        run: |
-          node -e '
-            const ev=require("./events.json");
-            const l=Array.isArray(ev)?ev:(ev.events||[]);
-            const c=l.filter(e=>/clwb/i.test(e.venue||""));
-            console.log("clwb events:",c.length);
-            console.log(JSON.stringify(c.slice(0,8).map(e=>({t:e.title,d:e.date,det:e.details,u:e.url})),null,1));
-          '
-        continue-on-error: true
-
-      - name: Sitemap fallback data check
-        run: node tools/clwb-verify.js
-        continue-on-error: true
-
       - name: Event-page structure probe
         run: node tools/clwb-probe4.js
-        continue-on-error: true

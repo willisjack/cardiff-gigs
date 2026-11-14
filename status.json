@@ -1,16 +1,16 @@
 {
-  "generatedAt": "2026-11-14T00:59:10.726Z",
+  "generatedAt": "2026-11-14T12:03:49.311Z",
   "run": {
     "mode": "full",
-    "durationMs": 2824886,
+    "durationMs": 2898021,
     "scrapersAttempted": 17,
     "scrapersTotal": 17
   },
   "totals": {
-    "previousEvents": 769,
-    "currentEvents": 732,
-    "change": -37,
-    "newEvents": 1
+    "previousEvents": 732,
+    "currentEvents": 762,
+    "change": 30,
+    "newEvents": 30
   },
   "summary": {
     "ok": 14,
@@ -36,9 +36,9 @@
       "currentCount": 10,
       "change": 0,
       "lastSuccess": null,
-      "consecutiveFailures": 5,
+      "consecutiveFailures": 6,
       "attempts": 1,
-      "durationMs": 45744,
+      "durationMs": 45990,
       "error": null
     },
     {
@@ -51,9 +51,9 @@
       "currentCount": 42,
       "change": 0,
       "lastSuccess": null,
-      "consecutiveFailures": 5,
+      "consecutiveFailures": 6,
       "attempts": 1,
-      "durationMs": 7547,
+      "durationMs": 9681,
       "error": null
     },
     {
@@ -66,9 +66,9 @@
       "currentCount": 19,
       "change": 0,
       "lastSuccess": null,
-      "consecutiveFailures": 5,
+      "consecutiveFailures": 6,
       "attempts": 1,
-      "durationMs": 5022,
+      "durationMs": 5409,
       "error": null
     },
     {
@@ -80,10 +80,10 @@
       "previousCount": 10,
       "currentCount": 10,
       "change": 0,
-      "lastSuccess": "2026-11-14T00:59:10.726Z",
+      "lastSuccess": "2026-11-14T12:03:49.311Z",
       "consecutiveFailures": 0,
       "attempts": 1,
-      "durationMs": 2719,
+      "durationMs": 2781,
       "error": null
     },
     {
@@ -92,13 +92,13 @@
       "status": "ok",
       "dataFrom": "this-run",
       "eventsReturned": 24,
-      "previousCount": 25,
+      "previousCount": 24,
       "currentCount": 24,
-      "change": -1,
-      "lastSuccess": "2026-11-14T00:59:10.726Z",
+      "change": 0,
+      "lastSuccess": "2026-11-14T12:03:49.311Z",
       "consecutiveFailures": 0,
       "attempts": 1,
-      "durationMs": 1953,
+      "durationMs": 2079,
       "error": null
     },
     {
@@ -110,10 +110,10 @@
       "previousCount": 88,
       "currentCount": 88,
       "change": 0,
-      "lastSuccess": "2026-11-14T00:59:10.726Z",
+      "lastSuccess": "2026-11-14T12:03:49.311Z",
       "consecutiveFailures": 0,
       "attempts": 1,
-      "durationMs": 897,
+      "durationMs": 881,
       "error": null
     },
     {
@@ -121,14 +121,14 @@
       "venue": "Depot Cardiff",
       "status": "ok",
       "dataFrom": "this-run",
-      "eventsReturned": 38,
-      "previousCount": 67,
-      "currentCount": 36,
-      "change": -31,
-      "lastSuccess": "2026-11-14T00:59:10.726Z",
+      "eventsReturned": 68,
+      "previousCount": 36,
+      "currentCount": 66,
+      "change": 30,
+      "lastSuccess": "2026-11-14T12:03:49.311Z",
       "consecutiveFailures": 0,
       "attempts": 1,
-      "durationMs": 9186,
+      "durationMs": 13422,
       "error": null
     },
     {
@@ -137,13 +137,13 @@
       "status": "ok",
       "dataFrom": "this-run",
       "eventsReturned": 19,
-      "previousCount": 20,
+      "previousCount": 19,
       "currentCount": 19,
-      "change": -1,
-      "lastSuccess": "2026-11-14T00:59:10.726Z",
+      "change": 0,
+      "lastSuccess": "2026-11-14T12:03:49.311Z",
       "consecutiveFailures": 0,
       "attempts": 1,
-      "durationMs": 38933,
+      "durationMs": 38341,
       "error": null
     },
     {
@@ -152,13 +152,13 @@
       "status": "ok",
       "dataFrom": "this-run",
       "eventsReturned": 117,
-      "previousCount": 118,
+      "previousCount": 117,
       "currentCount": 117,
-      "change": -1,
-      "lastSuccess": "2026-11-14T00:59:10.726Z",
+      "change": 0,
+      "lastSuccess": "2026-11-14T12:03:49.311Z",
       "consecutiveFailures": 0,
       "attempts": 1,
-      "durationMs": 642400,
+      "durationMs": 645785,
       "error": null
     },
     {
@@ -170,10 +170,10 @@
       "previousCount": 12,
       "currentCount": 12,
       "change": 0,
-      "lastSuccess": "2026-11-14T00:59:10.726Z",
+      "lastSuccess": "2026-11-14T12:03:49.311Z",
       "consecutiveFailures": 0,
       "attempts": 1,
-      "durationMs": 4168,
+      "durationMs": 4578,
       "error": null
     },
     {
@@ -185,10 +185,10 @@
       "previousCount": 16,
       "currentCount": 16,
       "change": 0,
-      "lastSuccess": "2026-11-14T00:59:10.726Z",
+      "lastSuccess": "2026-11-14T12:03:49.311Z",
       "consecutiveFailures": 0,
       "attempts": 1,
-      "durationMs": 348231,
+      "durationMs": 339045,
       "error": null
     },
     {
@@ -200,10 +200,10 @@
       "previousCount": 9,
       "currentCount": 9,
       "change": 0,
-      "lastSuccess": "2026-11-14T00:59:10.726Z",
+      "lastSuccess": "2026-11-14T12:03:49.311Z",
       "consecutiveFailures": 0,
       "attempts": 1,
-      "durationMs": 2769,
+      "durationMs": 3275,
       "error": null
     },
     {
@@ -215,10 +215,10 @@
       "previousCount": 20,
       "currentCount": 20,
       "change": 0,
-      "lastSuccess": "2026-11-14T00:59:10.726Z",
+      "lastSuccess": "2026-11-14T12:03:49.311Z",
       "consecutiveFailures": 0,
       "attempts": 1,
-      "durationMs": 636,
+      "durationMs": 672,
       "error": null
     },
     {
@@ -227,13 +227,13 @@
       "status": "ok",
       "dataFrom": "this-run",
       "eventsReturned": 164,
-      "previousCount": 80,
+      "previousCount": 79,
       "currentCount": 79,
-      "change": -1,
-      "lastSuccess": "2026-11-14T00:59:10.726Z",
+      "change": 0,
+      "lastSuccess": "2026-11-14T12:03:49.311Z",
       "consecutiveFailures": 0,
       "attempts": 1,
-      "durationMs": 14804,
+      "durationMs": 9495,
       "error": null
     },
     {
@@ -242,13 +242,13 @@
       "status": "ok",
       "dataFrom": "this-run",
       "eventsReturned": 61,
-      "previousCount": 56,
+      "previousCount": 55,
       "currentCount": 55,
-      "change": -1,
-      "lastSuccess": "2026-11-14T00:59:10.726Z",
+      "change": 0,
+      "lastSuccess": "2026-11-14T12:03:49.311Z",
       "consecutiveFailures": 0,
       "attempts": 1,
-      "durationMs": 5391,
+      "durationMs": 2004,
       "error": null
     },
     {
@@ -257,13 +257,13 @@
       "status": "ok",
       "dataFrom": "this-run",
       "eventsReturned": 81,
-      "previousCount": 82,
+      "previousCount": 81,
       "currentCount": 81,
-      "change": -1,
-      "lastSuccess": "2026-11-14T00:59:10.726Z",
+      "change": 0,
+      "lastSuccess": "2026-11-14T12:03:49.311Z",
       "consecutiveFailures": 0,
       "attempts": 1,
-      "durationMs": 5469,
+      "durationMs": 6988,
       "error": null
     },
     {
@@ -275,10 +275,10 @@
       "previousCount": 95,
       "currentCount": 95,
       "change": 0,
-      "lastSuccess": "2026-11-14T00:59:10.726Z",
+      "lastSuccess": "2026-11-14T12:03:49.311Z",
       "consecutiveFailures": 0,
       "attempts": 1,
-      "durationMs": 426010,
+      "durationMs": 492522,
       "error": null
     }
   ]

@@ -1239,6 +1239,20 @@
     "date": "Saturday, 5 December 2026"
   },
   {
+    "title": "REGGAETON PARTY (CARDIFF)",
+    "details": "SATURDAY 5TH DECEMBER\n23:00 | 18+",
+    "url": "https://www.tixr.com/groups/theglobe/events/reggaeton-party-cardiff--214467",
+    "venue": "The Globe Cardiff",
+    "scrapedAt": "2026-11-12T13:11:16.404Z",
+    "imageUrl": "https://www.globecardiff.co.uk/wp-content/uploads/2026/11/Cardiff-Reggaeton-Party.jpeg",
+    "imageUrls": [
+      "https://www.globecardiff.co.uk/wp-content/uploads/2026/11/Cardiff-Reggaeton-Party.jpeg"
+    ],
+    "primaryCategory": "Music",
+    "description": "SATURDAY 5TH DECEMBER\n23:00 | 18+",
+    "date": "Saturday, 5 December 2026"
+  },
+  {
     "title": "THESE WICKED RIVERS",
     "details": "THURSDAY 10TH DECEMBER\n19:00 | 14+ (UNDER 16S TO BE ACCOMPANIED BY AN ADULT)",
     "url": "https://www.tixr.com/groups/theglobe/events/these-wicked-rivers-183015",
@@ -1385,20 +1399,6 @@
     "primaryCategory": "Music",
     "description": "FRIDAY 15TH JANUARY\n19:00 | 14+ (UNDER 16’S ACCOMPANIED WITH AN ADULT 18)",
     "date": "Friday, 15 January 2027"
-  },
-  {
-    "title": "REGGAETON PARTY (CARDIFF)",
-    "details": "SATURDAY 5TH DECEMBER\n23:00 | 18+",
-    "url": "https://www.tixr.com/groups/theglobe/events/reggaeton-party-cardiff--214467",
-    "venue": "The Globe Cardiff",
-    "scrapedAt": "2026-11-12T13:11:16.404Z",
-    "imageUrl": "https://www.globecardiff.co.uk/wp-content/uploads/2026/11/Cardiff-Reggaeton-Party.jpeg",
-    "imageUrls": [
-      "https://www.globecardiff.co.uk/wp-content/uploads/2026/11/Cardiff-Reggaeton-Party.jpeg"
-    ],
-    "primaryCategory": "Music",
-    "description": "SATURDAY 5TH DECEMBER\n23:00 | 18+",
-    "date": "Saturday, 5 December 2026"
   },
   {
     "title": "BROADWAY RAVE",
@@ -1917,6 +1917,20 @@
     "date": "Saturday, 17 April 2027"
   },
   {
+    "title": "CAMMY BARNES",
+    "details": "SUNDAY 18TH APRIL\n19:30 | 14+ (UNDER 16’S ACCOMPANIED WITH AN ADULT 18)",
+    "url": "https://www.tixr.com/groups/theglobe/events/cammy-barnes-213484",
+    "venue": "The Globe Cardiff",
+    "scrapedAt": "2026-11-16T13:19:15.656Z",
+    "imageUrl": "https://www.globecardiff.co.uk/wp-content/uploads/2026/11/Cammy-Barnes_CLWB_FB_BANNER.jpg",
+    "imageUrls": [
+      "https://www.globecardiff.co.uk/wp-content/uploads/2026/11/Cammy-Barnes_CLWB_FB_BANNER.jpg"
+    ],
+    "primaryCategory": "Music",
+    "description": "SUNDAY 18TH APRIL\n19:30 | 14+ (UNDER 16’S ACCOMPANIED WITH AN ADULT 18)",
+    "date": "Sunday, 18 April 2027"
+  },
+  {
     "title": "PRESIDENT OBONJO",
     "details": "MONDAY 19TH APRIL\n19:00 | 16+ (UNDER 18’S ACCOMPANIED WITH AN ADULT 18)",
     "url": "https://www.tixr.com/groups/theglobe/events/president-obonjo-212673",
@@ -2110,7 +2124,7 @@
     ],
     "primaryCategory": "Music",
     "description": "FRIDAY 15TH OCTOBER\n19:00 | 14+ (UNDER 16’S ACCOMPANIED WITH AN ADULT 18)",
-    "date": "Thursday, 15 October 2026"
+    "date": "Friday, 15 October 2027"
   },
   {
     "title": "OWAIN & HENRY",
@@ -2273,7 +2287,7 @@
     ],
     "eventStartDate": "2026-10-27 12:00:00",
     "eventEndDate": "2027-01-10 16:00:00",
-    "subcategory": "Canolfan Mileniwm Cymru > Digwyddiadur > 2026 > FRAMERATE: Pulse Of The Earth",
+    "subcategory": "Wales Millennium Centre > What's on > 2026 > FRAMERATE: Pulse Of The Earth",
     "primaryCategory": "Theatre"
   },
   {
@@ -2313,10 +2327,6 @@
     "imageUrl": "https://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_270%2Cw_480/f_auto/q_auto/v1783857586/WMC%20Content/Whats%20On/2026/Cabaret/Diana%20Untold/9807c6d7-c5c3-404e-8b3f-ad516515e4d4?_a=BAAAV6GY",
     "subVenue": "Cabaret",
     "description": "Do you know the story of Diana? Probably. But do you know this story of Diana? We very much doubt it.\n\nJoin Diana in heaven as she shares the untold and untrue tale of her extraordinary life in this multi-award-winning hit show from Edinburgh Fringe.\n\nCombining drag, multimedia, audience interaction, puppetry and a lot of queer joy, this loving celebration of the People’s Princess – Ar Di – is as hilarious as it is ridiculous.\n\nFollowing a sold-out Edinburgh Fringe run and touring the world, this most unconventional of royal narratives from Awkward Prods (Gwyneth Goes Skiing, The Fit Prince) returns to Cardiff this November.",
-    "ticketPriceFrom": 24,
-    "ticketPriceTo": 24,
-    "ticketCurrency": "GBP",
-    "ticketPriceLabel": "£24",
     "availability": "UNKNOWN",
     "availabilityRange": null,
     "availabilityEstimate": null,
@@ -2330,8 +2340,12 @@
     ],
     "eventStartDate": "2026-11-19 20:00:00",
     "eventEndDate": "2026-11-19 22:00:00",
+    "ticketPriceFrom": 24,
+    "ticketPriceTo": 24,
+    "ticketCurrency": "GBP",
     "subcategory": "Wales Millennium Centre > What's on > 2026 > Diana The Untold and Untrue Story",
-    "primaryCategory": "Theatre"
+    "primaryCategory": "Theatre",
+    "ticketPriceLabel": "£24"
   },
   {
     "title": "DEEVA D",
@@ -2760,10 +2774,6 @@
     "imageUrl": "https://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_270%2Cw_480/f_auto/q_auto/v1775566448/WMC%20Content/Whats%20On/2026/Weston%20Studio/Camille%20OSullivan/Camille-OSullivan-1?_a=BAAAV6GY",
     "description": "A love letter in song, Camille’s celebrates dear friend Shane MacGowan, Sinéad O’Connor, David Bowie, Radiohead, Brel, Nick Cave and more. Chameleon-like on stage, each song has a different character with its story to tell.\n\nCamille with long-time collaborator Feargal Murray has created an intimate, heartfelt show with a little bit of joyful, mad chaos as her life unravels, capturing the honest response to those much loved and lost.\n\nVoted “One of the top 25 performances ever on Later with Jools BBC” (Daily Telegraph) and \"Queen of the Edinburgh Festival\" (BBC), Camille toured with the Pogues, guested at Yoko Ono’s & Richard Thompson’s RFH Meltdown and original star of Olivier Award-winning La Clique. Previously an award-winning architect and painter, Camille was born in London to a French mother and Irish/English father, she grew up in a village in Cork, Ireland listening to her parents & sisters eclectic music collection that shaped her into the unique interpreter she is today.\n\nThe multi-award-winning singer has stunned audiences around the world with her five-star sell-out performances, including the Sydney Opera House, Royal Festival Hall, The Roundhouse, won the coveted Herald Angel award for her RSC solo performance ‘The Rape of Lucrece’ and recently an Architectural RIAI 2025 award.\n\nDark, sexy, fierce, amusing and mesmerizing, Camille transforms each song she performs into an intense, emotional, and theatrical experience. Expect joy and pure passion.",
     "subVenue": "Weston Studio",
-    "ticketPriceFrom": 20,
-    "ticketPriceTo": 20,
-    "ticketCurrency": "GBP",
-    "ticketPriceLabel": "£20",
     "availability": "GOOD AVAILABILITY",
     "availabilityRange": "0-30%",
     "availabilityEstimate": 15,
@@ -2806,8 +2816,12 @@
     ],
     "eventStartDate": "2026-12-03 20:30:00",
     "eventEndDate": "2026-12-05 22:00:00",
+    "ticketPriceFrom": 20,
+    "ticketPriceTo": 20,
+    "ticketCurrency": "GBP",
     "subcategory": "Wales Millennium Centre > What's on > 2026 > Camille O'Sullivan - Loveletter",
-    "primaryCategory": "Theatre"
+    "primaryCategory": "Theatre",
+    "ticketPriceLabel": "£20"
   },
   {
     "title": "EXPLORE WRITING FOR THEATRE WITH TEMI WILKEY",
@@ -2910,14 +2924,14 @@
     "availabilityRange": "61-90%",
     "availabilityEstimate": 61,
     "seatingAggregate": {
-      "avgOccupancyPct": 40,
+      "avgOccupancyPct": 41,
       "minOccupancyPct": 15,
       "maxOccupancyPct": 76,
       "performancesWithData": 47,
       "tierCounts": {
-        "MODERATE AVAILABILITY": 22,
+        "MODERATE AVAILABILITY": 23,
         "LIMITED AVAILABILITY": 8,
-        "GOOD AVAILABILITY": 17
+        "GOOD AVAILABILITY": 16
       }
     },
     "performances": [
@@ -3097,9 +3111,9 @@
       },
       {
         "date": "7:30pm",
-        "availability": "GOOD AVAILABILITY",
-        "availabilityRange": "0-30%",
-        "availabilityEstimate": 15
+        "availability": "MODERATE AVAILABILITY",
+        "availabilityRange": "31-60%",
+        "availabilityEstimate": 46
       },
       {
         "date": "2:30pm",
@@ -3518,14 +3532,15 @@
     "ticketPriceLabel": "£20",
     "availability": "MODERATE AVAILABILITY",
     "availabilityRange": "31-60%",
-    "availabilityEstimate": 46,
+    "availabilityEstimate": 42,
     "seatingAggregate": {
-      "avgOccupancyPct": 46,
-      "minOccupancyPct": 46,
+      "avgOccupancyPct": 42,
+      "minOccupancyPct": 15,
       "maxOccupancyPct": 46,
       "performancesWithData": 7,
       "tierCounts": {
-        "MODERATE AVAILABILITY": 7
+        "MODERATE AVAILABILITY": 6,
+        "GOOD AVAILABILITY": 1
       }
     },
     "performances": [
@@ -3561,9 +3576,9 @@
       },
       {
         "date": "2:30pm",
-        "availability": "MODERATE AVAILABILITY",
-        "availabilityRange": "31-60%",
-        "availabilityEstimate": 46
+        "availability": "GOOD AVAILABILITY",
+        "availabilityRange": "0-30%",
+        "availabilityEstimate": 15
       },
       {
         "date": "7:30pm",
@@ -3572,7 +3587,7 @@
         "availabilityEstimate": 46
       }
     ],
-    "popularityScore": 35,
+    "popularityScore": 32,
     "popularityLabel": "Moderate demand",
     "imageUrls": [
       "https://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_270%2Cw_480/f_auto/q_auto/v1784116498/WMC%20Content/Whats%20On/2027/Donald%20Gordon%20Theatre/Paranormal%20Activity/MM_PA_UK_2026124_Cardiff_Digital_Updates1280x960?_a=BAAAV6GY",
@@ -3593,10 +3608,6 @@
     "scrapedAt": "2026-09-07T14:06:29.527Z",
     "imageUrl": "https://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_270%2Cw_480/f_auto/q_auto/v1788771576/WMC%20Content/Whats%20On/2027/Donald%20Gordon%20Theatre/Million%20Dollar%20Quartet/260903_MDQ_Cardiff_1280_x_960?_a=BAAAV6GY",
     "description": "Following its return to London, the West End and Broadway smash-hit musical, Million Dollar Quartet is hitting the road!\n\nOn the night of December 4, 1956, four musical icons entered a recording studio in Memphis and made music history. Johnny Cash, Jerry Lee Lewis, Carl Perkins and Elvis Presley were brought together by pure chance for a jam session which would go on to shape the trajectory of rock‘n’roll. Now 70 years after that momentous event, celebrate the anniversary of the night the Million Dollar Quartet came together and changed music forever.\n\nFeaturing over 20 hit songs performed live on stage including: Blue Suede Shoes, Fever, Walk The Line, Hound Dog, Great Balls of Fire, and many more. Experience that once-in-a-lifetime event, in an electrifying 3x Tony Award-nominated musical where rivalries ignite, friendships are tested and rock'n'roll history is made.\n\nStarring stage and screen favourite, Darren Day (Hollyoaks, Joseph and the Amazing Technicolor Dreamcoat, Chicago) as Sam Phillips, the visionary producer who created the sound of rock'n'roll, alongside a sensational cast and live band, don't miss this exhilarating celebration of four legendary artists.\n\nBook now for the greatest rock‘n’roll jam session in history!",
-    "ticketPriceFrom": 24,
-    "ticketPriceTo": 24,
-    "ticketCurrency": "GBP",
-    "ticketPriceLabel": "£24",
     "availability": "MODERATE AVAILABILITY",
     "availabilityRange": "31-60%",
     "availabilityEstimate": 46,
@@ -3669,8 +3680,12 @@
     ],
     "eventStartDate": "2027-01-26 19:30:00",
     "eventEndDate": "2027-01-30 22:30:00",
+    "ticketPriceFrom": 24,
+    "ticketPriceTo": 24,
+    "ticketCurrency": "GBP",
     "subcategory": "Wales Millennium Centre > What's on > 2027 > Million Dollar Quartet",
-    "primaryCategory": "Musical Theatre"
+    "primaryCategory": "Musical Theatre",
+    "ticketPriceLabel": "£24"
   },
   {
     "title": "CITIES OF SOUND: NEW YORK, BERLIN, VIENNA",
@@ -4372,10 +4387,6 @@
     "imageUrl": "https://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_270%2Cw_480/f_auto/q_auto/v1772986362/WMC%20Content/Whats%20On/2027/Cabaret%202027/Andrew%20Bird/d2566bf4-0398-4a42-88dc-19e5a34f21d2?_a=BAAAV6GY",
     "description": "Back with a brand-new show, Andrew has just supported Russell Howard on his current national tour including four straight shows at The London Palladium. He has also recently supported Rhod Gilbert and Troy Hawke and at The UK Comedy Awards 2023 was voted Comic’s Comic-Best Act.\n\nAndrew is always worried or stressed about something. From global events to finding free parking. From a wife hitting the perimenopause combined with two teenage kids, to hanging a wine-rack. How can he not be “on edge”\n\nHaving previously supported Russell at Bristol's Ashton Gate Football stadium he’s also supported Rob Brydon, America’s Brian Regan and Michelle Wolfe on their only London shows and Michael McIntyre on an entire arena tour including Wembley and the O2.\n\nHe was only 1 of 7 comedians to perform in front of Banksy at Dismal Land and he’s written on the recent series of 8 Out of 10 Cats Does Countdown.",
     "subVenue": "Cabaret",
-    "ticketPriceFrom": 18,
-    "ticketPriceTo": 18,
-    "ticketCurrency": "GBP",
-    "ticketPriceLabel": "£18",
     "availability": "UNKNOWN",
     "availabilityRange": null,
     "availabilityEstimate": null,
@@ -4389,8 +4400,12 @@
     ],
     "eventStartDate": "2027-02-20 20:00:00",
     "eventEndDate": "2027-02-20 22:00:00",
+    "ticketPriceFrom": 18,
+    "ticketPriceTo": 18,
+    "ticketCurrency": "GBP",
     "subcategory": "Wales Millennium Centre > What's on > 2027 > Andrew Bird - On the Edge Tour",
-    "primaryCategory": "Comedy"
+    "primaryCategory": "Comedy",
+    "ticketPriceLabel": "£18"
   },
   {
     "title": "CHICAGO",
@@ -4593,7 +4608,7 @@
     ],
     "eventStartDate": "2027-02-28 19:00:00",
     "eventEndDate": "2027-02-28 21:00:00",
-    "subcategory": "Canolfan Mileniwm Cymru > Digwyddiadur > 2027 > GAGGED",
+    "subcategory": "Wales Millennium Centre > What's on > 2027 > GAGGED",
     "primaryCategory": "Comedy"
   },
   {
@@ -4604,10 +4619,6 @@
     "scrapedAt": "2026-06-22T13:19:48.874Z",
     "imageUrl": "https://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_270%2Cw_480/f_auto/q_auto/v1781270250/3f082e40-7ab1-42d1-8f13-e9dd8235a02d_yg77wx?_a=BAAAV6GY",
     "description": "CARDIFF, WHAT’S THE BUZZ?\n\nThe record-breaking West End production of Jesus Christ Superstar, starring Sam Ryder in the iconic role of Jesus is now coming to Wales Millennium Centre for 2 weeks only.\n\nTim Rice and Andrew Lloyd Webber’s Jesus Christ Superstar follows the events of the last days of the life of Jesus Christ, as seen through the eyes of Judas. Reflecting the rock roots that defined a generation, the legendary score includes ‘I Don’t Know How to Love Him’, ‘Gethsemane’ and the iconic title number ‘Superstar’.\n\nTim Sheader directs the global phenomenon, with choreography by Olivier Award-winner Drew McOnie and design by Tony and Olivier Award-winner Tom Scutt.",
-    "ticketPriceFrom": 22,
-    "ticketPriceTo": 22,
-    "ticketCurrency": "GBP",
-    "ticketPriceLabel": "£22",
     "availability": "LIMITED AVAILABILITY",
     "availabilityRange": "61-90%",
     "availabilityEstimate": 61,
@@ -4730,8 +4741,12 @@
     ],
     "eventStartDate": "2027-03-02 19:30:00",
     "eventEndDate": "2027-03-13 22:30:00",
-    "subcategory": "Canolfan Mileniwm Cymru > Digwyddiadur > 2027 > Jesus Christ Superstar",
-    "primaryCategory": "Musical Theatre"
+    "ticketPriceFrom": 22,
+    "ticketPriceTo": 22,
+    "ticketCurrency": "GBP",
+    "subcategory": "Wales Millennium Centre > What's on > 2027 > Jesus Christ Superstar",
+    "primaryCategory": "Musical Theatre",
+    "ticketPriceLabel": "£22"
   },
   {
     "title": "WELSH NATIONAL OPERA: THE ANONYMOUS LOVER",
@@ -4857,8 +4872,9 @@
     "url": "https://www.wmc.org.uk/en/whats-on/2027/welsh-national-opera-jason-and-the-argonauts",
     "venue": "Wales Millennium Centre",
     "scrapedAt": "2026-06-05T22:12:18.829Z",
-    "imageUrl": "https://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_480%2Cw_640/f_auto/q_auto/v1777977709/WMC%20Content/Whats%20On/2027/Weston%20Studio/WNO:%20Jason%20and%20the%20Argonauts/WNO_J_WMC_1280x960px?_a=BAAAV6GY",
+    "imageUrl": "https://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_270%2Cw_480/f_auto/q_auto/v1777977709/WMC%20Content/Whats%20On/2027/Weston%20Studio/WNO:%20Jason%20and%20the%20Argonauts/WNO_J_WMC_1280x960px?_a=BAAAV6GY",
     "description": "Get ready to embark on an adventure of magic and music with Jason and his fearless band of Argonauts in this thrilling retelling of a Greek classic.\n\nRaised among nature and music in a magical forest, Jason longs to be a hero. When he discovers that his Uncle Pelias has stolen his place as King, he rushes to reclaim the throne. But King Pelias has one condition: Jason must bring him the Golden Fleece.\n\nJoined by his team of Argonauts, they sail to Colchis, the home of the mystical fleece, but are met with dangerous dragons and sneaky sirens. Together they must be brave and clever and learn the true power of music. When faced with a huge challenge, will Jason make the right choice?\n\nThis action-packed production is a wonderful introduction to the world of opera for children, bringing to life the sounds of the orchestra and the power of the human voice. Filled with adventure, enchantment, and music, it’s an unforgettable experience for young audiences.\n\nRecommended for children 7-12.",
+    "subVenue": "Weston Studio",
     "availability": "GOOD AVAILABILITY",
     "availabilityRange": "0-30%",
     "availabilityEstimate": 15,
@@ -4888,10 +4904,20 @@
     "popularityScore": 7,
     "popularityLabel": "Very low demand",
     "imageUrls": [
+      "https://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_270%2Cw_480/f_auto/q_auto/v1777977709/WMC%20Content/Whats%20On/2027/Weston%20Studio/WNO:%20Jason%20and%20the%20Argonauts/WNO_J_WMC_1280x960px?_a=BAAAV6GY",
+      "http://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_630%2Cw_1200/f_auto/q_auto/v1777977709/WMC%20Content/Whats%20On/2027/Weston%20Studio/WNO:%20Jason%20and%20the%20Argonauts/WNO_J_WMC_1280x960px?_a=BAAAV6GY",
+      "https://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_512%2Cw_1024/f_auto/q_auto/v1777977709/WMC%20Content/Whats%20On/2027/Weston%20Studio/WNO:%20Jason%20and%20the%20Argonauts/WNO_J_WMC_1280x960px?_a=BAAAV6GY",
       "https://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_480%2Cw_640/f_auto/q_auto/v1777977709/WMC%20Content/Whats%20On/2027/Weston%20Studio/WNO:%20Jason%20and%20the%20Argonauts/WNO_J_WMC_1280x960px?_a=BAAAV6GY"
     ],
+    "eventStartDate": "2027-03-13 11:30:00",
+    "eventEndDate": "2027-03-13 16:00:00",
+    "ticketPriceFrom": 20,
+    "ticketPriceTo": 20,
+    "ticketCurrency": "GBP",
+    "subcategory": "Wales Millennium Centre > What's on > 2027 > Welsh National Opera: Jason and the Argonauts",
     "primaryCategory": "Theatre",
-    "genre": "Classical"
+    "genre": "Classical",
+    "ticketPriceLabel": "£20"
   },
   {
     "title": "KEMAH BOB: LOVE CHILD",
@@ -4930,10 +4956,6 @@
     "scrapedAt": "2026-06-05T22:12:18.829Z",
     "imageUrl": "https://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_270%2Cw_480/f_auto/q_auto/v1781601195/WMC%20Content/Whats%20On/2026/Donald%20Gordon%20Theatre/Matthew%20Bourne%27s%20Cinderella/8429_66_CIND_Cardiff_600x450pxx?_a=BAAAV6GY",
     "description": "London 1940. The Blackout. A siren sounds...\n\nNew Adventures return to Wales Millennium Centre with the 30th Anniversary celebration of one of their most popular and beloved productions, Matthew Bourne’s Cinderella – a thrilling and evocative love story, set in London during the Second World War.\n\nMatthew Bourne’s epic interpretation of the classic fairytale, has, at its heart, a true war-time romance. A chance meeting results in a magical night for Cinderella and her dashing young RAF pilot, together just long enough to fall in love before being parted by the horrors of the Blitz.\n\nWith Lez Brotherston’s glorious Olivier Award-winning designs, lighting by Olivier Award-winning Neil Austin and video and projection designs by Duncan McLean, Cinderella features sensational sound design by Paul Groothuis which will take the audience into the heart of Prokofiev’s magnificent score, and the sights and sounds of war-torn London.\n\nCinderella is both a tribute and a testament to the spirit of London during a time when every second counted and lives were changed forever.  Bourne's vivid storytelling has never been more heart-stopping and touching, creating a unique and unforgettable depiction of a familiar but timeless fable.",
-    "ticketPriceFrom": 19,
-    "ticketPriceTo": 19,
-    "ticketCurrency": "GBP",
-    "ticketPriceLabel": "£19",
     "availability": "MODERATE AVAILABILITY",
     "availabilityRange": "31-60%",
     "availabilityEstimate": 31,
@@ -5001,8 +5023,12 @@
     ],
     "eventStartDate": "2027-03-16 19:30:00",
     "eventEndDate": "2027-03-20 23:00:00",
+    "ticketPriceFrom": 19,
+    "ticketPriceTo": 19,
+    "ticketCurrency": "GBP",
     "subcategory": "Wales Millennium Centre > What's on > 2027 > Matthew Bourne's Cinderella",
-    "primaryCategory": "Theatre"
+    "primaryCategory": "Theatre",
+    "ticketPriceLabel": "£19"
   },
   {
     "title": "BALLET MUSIC – STRAVINSKY & RAVEL",
@@ -5047,15 +5073,15 @@
     "ticketPriceLabel": "£22",
     "availability": "MODERATE AVAILABILITY",
     "availabilityRange": "31-60%",
-    "availabilityEstimate": 34,
+    "availabilityEstimate": 33,
     "seatingAggregate": {
-      "avgOccupancyPct": 34,
+      "avgOccupancyPct": 33,
       "minOccupancyPct": 15,
       "maxOccupancyPct": 46,
       "performancesWithData": 24,
       "tierCounts": {
-        "MODERATE AVAILABILITY": 15,
-        "GOOD AVAILABILITY": 9
+        "MODERATE AVAILABILITY": 14,
+        "GOOD AVAILABILITY": 10
       }
     },
     "performances": [
@@ -5121,9 +5147,9 @@
       },
       {
         "date": "2:30pm",
-        "availability": "MODERATE AVAILABILITY",
-        "availabilityRange": "31-60%",
-        "availabilityEstimate": 46
+        "availability": "GOOD AVAILABILITY",
+        "availabilityRange": "0-30%",
+        "availabilityEstimate": 15
       },
       {
         "date": "7:30pm",
@@ -5254,10 +5280,6 @@
     "scrapedAt": "2026-06-29T09:36:44.283Z",
     "imageUrl": "https://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_270%2Cw_480/f_auto/q_auto/v1782722783/PRIDE_AND_PRE_x2y2hx?_a=BAAAV6GY",
     "description": "The five star comedy sensation from the West End\n\nPride and Prejudice* (*sort of)By Isobel McArthur after Jane Austen\n\nA triumph in the West End, where it won the Laurence Olivier Award for Best Comedy and the Evening Standard Award, Pride and Prejudice* (*sort of) is a unique and audacious retelling of Jane Austen’s most iconic love story.\n\nMen, money and microphones will be fought over in this irreverent but affectionate adaptation where the stakes couldn’t be higher when it comes to romance. This multi-award-winning production features a string of pop classics including Young Hearts Run Free, Will You Love Me Tomorrow and You’re So Vain.\n\nIT’S THE 1800S. IT’S PARTY TIME. LET THE RUTHLESS MATCHMAKING BEGIN.",
-    "ticketPriceFrom": 22,
-    "ticketPriceTo": 22,
-    "ticketCurrency": "GBP",
-    "ticketPriceLabel": "£22",
     "availability": "MODERATE AVAILABILITY",
     "availabilityRange": "31-60%",
     "availabilityEstimate": 31,
@@ -5325,8 +5347,12 @@
     ],
     "eventStartDate": "2027-04-13 19:30:00",
     "eventEndDate": "2027-04-17 22:30:00",
+    "ticketPriceFrom": 22,
+    "ticketPriceTo": 22,
+    "ticketCurrency": "GBP",
     "subcategory": "Wales Millennium Centre > What's on > 2027 > Pride and Prejudice* (*sort of)",
-    "primaryCategory": "Comedy"
+    "primaryCategory": "Theatre",
+    "ticketPriceLabel": "£22"
   },
   {
     "title": "RHAPSODY IN BLUE",
@@ -5334,28 +5360,13 @@
     "url": "https://www.wmc.org.uk/en/whats-on/2027/rhapsody-in-blue",
     "venue": "Wales Millennium Centre",
     "scrapedAt": "2026-06-29T12:30:37.749Z",
-    "imageUrl": "https://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_270%2Cw_480/f_auto/q_auto/v1782058089/WMC%20Content/Whats%20On/2027/BBC%20NOW/Rhapsody/d0fa1e20-a1bf-4874-a85a-3349b03d363a?_a=BAAAV6GY",
+    "imageUrl": "https://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_480%2Cw_640/f_auto/q_auto/v1782058089/WMC%20Content/Whats%20On/2027/BBC%20NOW/Rhapsody/d0fa1e20-a1bf-4874-a85a-3349b03d363a?_a=BAAAV6GY",
     "subVenue": "Hoddinott Hall",
     "description": "CONNECTION JAZZ FIRE\n\nThis vibrant programme brings together music of dialogue, city energy and sun‑drenched dance under the direction of Carlos Miguel Prieto. Gabriela Ortiz’s TZAM, meaning “dialogue” in the endangered Ayapaneco language, opens the evening with a powerful reflection on human connection, memory and shared space. Dedicated to the late composer Mario Lavista, the work invites listeners into an urgent and contemplative musical conversation. Ethan Loch is soloist in Gershwin’s iconic Rhapsody in Blue, a work born from the rhythms of the American city and famously conceived on a train journey. Jazzy, virtuosic and unmistakably American, it remains a dazzling musical kaleidoscope. After the interval, Manuel de Falla’s full ballet The Three‑Cornered Hat closes the concert in brilliant colour, blending Spanish folk rhythms with luminous orchestration in a theatrical score of irresistible vitality.\n\nArtists-\n\nRepertoire-\n\nGabriella Ortiz - TZAM (20') Gershwin - Rhapsody in Blue (16') Interval  De Falla - Three Cornered Hat (35')",
-    "ticketPriceFrom": 17,
-    "ticketPriceTo": 17,
-    "ticketCurrency": "GBP",
-    "ticketPriceLabel": "£17",
-    "availability": "UNKNOWN",
-    "availabilityRange": null,
-    "availabilityEstimate": null,
-    "popularityScore": null,
-    "popularityLabel": null,
     "imageUrls": [
-      "https://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_270%2Cw_480/f_auto/q_auto/v1782058089/WMC%20Content/Whats%20On/2027/BBC%20NOW/Rhapsody/d0fa1e20-a1bf-4874-a85a-3349b03d363a?_a=BAAAV6GY",
-      "http://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_630%2Cw_1200/f_auto/q_auto/v1782058089/WMC%20Content/Whats%20On/2027/BBC%20NOW/Rhapsody/d0fa1e20-a1bf-4874-a85a-3349b03d363a?_a=BAAAV6GY",
-      "https://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_512%2Cw_1024/f_auto/q_auto/v1782058089/WMC%20Content/Whats%20On/2027/BBC%20NOW/Rhapsody/d0fa1e20-a1bf-4874-a85a-3349b03d363a?_a=BAAAV6GY",
       "https://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_480%2Cw_640/f_auto/q_auto/v1782058089/WMC%20Content/Whats%20On/2027/BBC%20NOW/Rhapsody/d0fa1e20-a1bf-4874-a85a-3349b03d363a?_a=BAAAV6GY"
     ],
-    "eventStartDate": "2027-04-15 19:30:00",
-    "eventEndDate": "2027-04-15 22:30:00",
-    "subcategory": "Wales Millennium Centre > What's on > 2027 > Rhapsody in Blue",
-    "primaryCategory": "Musical Theatre"
+    "primaryCategory": "Theatre"
   },
   {
     "title": "DISNEY PRINCESS - THE CONCERT",
@@ -5363,12 +5374,8 @@
     "url": "https://www.wmc.org.uk/en/whats-on/2027/disney-princess-the-concert",
     "venue": "Wales Millennium Centre",
     "scrapedAt": "2026-06-05T22:12:18.829Z",
-    "imageUrl": "https://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_270%2Cw_480/f_auto/q_auto/v1791983338/WMC%20Content/Whats%20On/2027/Donald%20Gordon%20Theatre/Disney%20Princess%20-%20The%20Concert/WITH%20LOGOS/Disney-PrincessConcert-Cardiff-1280x960?_a=BAAAV6GY",
+    "imageUrl": "https://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_480%2Cw_640/f_auto/q_auto/v1791983338/WMC%20Content/Whats%20On/2027/Donald%20Gordon%20Theatre/Disney%20Princess%20-%20The%20Concert/WITH%20LOGOS/Disney-PrincessConcert-Cardiff-1280x960?_a=BAAAV6GY",
     "description": "For generations, the music of Disney’s princesses has been the soundtrack to our lives. Now, these beloved songs come alive on stage with a host of acclaimed Broadway and West End stars in Disney Princess – The Concert.\n\nYour every dream will come true as larger-than-life animation and theatrical effects immerse the audience in pure Disney magic, while these powerhouse talents sing your favourite princess, hero and (yes!) villain songs, and share behind-the-scenes stories from their time on the stage and screen.\n\nWe invite you to relive your VHS glory days, dress up in your favourite royal attire, and share the joy of Disney with your loved ones at this internationally acclaimed concert experience. Be part of our world at Disney Princess – The Concert!\n\nDisney Princess – The Concert has played 20 countries on 5 continents since its premiere in 2021, including two US tours of more than 100 cities, and tours the UK and Ireland for the first time in 2027.\n\nThe show features iconic songs from more than 29 films, including: “How Far I’ll Go,” “A Whole New World,” “Just Around the Riverbend,” “Part of Your World,” “Almost There,” “Let It Go” and more!\n\nCast of Disney Broadway and West End talent to be announced in August.",
-    "ticketPriceFrom": 21.5,
-    "ticketPriceTo": 21.5,
-    "ticketCurrency": "GBP",
-    "ticketPriceLabel": "£21.50",
     "availability": "LIMITED AVAILABILITY",
     "availabilityRange": "61-90%",
     "availabilityEstimate": 61,
@@ -5399,15 +5406,9 @@
     "popularityScore": 35,
     "popularityLabel": "Moderate demand",
     "imageUrls": [
-      "https://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_270%2Cw_480/f_auto/q_auto/v1791983338/WMC%20Content/Whats%20On/2027/Donald%20Gordon%20Theatre/Disney%20Princess%20-%20The%20Concert/WITH%20LOGOS/Disney-PrincessConcert-Cardiff-1280x960?_a=BAAAV6GY",
-      "http://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_630%2Cw_1200/f_auto/q_auto/v1791983338/WMC%20Content/Whats%20On/2027/Donald%20Gordon%20Theatre/Disney%20Princess%20-%20The%20Concert/WITH%20LOGOS/Disney-PrincessConcert-Cardiff-1280x960?_a=BAAAV6GY",
-      "https://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_512%2Cw_1024/f_auto/q_auto/v1791983338/WMC%20Content/Whats%20On/2027/Donald%20Gordon%20Theatre/Disney%20Princess%20-%20The%20Concert/WITH%20LOGOS/Disney-PrincessConcert-Cardiff-1280x960?_a=BAAAV6GY",
       "https://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_480%2Cw_640/f_auto/q_auto/v1791983338/WMC%20Content/Whats%20On/2027/Donald%20Gordon%20Theatre/Disney%20Princess%20-%20The%20Concert/WITH%20LOGOS/Disney-PrincessConcert-Cardiff-1280x960?_a=BAAAV6GY"
     ],
-    "eventStartDate": "2027-04-18 14:00:00",
-    "eventEndDate": "2027-04-18 22:30:00",
-    "subcategory": "Wales Millennium Centre > What's on > 2027 > Disney Princess - The Concert",
-    "primaryCategory": "Musical Theatre"
+    "primaryCategory": "Theatre"
   },
   {
     "title": "JUST FOR ONE DAY: THE LIVE AID MUSICAL",
@@ -5493,7 +5494,7 @@
     ],
     "eventStartDate": "2027-04-20 19:30:00",
     "eventEndDate": "2027-04-24 22:30:00",
-    "subcategory": "Wales Millennium Centre > What's on > 2027 > Just For One Day: The Live Aid Musical",
+    "subcategory": "Canolfan Mileniwm Cymru > Digwyddiadur > 2027 > Just For One Day: The Live Aid Musical",
     "primaryCategory": "Musical Theatre"
   },
   {
@@ -5502,28 +5503,13 @@
     "url": "https://www.wmc.org.uk/en/whats-on/2027/grace",
     "venue": "Wales Millennium Centre",
     "scrapedAt": "2026-06-29T12:30:37.749Z",
-    "imageUrl": "https://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_270%2Cw_480/f_auto/q_auto/v1782058130/WMC%20Content/Whats%20On/2027/BBC%20NOW/Grace/c7b380ec-9636-4491-9d8e-3ce0ac7be5c5?_a=BAAAV6GY",
+    "imageUrl": "https://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_480%2Cw_640/f_auto/q_auto/v1782058130/WMC%20Content/Whats%20On/2027/BBC%20NOW/Grace/c7b380ec-9636-4491-9d8e-3ce0ac7be5c5?_a=BAAAV6GY",
     "subVenue": "Hoddinott Hall",
     "description": "WONDER | MEMORY | RADIANCE\n\nConductor Chloe Rooke leads an immersive programme inspired by orbiting worlds, imagined landscapes and folk memory, with Laura van der Heijden as soloist.\n\nMissy Mazzoli’s Sinfonia (for Orbiting Spheres) opens the concert in restless motion, its looping figures circling like a living solar system. The first half culminates in the world premiere of Augusta Read Thomas’s Cello Concerto, Astral Illuminations, music of radiant colour and lyric intensity that celebrates the expressive voice of the cello.\n\nAfter the interval, Grace Williams’s Dark Island Suite evokes rugged seascapes, followed by Grace‑Evangeline Mason’s The Imagined Forest, a surreal, collage‑like journey through fantastical terrain inspired by visual art and folklore. The concert closes with Ester Mägi’s Symphony, rooted in Estonian folk tradition and shaped by a lifetime of deep musical reflection, bringing this richly atmospheric programme to a powerful conclusion.\n\nMissy Mazzoli Sinfonia (for Orbiting Spheres) (10’) Augusta Read Thomas Astral Illuminations, New Cello Concerto [World Premiere] (25’) IntervalWilliams Dark Island Suite (c10’) Grace-Evangeline Mason The Imagined Forest (15') Ester Mägi Symphony (14’)",
-    "ticketPriceFrom": 17,
-    "ticketPriceTo": 17,
-    "ticketCurrency": "GBP",
-    "ticketPriceLabel": "£17",
-    "availability": "UNKNOWN",
-    "availabilityRange": null,
-    "availabilityEstimate": null,
-    "popularityScore": null,
-    "popularityLabel": null,
     "imageUrls": [
-      "https://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_270%2Cw_480/f_auto/q_auto/v1782058130/WMC%20Content/Whats%20On/2027/BBC%20NOW/Grace/c7b380ec-9636-4491-9d8e-3ce0ac7be5c5?_a=BAAAV6GY",
-      "http://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_630%2Cw_1200/f_auto/q_auto/v1782058130/WMC%20Content/Whats%20On/2027/BBC%20NOW/Grace/c7b380ec-9636-4491-9d8e-3ce0ac7be5c5?_a=BAAAV6GY",
-      "https://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_512%2Cw_1024/f_auto/q_auto/v1782058130/WMC%20Content/Whats%20On/2027/BBC%20NOW/Grace/c7b380ec-9636-4491-9d8e-3ce0ac7be5c5?_a=BAAAV6GY",
       "https://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_480%2Cw_640/f_auto/q_auto/v1782058130/WMC%20Content/Whats%20On/2027/BBC%20NOW/Grace/c7b380ec-9636-4491-9d8e-3ce0ac7be5c5?_a=BAAAV6GY"
     ],
-    "eventStartDate": "2027-04-22 19:30:00",
-    "eventEndDate": "2027-04-22 21:30:00",
-    "subcategory": "Wales Millennium Centre > What's on > 2027 > Grace – Astral Illuminations",
-    "primaryCategory": "Musical Theatre"
+    "primaryCategory": "Theatre"
   },
   {
     "title": "LANG LANG",
@@ -5568,8 +5554,12 @@
     "url": "https://www.wmc.org.uk/en/whats-on/2027/the-curious-incident-of-the-dog-in-the-night-time",
     "venue": "Wales Millennium Centre",
     "scrapedAt": "2026-06-05T22:12:18.829Z",
-    "imageUrl": "https://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_480%2Cw_640/f_auto/q_auto/v1785427540/WMC%20Content/Whats%20On/2027/Donald%20Gordon%20Theatre/Curious%20Incident/Curious_WithCast_Cardiff_1280_x_960_July_2026?_a=BAAAV6GY",
+    "imageUrl": "https://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_270%2Cw_480/f_auto/q_auto/v1785427540/WMC%20Content/Whats%20On/2027/Donald%20Gordon%20Theatre/Curious%20Incident/Curious_WithCast_Cardiff_1280_x_960_July_2026?_a=BAAAV6GY",
     "description": "The century's most popular murder mystery.\n\nThe internationally celebrated novel that captivated 10 million readers is coming in a brand-new staging more thrilling than ever.\n\nChris Boone is gifted with a brilliant mind for numbers but unsettled by the unpredictability of people and everyday life. When a neighbour’s dog is discovered killed, she finds herself under suspicion. Determined to prove her innocence, Chris becomes both detective and suspect, drawn into a mystery that grows darker and more complex with every clue she uncovers.\n\nWhat begins as the search for a culprit soon reveals secrets closer to home, forcing her to confront truths that will test her courage, her family, and her understanding of trust, independence, and the wider world.\n\nStarring Joe McFadden (The Shawshank Redemption - UK Tour; 2:22 A Ghost Story – Gielgud Theatre; Strictly Come Dancing winner 2017) and EastEnders favourite Charlie Brooks (Chitty Chitty Bang Bang - UK Tour; Ocean at the End of the Lane - National Theatre) as Chris’ parents - Ed and Judy.Inventive, gripping, and moving, The Curious Incident of the Dog in the Night-Time combines the intrigue of a whodunnit with a powerful coming-of-age story in an unforgettable theatrical event.",
+    "ticketPriceFrom": 19,
+    "ticketPriceTo": 19,
+    "ticketCurrency": "GBP",
+    "ticketPriceLabel": "£19",
     "availability": "MODERATE AVAILABILITY",
     "availabilityRange": "31-60%",
     "availabilityEstimate": 46,
@@ -5629,28 +5619,39 @@
     "popularityScore": 38,
     "popularityLabel": "Moderate demand",
     "imageUrls": [
+      "https://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_270%2Cw_480/f_auto/q_auto/v1785427540/WMC%20Content/Whats%20On/2027/Donald%20Gordon%20Theatre/Curious%20Incident/Curious_WithCast_Cardiff_1280_x_960_July_2026?_a=BAAAV6GY",
+      "http://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_630%2Cw_1200/f_auto/q_auto/v1785427540/WMC%20Content/Whats%20On/2027/Donald%20Gordon%20Theatre/Curious%20Incident/Curious_WithCast_Cardiff_1280_x_960_July_2026?_a=BAAAV6GY",
+      "https://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_512%2Cw_1024/f_auto/q_auto/v1785427540/WMC%20Content/Whats%20On/2027/Donald%20Gordon%20Theatre/Curious%20Incident/Curious_WithCast_Cardiff_1280_x_960_July_2026?_a=BAAAV6GY",
       "https://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_480%2Cw_640/f_auto/q_auto/v1785427540/WMC%20Content/Whats%20On/2027/Donald%20Gordon%20Theatre/Curious%20Incident/Curious_WithCast_Cardiff_1280_x_960_July_2026?_a=BAAAV6GY"
     ],
+    "eventStartDate": "2027-04-27 19:30:00",
+    "eventEndDate": "2027-05-01 22:30:00",
+    "subcategory": "Wales Millennium Centre > What's on > 2027 > The Curious Incident of the Dog in the Night-Time",
     "primaryCategory": "Theatre"
   },
   {
     "title": "GREASE",
-    "date": "Monday, 3 May 2027 – Saturday, 8 May 2027",
+    "date": "Monday, 3 May 2027 – Sunday, 9 May 2027",
     "url": "https://www.wmc.org.uk/en/whats-on/2027/grease",
     "venue": "Wales Millennium Centre",
     "scrapedAt": "2026-06-05T22:12:18.829Z",
-    "imageUrl": "https://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_480%2Cw_640/f_auto/q_auto/v1775733846/WMC%20Content/Whats%20On/2027/Donald%20Gordon%20Theatre/Grease/Grease_Image_1280x960?_a=BAAAV6GY",
+    "imageUrl": "https://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_270%2Cw_480/f_auto/q_auto/v1775733846/WMC%20Content/Whats%20On/2027/Donald%20Gordon%20Theatre/Grease/Grease_Image_1280x960?_a=BAAAV6GY",
     "description": "The world’s best-loved musical is back! Grittier and more glamorous than ever before.\n\nAfter a whirlwind summer romance, leather-clad greaser Danny and girl-next-door Sandy are unexpectedly reunited when she transfers to Rydell High for senior year. But can they survive the trials and tribulations of teenage life and find true love once more?\n\nWith its phenomenal score, bursting with hits including Summer Nights, Greased Lightnin’, Hopelessly Devoted to You and You’re the One That I Want, this thrilling new version is brought to life by a fresh young cast who bring energy, vitality and passion to this ultimate musical classic.\n\nDirected by Curve’s Artistic Director Nikolai Foster reignite your passion and get ready for an explosion of summer loving.\n\nSo round-up your Burger Palace Boys, pick up your Pink Ladies and re-discover why Grease really is the one that you want this term!\n\nBook, Music & Lyrics by Jim Jacobs & Warren Casey. Directed by Nikolai Foster. Choreography by Arlene Phillips.",
+    "ticketPriceFrom": 20,
+    "ticketPriceTo": 20,
+    "ticketCurrency": "GBP",
+    "ticketPriceLabel": "£20",
     "availability": "MODERATE AVAILABILITY",
     "availabilityRange": "31-60%",
-    "availabilityEstimate": 46,
+    "availabilityEstimate": 42,
     "seatingAggregate": {
-      "avgOccupancyPct": 46,
-      "minOccupancyPct": 46,
+      "avgOccupancyPct": 42,
+      "minOccupancyPct": 15,
       "maxOccupancyPct": 46,
       "performancesWithData": 8,
       "tierCounts": {
-        "MODERATE AVAILABILITY": 8
+        "MODERATE AVAILABILITY": 7,
+        "GOOD AVAILABILITY": 1
       }
     },
     "performances": [
@@ -5674,9 +5675,9 @@
       },
       {
         "date": "2:30pm",
-        "availability": "MODERATE AVAILABILITY",
-        "availabilityRange": "31-60%",
-        "availabilityEstimate": 46
+        "availability": "GOOD AVAILABILITY",
+        "availabilityRange": "0-30%",
+        "availabilityEstimate": 15
       },
       {
         "date": "7:30pm",
@@ -5703,12 +5704,18 @@
         "availabilityEstimate": 46
       }
     ],
-    "popularityScore": 39,
+    "popularityScore": 35,
     "popularityLabel": "Moderate demand",
     "imageUrls": [
+      "https://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_270%2Cw_480/f_auto/q_auto/v1775733846/WMC%20Content/Whats%20On/2027/Donald%20Gordon%20Theatre/Grease/Grease_Image_1280x960?_a=BAAAV6GY",
+      "http://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_630%2Cw_1200/f_auto/q_auto/v1775733846/WMC%20Content/Whats%20On/2027/Donald%20Gordon%20Theatre/Grease/Grease_Image_1280x960?_a=BAAAV6GY",
+      "https://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_512%2Cw_1024/f_auto/q_auto/v1775733846/WMC%20Content/Whats%20On/2027/Donald%20Gordon%20Theatre/Grease/Grease_Image_1280x960?_a=BAAAV6GY",
       "https://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_480%2Cw_640/f_auto/q_auto/v1775733846/WMC%20Content/Whats%20On/2027/Donald%20Gordon%20Theatre/Grease/Grease_Image_1280x960?_a=BAAAV6GY"
     ],
-    "primaryCategory": "Theatre"
+    "eventStartDate": "2027-05-03 19:30:00",
+    "eventEndDate": "2027-05-08 23:00:00",
+    "subcategory": "Wales Millennium Centre > What's on > 2027 > Grease",
+    "primaryCategory": "Musical Theatre"
   },
   {
     "title": "STRAUSS & BRUCKNER",
@@ -5746,10 +5753,6 @@
     "scrapedAt": "2026-10-05T12:17:30.707Z",
     "imageUrl": "https://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_270%2Cw_480/f_auto/q_auto/v1790936004/TM-2426x1365_hbtwqg?_a=BAAAV6GY",
     "description": "After a sensational 2026 that saw over 60,000 Tina Turner fans across the UK singing, dancing, and having the time of their lives, What’s Love Got To Do With It? is back and bigger than ever for 2027! This electrifying tribute show celebrates the music and unparalleled career of the one and only Queen of Rock ‘n’ Roll, Tina Turner.\n\nGet ready for an unforgettable evening of high-energy, feel-good rock and soul, brought to life by a phenomenal live band. Packed with all the classic hits you know and love, the show delivers showstopping performances of Proud Mary, River Deep – Mountain High, Simply The Best, Private Dancer, Nutbush City Limits, and many more.\n\nStepping into Tina’s iconic heels is Kent’s own Holly Bannis, the daughter of Greg Bannis, former lead singer of Hot Chocolate. Holly’s rise to center stage is as inspiring as it is exciting. Growing up in a musical family, Holly honed her craft for over a decade performing semi-professionally before an audition on ITV’s Starstruck changed her life. “I had to audition as three of my musical icons, and Tina was an obvious choice for me. During lockdown, I studied her performances obsessively, getting into her moves, her walk, and her energy.”\n\nIt wasn’t long before the team behind What’s Love Got To Do With It? noticed Holly’s raw talent and passion. Initially cast as a backing singer and understudy, Holly quickly stepped into the spotlight, making the lead role her own and earning standing ovations night after night.\n\nAudiences can expect a show bursting with energy, emotion, and that signature Tina fire. The production kicks off with hits like Private Dancer, as Holly fully inhabits Tina’s powerful vocals and unmistakable moves, transporting fans to the heart of a live Tina Turner concert experience. Then, in the show-stopping second half, the audience is guaranteed to be on their feet, dancing and singing along to high-octane classics like Nutbush City Limits.\n\nWhat’s Love Got To Do With It? isn’t just a concert – it’s a celebration of Tina Turner’s legacy, a night of unrelenting joy, and a tribute to one of the most electrifying performers in music history.\n\nPlease note that this is a tribute production and is not endorsed by or affiliated with the Tina Turner Estate.",
-    "ticketPriceFrom": 24,
-    "ticketPriceTo": 24,
-    "ticketCurrency": "GBP",
-    "ticketPriceLabel": "£24",
     "availability": "GOOD AVAILABILITY",
     "availabilityRange": "0-30%",
     "availabilityEstimate": 15,
@@ -5772,8 +5775,12 @@
     ],
     "eventStartDate": "2027-05-09 19:30:00",
     "eventEndDate": "2027-05-09 22:30:00",
+    "ticketPriceFrom": 24,
+    "ticketPriceTo": 24,
+    "ticketCurrency": "GBP",
     "subcategory": "Wales Millennium Centre > What's on > 2027 > What's Love Got To Do With It?",
-    "primaryCategory": "Musical Theatre"
+    "primaryCategory": "Theatre",
+    "ticketPriceLabel": "£24"
   },
   {
     "title": "LEE PEART: IT’S NOT YOU, IT’S LEE",
@@ -5810,7 +5817,7 @@
     "url": "https://www.wmc.org.uk/en/whats-on/2027/hedd-wyn-eisteddfod-atomig",
     "venue": "Wales Millennium Centre",
     "scrapedAt": "2026-06-05T22:12:18.829Z",
-    "imageUrl": "https://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_480%2Cw_640/f_auto/q_auto/v1777976527/WMC%20Content/Whats%20On/2027/Donald%20Gordon%20Theatre/WNO:%20Hedd%20Wyn/WNO_HW_WMC_1280x960px?_a=BAAAV6GY",
+    "imageUrl": "https://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_270%2Cw_480/f_auto/q_auto/v1777976527/WMC%20Content/Whats%20On/2027/Donald%20Gordon%20Theatre/WNO:%20Hedd%20Wyn/WNO_HW_WMC_1280x960px?_a=BAAAV6GY",
     "description": "Trawsfynydd, 2117.\n\n200 years after the death of Welsh poet Hedd Wyn, a group of pilgrims return to Trawsfynydd - now an abandoned exclusion zone following a catastrophic failure at the nearby nuclear power station - to reconnect with their Welsh heritage.\n\nExpecting a commemorative tour of Hedd Wyn’s ancestral home, they instead step into a fractured landscape where radiation has blurred time itself. Past, present and future collide and the ghosts of history and legend walk alongside the small utopian community that remains.\n\nGuided by the strange survivors of the disaster, the group venture deeper into their ancestry and the very heart of Welsh mythology, as conflicting visions for the future of Wales begin to emerge. and Hedd Wyn’s legacy is reshaped and distorted in pursuit of a dangerous new beginning.\n\nFrom the imagination of Gruff Rhys, with music by Stephen McNeff and directed by Steffan Donnelly, Hedd Wyn: Eisteddfod Atomig is a haunting new opera which explores how the poet’s story can be misrepresented, mythologised and reclaimed. It asks who gets to decide what his legacy means for Wales today?\n\nwno.org.uk/heddwyn\n\nComposer Stephen McNeff\n\nLibrettist Gruff Rhys\n\nConductor Iwan Teifion Davies\n\nDirector Steffan Donnelly\n\nCarlo / Hedd Wyn / Yr Arwr Steffan Lloyd Owen\n\nY Bon Pebr Paul Carey Jones\n\nY Fon Hon Rebecca Evans",
     "availability": "GOOD AVAILABILITY",
     "availabilityRange": "0-30%",
@@ -5847,9 +5854,19 @@
     "popularityScore": 13,
     "popularityLabel": "Very low demand",
     "imageUrls": [
+      "https://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_270%2Cw_480/f_auto/q_auto/v1777976527/WMC%20Content/Whats%20On/2027/Donald%20Gordon%20Theatre/WNO:%20Hedd%20Wyn/WNO_HW_WMC_1280x960px?_a=BAAAV6GY",
+      "http://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_630%2Cw_1200/f_auto/q_auto/v1777976527/WMC%20Content/Whats%20On/2027/Donald%20Gordon%20Theatre/WNO:%20Hedd%20Wyn/WNO_HW_WMC_1280x960px?_a=BAAAV6GY",
+      "https://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_512%2Cw_1024/f_auto/q_auto/v1777976527/WMC%20Content/Whats%20On/2027/Donald%20Gordon%20Theatre/WNO:%20Hedd%20Wyn/WNO_HW_WMC_1280x960px?_a=BAAAV6GY",
       "https://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_480%2Cw_640/f_auto/q_auto/v1777976527/WMC%20Content/Whats%20On/2027/Donald%20Gordon%20Theatre/WNO:%20Hedd%20Wyn/WNO_HW_WMC_1280x960px?_a=BAAAV6GY"
     ],
-    "primaryCategory": "Theatre"
+    "eventStartDate": "2027-05-18 19:30:00",
+    "eventEndDate": "2027-05-22 21:30:00",
+    "ticketPriceFrom": 25,
+    "ticketPriceTo": 25,
+    "ticketCurrency": "GBP",
+    "subcategory": "Wales Millennium Centre > What's on > 2027 > Hedd Wyn: Eisteddfod Atomig",
+    "primaryCategory": "Theatre",
+    "ticketPriceLabel": "£25"
   },
   {
     "title": "BBC NOW SURROUND SOUND",
@@ -5857,27 +5874,12 @@
     "url": "https://www.wmc.org.uk/en/whats-on/2027/bbc-now-surround-sound",
     "venue": "Wales Millennium Centre",
     "scrapedAt": "2026-06-30T16:59:36.300Z",
-    "imageUrl": "https://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_270%2Cw_480/f_auto/q_auto/v1782301902/WMC%20Content/Whats%20On/2027/BBC%20NOW/BBC%20NOW%20Surround%20Sound/thumbnail-08-may-27?_a=BAAAV6GY",
+    "imageUrl": "https://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_480%2Cw_640/f_auto/q_auto/v1782301902/WMC%20Content/Whats%20On/2027/BBC%20NOW/BBC%20NOW%20Surround%20Sound/thumbnail-08-may-27?_a=BAAAV6GY",
     "subVenue": "Hoddinott Hall",
     "description": "IMMERSION | MOVEMENT | PRESENCE\n\nSound is never still in this performance; it drifts, pulses and gathers around you.\n\nConceived by Daniel Pioro, the concert invites listeners to move freely through the space: to walk, change seats, or sit among the musicians as the music unfolds. The focus is not on passive listening, but on presence — on how sound is felt as much as heard. Steve Reich’s Duet for Two Violins and Strings opens the programme, with Pioro and BBC National Orchestra of Wales Leader Lesley Hatfield as soloists, its shifting patterns precise yet mesmerising. Music by pioneering electronic composer Daphne Oram deepens the sense of exploration, while Terry Riley’s iconic In C forms the centrepiece — a living, breathing work that reconfigures itself with every moment.",
-    "ticketPriceFrom": 17,
-    "ticketPriceTo": 17,
-    "ticketCurrency": "GBP",
-    "ticketPriceLabel": "£17",
-    "availability": "UNKNOWN",
-    "availabilityRange": null,
-    "availabilityEstimate": null,
-    "popularityScore": null,
-    "popularityLabel": null,
     "imageUrls": [
-      "https://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_270%2Cw_480/f_auto/q_auto/v1782301902/WMC%20Content/Whats%20On/2027/BBC%20NOW/BBC%20NOW%20Surround%20Sound/thumbnail-08-may-27?_a=BAAAV6GY",
-      "http://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_630%2Cw_1200/f_auto/q_auto/v1782301902/WMC%20Content/Whats%20On/2027/BBC%20NOW/BBC%20NOW%20Surround%20Sound/thumbnail-08-may-27?_a=BAAAV6GY",
-      "https://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_512%2Cw_1024/f_auto/q_auto/v1782301902/WMC%20Content/Whats%20On/2027/BBC%20NOW/BBC%20NOW%20Surround%20Sound/thumbnail-08-may-27?_a=BAAAV6GY",
       "https://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_480%2Cw_640/f_auto/q_auto/v1782301902/WMC%20Content/Whats%20On/2027/BBC%20NOW/BBC%20NOW%20Surround%20Sound/thumbnail-08-may-27?_a=BAAAV6GY"
     ],
-    "eventStartDate": "2027-05-19 19:30:00",
-    "eventEndDate": "2027-05-19 21:30:00",
-    "subcategory": "Wales Millennium Centre > What's on > 2027 > BBC NOW Surround Sound",
     "primaryCategory": "Theatre"
   },
   {
@@ -5894,14 +5896,15 @@
     "ticketPriceLabel": "£19",
     "availability": "MODERATE AVAILABILITY",
     "availabilityRange": "31-60%",
-    "availabilityEstimate": 46,
+    "availabilityEstimate": 42,
     "seatingAggregate": {
-      "avgOccupancyPct": 46,
-      "minOccupancyPct": 46,
+      "avgOccupancyPct": 42,
+      "minOccupancyPct": 15,
       "maxOccupancyPct": 46,
       "performancesWithData": 8,
       "tierCounts": {
-        "MODERATE AVAILABILITY": 8
+        "MODERATE AVAILABILITY": 7,
+        "GOOD AVAILABILITY": 1
       }
     },
     "performances": [
@@ -5931,9 +5934,9 @@
       },
       {
         "date": "7:30pm",
-        "availability": "MODERATE AVAILABILITY",
-        "availabilityRange": "31-60%",
-        "availabilityEstimate": 46
+        "availability": "GOOD AVAILABILITY",
+        "availabilityRange": "0-30%",
+        "availabilityEstimate": 15
       },
       {
         "date": "7:30pm",
@@ -5954,7 +5957,7 @@
         "availabilityEstimate": 46
       }
     ],
-    "popularityScore": 39,
+    "popularityScore": 36,
     "popularityLabel": "Moderate demand",
     "imageUrls": [
       "https://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_270%2Cw_480/f_auto/q_auto/v1783934527/WMC%20Content/Whats%20On/2027/Donald%20Gordon%20Theatre/Cats/8500_73_CATS_MOON_Cardiff_WhatsOn_1200x900px?_a=BAAAV6GY",
@@ -5969,11 +5972,11 @@
   },
   {
     "title": "EVERYBODY'S TALKING ABOUT JAMIE",
-    "date": "Tuesday, 1 June 2027 – Sunday, 6 June 2027",
+    "date": "Tuesday, 1 June 2027 – Saturday, 5 June 2027",
     "url": "https://www.wmc.org.uk/en/whats-on/2027/everybodys-talking-about-jamie",
     "venue": "Wales Millennium Centre",
     "scrapedAt": "2026-06-05T22:12:18.829Z",
-    "imageUrl": "https://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_270%2Cw_480/f_auto/q_auto/v1773225252/WMC%20Content/Whats%20On/2027/Donald%20Gordon%20Theatre/Everybody%27s%20Talking%20About%20Jamie/260306_ETAJ_Cardiff_1280_x_960?_a=BAAAV6GY",
+    "imageUrl": "https://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_480%2Cw_640/f_auto/q_auto/v1773225252/WMC%20Content/Whats%20On/2027/Donald%20Gordon%20Theatre/Everybody%27s%20Talking%20About%20Jamie/260306_ETAJ_Cardiff_1280_x_960?_a=BAAAV6GY",
     "description": "Following a record-breaking three-year West End residency, two sold-out UK & Ireland Tours and Amazon Studios award-winning film, the smash-hit and critically acclaimed musical Everybody’s Talking About Jamie RETURNS for the 10th Anniversary Tour with a brand-new song.\n\nFeaturing an all-star cast including, Strictly Come Dancing legend Joanne Clifton and Drag Race UK royalty Divina De Campo, this funny, fabulous and feel-good musical is not to be missed.\n\nJamie New (Ashcon Rahmani) is sixteen and lives on a council estate in Sheffield. Jamie doesn’t quite fit in. Jamie is terrified about the future. Jamie is going to be a sensation.\n\nSupported by his brilliant loving mum (Rebecca Trehearn) and surrounded by his friends, Jamie over comes prejudice, beats the bullies and steps out of the darkness, into the spotlight. This ‘Funny, outrageous, touching’ (Daily Telegraph), musical sensation is to be experienced by all the family and not to be missed!\n\nWith an original score of catchy pop tunes that will ‘blow the roof off the Theatre’ (Mail on Sunday) by lead singer-songwriter of The Feeling, Dan Gillespie Sells and writer Tom MacRae (Doctor Who), this ‘Sparkling coming-of-age musical’ (The Times) will have everybody talking about Jamie for years to come.\n\nSixteen: the edge of possibility. Time to make your dreams come true.",
     "availability": "GOOD AVAILABILITY",
     "availabilityRange": "0-30%",
@@ -6034,19 +6037,9 @@
     "popularityScore": 13,
     "popularityLabel": "Very low demand",
     "imageUrls": [
-      "https://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_270%2Cw_480/f_auto/q_auto/v1773225252/WMC%20Content/Whats%20On/2027/Donald%20Gordon%20Theatre/Everybody%27s%20Talking%20About%20Jamie/260306_ETAJ_Cardiff_1280_x_960?_a=BAAAV6GY",
-      "http://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_630%2Cw_1200/f_auto/q_auto/v1773225252/WMC%20Content/Whats%20On/2027/Donald%20Gordon%20Theatre/Everybody%27s%20Talking%20About%20Jamie/260306_ETAJ_Cardiff_1280_x_960?_a=BAAAV6GY",
-      "https://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_512%2Cw_1024/f_auto/q_auto/v1773225252/WMC%20Content/Whats%20On/2027/Donald%20Gordon%20Theatre/Everybody%27s%20Talking%20About%20Jamie/260306_ETAJ_Cardiff_1280_x_960?_a=BAAAV6GY",
       "https://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_480%2Cw_640/f_auto/q_auto/v1773225252/WMC%20Content/Whats%20On/2027/Donald%20Gordon%20Theatre/Everybody%27s%20Talking%20About%20Jamie/260306_ETAJ_Cardiff_1280_x_960?_a=BAAAV6GY"
     ],
-    "eventStartDate": "2027-06-01 14:12:00",
-    "eventEndDate": "2027-06-05 23:00:00",
-    "ticketPriceFrom": 20,
-    "ticketPriceTo": 20,
-    "ticketCurrency": "GBP",
-    "subcategory": "Wales Millennium Centre > What's on > 2027 > Everybody's Talking About Jamie",
-    "primaryCategory": "Theatre",
-    "ticketPriceLabel": "£20"
+    "primaryCategory": "Theatre"
   },
   {
     "title": "KIRI PRITCHARD-MCLEAN: JOSGIN",
@@ -6056,6 +6049,10 @@
     "scrapedAt": "2026-11-02T13:08:04.996Z",
     "imageUrl": "https://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_270%2Cw_480/f_auto/q_auto/v1793111652/WMC%20Content/Whats%20On/2027/Donald%20Gordon%20Theatre/Kiri%20Pritchard-McLean/Kiri_Pritchard-McLean_Josgin_1280x960?_a=BAAAV6GY",
     "description": "Josgin/Joskin/Joscin definition: a North-Walian term used in both English and Welsh to describe anyone from a rural or farming background. It is used both affectionately and in a derogatory way depending on the audience.\n\nA brand new tour from star of Live at the Apollo and QI, Kiri Pritchard-McLean.\n\nGrowing up on a sheep and cattle farm in Wales with a pair of accidental farmers for parents, Kiri vowed she would never become a farmer.\n\nFast forward 30 odd years and Kiri is back in the countryside. She’s a farm up and a parent down and has decided to fix the planet, feed the world and try and reclaim her Josgin heritage.\n\nIn a digital world with increasing AI, come and see a very analogue comedian.\n\nPhotography by Drew Forsyth",
+    "ticketPriceFrom": 22,
+    "ticketPriceTo": 22,
+    "ticketCurrency": "GBP",
+    "ticketPriceLabel": "£22",
     "availability": "MODERATE AVAILABILITY",
     "availabilityRange": "31-60%",
     "availabilityEstimate": 46,
@@ -6078,12 +6075,8 @@
     ],
     "eventStartDate": "2027-06-06 19:30:00",
     "eventEndDate": "2027-06-06 22:30:00",
-    "ticketPriceFrom": 22,
-    "ticketPriceTo": 22,
-    "ticketCurrency": "GBP",
     "subcategory": "Wales Millennium Centre > What's on > 2027 > Kiri Pritchard-McLean: Josgin",
-    "primaryCategory": "Theatre",
-    "ticketPriceLabel": "£22"
+    "primaryCategory": "Comedy"
   },
   {
     "title": "PRETTY WOMAN",
@@ -6208,8 +6201,12 @@
     "url": "https://www.wmc.org.uk/en/whats-on/2027/johannes-radebe-finally-home",
     "venue": "Wales Millennium Centre",
     "scrapedAt": "2026-06-29T09:36:44.283Z",
-    "imageUrl": "https://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_480%2Cw_640/f_auto/q_auto/v1782387647/WMC%20Content/Whats%20On/2027/Donald%20Gordon%20Theatre/Johannes%20Radebe/ROYO_JOJO_2026002_FinallyHome_Blank_1280x960?_a=BAAAV6GY",
+    "imageUrl": "https://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_270%2Cw_480/f_auto/q_auto/v1782387647/WMC%20Content/Whats%20On/2027/Donald%20Gordon%20Theatre/Johannes%20Radebe/ROYO_JOJO_2026002_FinallyHome_Blank_1280x960?_a=BAAAV6GY",
     "description": "Johannes Radebe is back!\n\n2026 has been an extraordinary year for JoJo. He has become a British citizen, made his West End debut and started his dream role as presenter of Strictly Come Dancing. But one thing will never change: Johannes was born to dance.\n\nIn his brand-new dance spectacular Finally Home, you are invited to an unforgettable evening packed with dazzling choreography, show-stopping vocals, stunning costumes and the infectious energy that has made him one of the nation's most beloved stars.\n\nWith musical influences ranging from ballroom standards, South African rhythms and the biggest pop anthems, Finally Home is your chance to celebrate with JoJo at the biggest party in town.",
+    "ticketPriceFrom": 42,
+    "ticketPriceTo": 42,
+    "ticketCurrency": "GBP",
+    "ticketPriceLabel": "£42",
     "availability": "MODERATE AVAILABILITY",
     "availabilityRange": "31-60%",
     "availabilityEstimate": 46,
@@ -6225,9 +6222,15 @@
     "popularityScore": 28,
     "popularityLabel": "Low demand",
     "imageUrls": [
+      "https://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_270%2Cw_480/f_auto/q_auto/v1782387647/WMC%20Content/Whats%20On/2027/Donald%20Gordon%20Theatre/Johannes%20Radebe/ROYO_JOJO_2026002_FinallyHome_Blank_1280x960?_a=BAAAV6GY",
+      "http://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_630%2Cw_1200/f_auto/q_auto/v1782387647/WMC%20Content/Whats%20On/2027/Donald%20Gordon%20Theatre/Johannes%20Radebe/ROYO_JOJO_2026002_FinallyHome_Blank_1280x960?_a=BAAAV6GY",
+      "https://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_512%2Cw_1024/f_auto/q_auto/v1782387647/WMC%20Content/Whats%20On/2027/Donald%20Gordon%20Theatre/Johannes%20Radebe/ROYO_JOJO_2026002_FinallyHome_Blank_1280x960?_a=BAAAV6GY",
       "https://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_480%2Cw_640/f_auto/q_auto/v1782387647/WMC%20Content/Whats%20On/2027/Donald%20Gordon%20Theatre/Johannes%20Radebe/ROYO_JOJO_2026002_FinallyHome_Blank_1280x960?_a=BAAAV6GY"
     ],
-    "primaryCategory": "Theatre"
+    "eventStartDate": "2027-06-13 19:30:00",
+    "eventEndDate": "2027-06-13 23:30:00",
+    "subcategory": "Wales Millennium Centre > What's on > 2027 > Johannes Radebe: Finally Home",
+    "primaryCategory": "Musical Theatre"
   },
   {
     "title": "DIRTY DANCING",
@@ -6306,12 +6309,8 @@
     "url": "https://www.wmc.org.uk/en/whats-on/2027/hadestown",
     "venue": "Wales Millennium Centre",
     "scrapedAt": "2026-06-29T09:36:44.283Z",
-    "imageUrl": "https://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_270%2Cw_480/f_auto/q_auto/v1782477492/WMC%20Content/Whats%20On/2027/Donald%20Gordon%20Theatre/Hadestown/Hadestown_Cardiff_Onsale_1280x960?_a=BAAAV6GY",
+    "imageUrl": "https://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_480%2Cw_640/f_auto/q_auto/v1782477492/WMC%20Content/Whats%20On/2027/Donald%20Gordon%20Theatre/Hadestown/Hadestown_Cardiff_Onsale_1280x960?_a=BAAAV6GY",
     "description": "Welcome to Hadestown - 'Your next musical theatre obsession' Vogue\n\nThe smash-hit Broadway and West End musical sensation by singer-songwriter Anaïs Mitchell and director Rachel Chavkin is heading out on its first ever UK and Ireland Tour.\n\n‘Big, beautiful and emotionally blasting’ (The Guardian), Hadestown is the winner of 8 Tony Awards including Best Musical and the Grammy Award® for Best Musical Theatre Album. Seen by over six million, streamed by nearly a billion and adored by fans around the world, this record-breaking musical is ‘the most exhilarating ride’ (WhatsOnStage).\n\nHadestown takes you on an unforgettable journey to the underworld and back, intertwining two ancient Greek mythic love stories – that of young dreamers Orpheus and Eurydice, and that of King Hades and his wife Persephone.\n\nA deeply resonant and defiantly hopeful theatrical experience, Hadestown invites you to imagine how the world could be.\n\nGet your HADESTOWN tickets now and experience the musical phenomenon that’s taken the world by storm.",
-    "ticketPriceFrom": 19,
-    "ticketPriceTo": 19,
-    "ticketCurrency": "GBP",
-    "ticketPriceLabel": "£19",
     "availability": "LIMITED AVAILABILITY",
     "availabilityRange": "61-90%",
     "availabilityEstimate": 61,
@@ -6378,15 +6377,9 @@
     "popularityScore": 54,
     "popularityLabel": "High demand",
     "imageUrls": [
-      "https://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_270%2Cw_480/f_auto/q_auto/v1782477492/WMC%20Content/Whats%20On/2027/Donald%20Gordon%20Theatre/Hadestown/Hadestown_Cardiff_Onsale_1280x960?_a=BAAAV6GY",
-      "http://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_630%2Cw_1200/f_auto/q_auto/v1782477492/WMC%20Content/Whats%20On/2027/Donald%20Gordon%20Theatre/Hadestown/Hadestown_Cardiff_Onsale_1280x960?_a=BAAAV6GY",
-      "https://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_512%2Cw_1024/f_auto/q_auto/v1782477492/WMC%20Content/Whats%20On/2027/Donald%20Gordon%20Theatre/Hadestown/Hadestown_Cardiff_Onsale_1280x960?_a=BAAAV6GY",
       "https://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_480%2Cw_640/f_auto/q_auto/v1782477492/WMC%20Content/Whats%20On/2027/Donald%20Gordon%20Theatre/Hadestown/Hadestown_Cardiff_Onsale_1280x960?_a=BAAAV6GY"
     ],
-    "eventStartDate": "2027-06-29 14:30:00",
-    "eventEndDate": "2027-07-03 22:30:00",
-    "subcategory": "Wales Millennium Centre > What's on > 2027 > Hadestown",
-    "primaryCategory": "Musical Theatre"
+    "primaryCategory": "Theatre"
   },
   {
     "title": "WEST SIDE STORY",
@@ -6609,10 +6602,6 @@
     "scrapedAt": "2026-08-20T11:27:47.217Z",
     "imageUrl": "https://res.cloudinary.com/wales-millennium-centre/image/upload/c_fill%2Cg_auto%2Ch_270%2Cw_480/f_auto/q_auto/v1712248782/WMC%20Content/Whats%20On/2024/Donald%20Gordon%20Theatre/Transatlantic%20Ensemble/Thumb_transatlantic_ensemble_1200_x_900_?_a=BAAAV6GY",
     "description": "The 'Transatlantic Ensemble' return by popular demand to Wales Millenium Centre, after past sellout shows here three years in a row and multiple sell-outs at Edinburgh Fringe Festival and right across the UK.\n\nThey will be performing Fleetwood Mac's iconic Rumours album in its entirety, plus loads of other well-known Fleetwood Mac classics. Experience one of the greatest albums of all time, lovingly and accurately recreated live, by this stunning ensemble of gifted young musicians and vocalists.\n\nThere is just something so evocative about the Rumours album – something that strikes a chord with every true music fan. It has soundtracked the lives of multiple generations.\n\nAsk anyone who saw them here at any of their previous shows, if you are a fan of the album, this stunning performance by this incredible ensemble is quite simply something you cannot afford to miss. Be sure to bring your singing voice and prepare to be amazed, as this band are quite simply phenomenal!",
-    "ticketPriceFrom": 25.5,
-    "ticketPriceTo": 25.5,
-    "ticketCurrency": "GBP",
-    "ticketPriceLabel": "£25.50",
     "availability": "GOOD AVAILABILITY",
     "availabilityRange": "0-30%",
     "availabilityEstimate": 15,
@@ -6635,8 +6624,12 @@
     ],
     "eventStartDate": "2027-08-01 19:30:00",
     "eventEndDate": "2027-08-01 23:00:00",
+    "ticketPriceFrom": 25.5,
+    "ticketPriceTo": 25.5,
+    "ticketCurrency": "GBP",
     "subcategory": "Wales Millennium Centre > What's on > 2027 > Fleetwood Mac's 'Rumours' with the Transatlantic Ensemble",
-    "primaryCategory": "Theatre"
+    "primaryCategory": "Theatre",
+    "ticketPriceLabel": "£25.5"
   },
   {
     "title": "HAIRSPRAY",
@@ -7147,10 +7140,10 @@
     "availabilityEstimate": 79,
     "seatingAggregate": {
       "avgOccupancyPct": 79,
-      "maxOccupancyPct": 88,
+      "maxOccupancyPct": 89,
       "minOccupancyPct": 72,
-      "totalAvailable": 1133,
-      "totalOccupied": 4277,
+      "totalAvailable": 1127,
+      "totalOccupied": 4283,
       "performancesWithData": 5
     },
     "popularityScore": 62,
@@ -7190,8 +7183,8 @@
       "avgOccupancyPct": 90,
       "maxOccupancyPct": 90,
       "minOccupancyPct": 90,
-      "totalAvailable": 111,
-      "totalOccupied": 956,
+      "totalAvailable": 106,
+      "totalOccupied": 961,
       "performancesWithData": 1
     },
     "popularityScore": 44,
@@ -7233,8 +7226,8 @@
       "avgOccupancyPct": 99,
       "maxOccupancyPct": 99,
       "minOccupancyPct": 99,
-      "totalAvailable": 11,
-      "totalOccupied": 1066,
+      "totalAvailable": 6,
+      "totalOccupied": 1071,
       "performancesWithData": 1
     },
     "popularityScore": 70,
@@ -7471,14 +7464,14 @@
     "availabilityEstimate": 83,
     "seatingAggregate": {
       "avgOccupancyPct": 83,
-      "maxOccupancyPct": 99,
-      "minOccupancyPct": 58,
-      "totalAvailable": 1112,
-      "totalOccupied": 5372,
+      "maxOccupancyPct": 98,
+      "minOccupancyPct": 60,
+      "totalAvailable": 1142,
+      "totalOccupied": 5342,
       "performancesWithData": 6
     },
-    "popularityScore": 50,
-    "popularityLabel": "High demand",
+    "popularityScore": 49,
+    "popularityLabel": "Moderate demand",
     "description": "Book your tickets to Beauty And The Beast at New Theatre Cardiff at the official Trafalgar Tickets, New Theatre Cardiff box office.",
     "shortDescription": "Get ready – a tale as old as time is coming to life! Step into the magic this Christmas as we present the enchanting family pantomime Beauty and the Beast.  Starring Presenter Gethin Jones as Filipe De Boeuf, TV, Film and Stage actor Steve Speirs as Monsieur Marzipan, Cardiff’s favourite Dame Mike Doyle as Betty Bonbon (Alriiight!). The hilarious Jack Ryan as Betty’s son Almonde, Tik Tok sensation and Cardiff’s own Jo Osmond as Madame Spite. West End performer Jade Davies as Belle, South Wales’s Harri Lloyd-Morgan as The Beast.  When a proud Prince is cursed to live as a fearsome Beast, only true love can break the spell before the last petal falls from a magical rose. But could Belle – a bright, book-loving village girl who dreams of adventure – be the heroine of his story?  Packed with laugh-out-loud comedy, dazzling costumes, show-stopping songs, and jaw-dropping magic that will delight the entire family, Beauty and the Beast is the family friendly fairy-tale which has all the ingredients for a truly memorable pantomime. Expect side-splitting jokes, audience participation galore, and plenty of festive sparkle as this classic story is reimagined with that unmistakable panto twist. Special effects by Burnt Toast FX.  Whether you’re a lifelong panto fan or experiencing the magic for the first time come and cheer on a hilarious cast of colourful characters as they discover that true beauty lies within!  Relaxed Performance:\nTue 15 Dec 2026 at 6.00pm. For full availability and assistance please call the box office on 0343 310 0041. A select number of tickets are available to book online. What is a relaxed performance?",
     "ticketPriceTo": 36,
@@ -7509,16 +7502,16 @@
     ],
     "availability": "LIMITED - SELLING FAST",
     "availabilityRange": "90-100%",
-    "availabilityEstimate": 97,
+    "availabilityEstimate": 98,
     "seatingAggregate": {
-      "avgOccupancyPct": 97,
-      "maxOccupancyPct": 97,
-      "minOccupancyPct": 97,
-      "totalAvailable": 28,
-      "totalOccupied": 1042,
+      "avgOccupancyPct": 98,
+      "maxOccupancyPct": 98,
+      "minOccupancyPct": 98,
+      "totalAvailable": 25,
+      "totalOccupied": 1045,
       "performancesWithData": 1
     },
-    "popularityScore": 65,
+    "popularityScore": 66,
     "popularityLabel": "High demand",
     "description": "Book your tickets to Hey Jude! Get Back With The Beatles at New Theatre Cardiff at the official Trafalgar Tickets, New Theatre Cardiff box office.",
     "shortDescription": "Hey Jude! Get Back with The Beatles is a spectacular theatrical concert redefining how audiences experience The Beatles. More than just imitation, the show puts the music at its heart as it takes you on a Magical Mystery Tour through the band’s evolution - from the raw beginnings of Please Please Me and A Hard Day’s Night, to the artistry of Abbey Road and Let it Be. \n\nBlending faithful performances with state-of-the-art visuals, meticulous attention to detail, and world-class musicianship, Hey Jude! immerses audiences in sound and imagery that capture the band’s cultural impact. The result is more than just a tribute, it’s an authentic and boldly creative celebration of The Fab Four. \n\nGrab your tickets today, and journey down The Long and Winding Road through the back catalogue of the world’s greatest rock ’n’ roll band.  \n\nIt’s time to Get Back with The Beatles. Yesterday. Today. Forever. \n\nVIP ticket includes best seats in the house, plus signed programme and pre-show meet and greet. Please arrive at merch stand one hour before show start time.",
@@ -7690,8 +7683,8 @@
       "avgOccupancyPct": 78,
       "maxOccupancyPct": 78,
       "minOccupancyPct": 78,
-      "totalAvailable": 237,
-      "totalOccupied": 845,
+      "totalAvailable": 233,
+      "totalOccupied": 849,
       "performancesWithData": 1
     },
     "popularityScore": 58,
@@ -7770,16 +7763,16 @@
     ],
     "availability": "GOOD - SELLING FAST",
     "availabilityRange": "70-80%",
-    "availabilityEstimate": 71,
+    "availabilityEstimate": 72,
     "seatingAggregate": {
-      "avgOccupancyPct": 71,
-      "maxOccupancyPct": 71,
-      "minOccupancyPct": 71,
-      "totalAvailable": 296,
-      "totalOccupied": 740,
+      "avgOccupancyPct": 72,
+      "maxOccupancyPct": 72,
+      "minOccupancyPct": 72,
+      "totalAvailable": 292,
+      "totalOccupied": 744,
       "performancesWithData": 1
     },
-    "popularityScore": 48,
+    "popularityScore": 49,
     "popularityLabel": "Moderate demand",
     "description": "Book your tickets to Motown - How Sweet It Is at New Theatre Cardiff at the official Trafalgar Tickets, New Theatre Cardiff box office.",
     "shortDescription": "The UK’s favourite 100% LIVE Motown Show - as it is, as it was, as it should be. Delivers first class music with slick choreography and an amazing band for a stunning ‘not to be missed’ Motown experience.  Seen by over one million people this show will have you Dancing On The Ceiling with songs from legendary artistes such as The Temptations, Stevie Wonder, The Four Tops, Smokey Robinson, Marvin Gaye, The Jackson Five, The Isley Brothers, Edwin Starr and many more!  ‘They had the moves, the looks, the voices and every Motown Classic you could ask for’ Jersey Evening News, Sarah Harding  The ULTIMATE celebration of the sweet sound of Motown  Let’s Get Ready... to Go Loco, Down in Acapulco",
@@ -7814,16 +7807,16 @@
     ],
     "availability": "GOOD - SELLING FAST",
     "availabilityRange": "40-50%",
-    "availabilityEstimate": 44,
+    "availabilityEstimate": 45,
     "seatingAggregate": {
-      "avgOccupancyPct": 44,
-      "maxOccupancyPct": 44,
-      "minOccupancyPct": 44,
-      "totalAvailable": 576,
-      "totalOccupied": 461,
+      "avgOccupancyPct": 45,
+      "maxOccupancyPct": 45,
+      "minOccupancyPct": 45,
+      "totalAvailable": 574,
+      "totalOccupied": 463,
       "performancesWithData": 1
     },
-    "popularityScore": 23,
+    "popularityScore": 24,
     "popularityLabel": "Low demand",
     "description": "Introduced and conducted by Michael Bell MBE",
     "shortDescription": "Following a sell-out show in January 2026, CPO returns to the New Theatre with another programme of great music from the movies. This year's selection includes music from Gladiator, UP!, Jurassic Park, Singin’ in the Rain, Cinema Paradiso, Star Wars, The Godfather, James Bond and more.",
@@ -7857,14 +7850,14 @@
       "https://images.ctfassets.net/le9bkneeoxws/37Jj8AC6Kt9OLmc9QTq5Pp/454ea99f6c513dec17fdd6276ded335e/600x600.jpg?w=2048&fm=webp&q=70"
     ],
     "availability": "GOOD - SELLING FAST",
-    "availabilityRange": "50-60%",
-    "availabilityEstimate": 50,
+    "availabilityRange": "40-50%",
+    "availabilityEstimate": 49,
     "seatingAggregate": {
-      "avgOccupancyPct": 50,
-      "maxOccupancyPct": 50,
-      "minOccupancyPct": 50,
-      "totalAvailable": 521,
-      "totalOccupied": 513,
+      "avgOccupancyPct": 49,
+      "maxOccupancyPct": 49,
+      "minOccupancyPct": 49,
+      "totalAvailable": 523,
+      "totalOccupied": 511,
       "performancesWithData": 1
     },
     "popularityScore": 26,
@@ -7907,8 +7900,8 @@
       "avgOccupancyPct": 73,
       "maxOccupancyPct": 73,
       "minOccupancyPct": 72,
-      "totalAvailable": 889,
-      "totalOccupied": 2357,
+      "totalAvailable": 882,
+      "totalOccupied": 2364,
       "performancesWithData": 3
     },
     "popularityScore": 55,
@@ -8156,8 +8149,8 @@
       "avgOccupancyPct": 53,
       "maxOccupancyPct": 53,
       "minOccupancyPct": 53,
-      "totalAvailable": 491,
-      "totalOccupied": 543,
+      "totalAvailable": 489,
+      "totalOccupied": 545,
       "performancesWithData": 1
     },
     "popularityScore": 28,
@@ -8230,8 +8223,8 @@
       "avgOccupancyPct": 17,
       "maxOccupancyPct": 17,
       "minOccupancyPct": 17,
-      "totalAvailable": 862,
-      "totalOccupied": 172,
+      "totalAvailable": 860,
+      "totalOccupied": 174,
       "performancesWithData": 1
     },
     "popularityScore": 10,
@@ -8312,8 +8305,8 @@
       "avgOccupancyPct": 79,
       "maxOccupancyPct": 82,
       "minOccupancyPct": 74,
-      "totalAvailable": 933,
-      "totalOccupied": 3375,
+      "totalAvailable": 928,
+      "totalOccupied": 3380,
       "performancesWithData": 4
     },
     "popularityScore": 63,
@@ -8353,8 +8346,8 @@
       "avgOccupancyPct": 92,
       "maxOccupancyPct": 92,
       "minOccupancyPct": 92,
-      "totalAvailable": 85,
-      "totalOccupied": 949,
+      "totalAvailable": 86,
+      "totalOccupied": 948,
       "performancesWithData": 1
     },
     "popularityScore": 50,
@@ -8651,8 +8644,8 @@
       "avgOccupancyPct": 95,
       "maxOccupancyPct": 95,
       "minOccupancyPct": 95,
-      "totalAvailable": 52,
-      "totalOccupied": 982,
+      "totalAvailable": 53,
+      "totalOccupied": 981,
       "performancesWithData": 1
     },
     "popularityScore": 52,
@@ -8708,6 +8701,39 @@
     "primaryCategory": "Theatre"
   },
   {
+    "title": "CBeebies House Party Live",
+    "date": "Sunday, 28 February 2027",
+    "url": "https://trafalgartickets.com/new-theatre-cardiff/en-GB/event/other/cbeebies-house-party-live-tickets",
+    "venue": "New Theatre Cardiff",
+    "scrapedAt": "2026-11-16T13:19:15.656Z",
+    "imageUrl": "https://images.ctfassets.net/le9bkneeoxws/6SEzjSFGTxTadbuXLqqa74/b2b0e591c9cc4fff6f4db7b130477b80/CBeebies_HPL_Cardiff_1200_x_600_2.jpg",
+    "ticketPriceFrom": 26,
+    "ticketCurrency": "GBP",
+    "ticketPriceLabel": "from £26",
+    "category": "Other",
+    "subVenue": "Main Auditorium",
+    "promoter": "The British Broadcasting Corporation - BBC Childrens & Education",
+    "genre": "Other",
+    "eventStartDate": "2027-02-28T11:00:00.000Z",
+    "eventEndDate": "2027-02-28T16:00:00.000Z",
+    "imageUrls": [
+      "https://images.ctfassets.net/le9bkneeoxws/6SEzjSFGTxTadbuXLqqa74/b2b0e591c9cc4fff6f4db7b130477b80/CBeebies_HPL_Cardiff_1200_x_600_2.jpg",
+      "https://images.ctfassets.net/le9bkneeoxws/3LEf5XlU2mmHqly3UJNhnL/1d2c790ae5987b2a4ce54d7d242939f3/CBeebies_HPL_Cardiff_1080_x_1080.jpg",
+      "https://trafalgartickets.com/new-theatre-cardiff/en-GB/event/other/cbeebies-house-party-live-tickets/opengraph-image?5b0acc77976c5b95",
+      "https://images.ctfassets.net/le9bkneeoxws/3LEf5XlU2mmHqly3UJNhnL/1d2c790ae5987b2a4ce54d7d242939f3/CBeebies_HPL_Cardiff_1080_x_1080.jpg?w=2048&fm=webp&q=70"
+    ],
+    "availability": "GOOD",
+    "availabilityRange": "20-50%",
+    "availabilityEstimate": 40,
+    "popularityScore": 22,
+    "popularityLabel": "Low demand",
+    "description": "Book your tickets to CBeebies House Party Live  at New Theatre Cardiff at the official Trafalgar Tickets, New Theatre Cardiff box office.",
+    "shortDescription": "You’re all invited to the CBeebies House Party LIVE!\n\nA family fun-packed stage show with sensational songs, stupendous surprises and mega moments.\n\nJoin the superstars of CBeebies as they throw an epic party just for YOU!\n\nGet ready to RAVE… with dancing, singing, streamers, giant jellies, balloons and bubbles galore…. and of course, a CBeebies Bedtime Story.\n\nBut…It’s NOT time for bedtime!  It’s time to…PARTY!\n\nRave legends, Utah Saints’ remix of the iconic CBeebies’ Goodnight Song sends audiences home chanting “IT’S NOT TIME FOR BEDTIME!”\n\nThis must-see family show is produced by the team behind CBeebies House and CBeebies Bedtime Stories, and directed by CBeebies superstar, Justin Fletcher. It celebrates inclusivity and togetherness, with every single performance featuring a fabulous BSL interpreter to ensure everyone can join the fun. \n\nCBeebies House Party LIVE is the ultimate family celebration – a non-stop, glittering party that leaves family audiences ecstatic.  \n\nIf you’re ready to party, this is the show for you!",
+    "ticketPriceTo": 26,
+    "subcategory": "Trafalgar Tickets > New Theatre > What's On > Special Events > CBeebies House Party Live",
+    "primaryCategory": "Other"
+  },
+  {
     "title": "Amadeus",
     "date": "Tuesday, 9 March 2027 – Saturday, 27 March 2027",
     "url": "https://trafalgartickets.com/new-theatre-cardiff/en-GB/event/play/amadeus-tickets",
@@ -8731,13 +8757,13 @@
     ],
     "availability": "LIMITED - SELLING FAST",
     "availabilityRange": "70-80%",
-    "availabilityEstimate": 74,
+    "availabilityEstimate": 75,
     "seatingAggregate": {
-      "avgOccupancyPct": 74,
+      "avgOccupancyPct": 75,
       "maxOccupancyPct": 85,
       "minOccupancyPct": 53,
-      "totalAvailable": 1706,
-      "totalOccupied": 4948,
+      "totalAvailable": 1701,
+      "totalOccupied": 4953,
       "performancesWithData": 6
     },
     "popularityScore": 67,
@@ -8862,8 +8888,8 @@
       "avgOccupancyPct": 68,
       "maxOccupancyPct": 68,
       "minOccupancyPct": 68,
-      "totalAvailable": 326,
-      "totalOccupied": 708,
+      "totalAvailable": 328,
+      "totalOccupied": 706,
       "performancesWithData": 1
     },
     "popularityScore": 50,
@@ -8972,8 +8998,8 @@
       "avgOccupancyPct": 84,
       "maxOccupancyPct": 91,
       "minOccupancyPct": 77,
-      "totalAvailable": 701,
-      "totalOccupied": 3627,
+      "totalAvailable": 695,
+      "totalOccupied": 3633,
       "performancesWithData": 4
     },
     "popularityScore": 74,
@@ -9228,13 +9254,13 @@
     ],
     "availability": "LIMITED - SELLING FAST",
     "availabilityRange": "80-90%",
-    "availabilityEstimate": 86,
+    "availabilityEstimate": 87,
     "seatingAggregate": {
-      "avgOccupancyPct": 86,
-      "maxOccupancyPct": 86,
-      "minOccupancyPct": 86,
-      "totalAvailable": 141,
-      "totalOccupied": 893,
+      "avgOccupancyPct": 87,
+      "maxOccupancyPct": 87,
+      "minOccupancyPct": 87,
+      "totalAvailable": 138,
+      "totalOccupied": 896,
       "performancesWithData": 1
     },
     "popularityScore": 50,
@@ -9243,6 +9269,39 @@
     "shortDescription": "After whirlwind seasons on and off the dance floor, Dianne and Vito are heading back on tour with a spectacular new show - bigger, bolder and more exhilarating than ever.  Back in Business explodes with the passion, personality and electric chemistry that have made this dynamic duo audience favourites. A dazzling celebration of dance, music and laughter, the show reunites two of the UK’s most magnetic performers for a night packed with breathtaking choreography, playful comedy and irresistible charm, not to mention the genuine chemistry you only get when best friends share the stage.  From fiery Latin to timeless ballroom - and everything in between - every routine bursts with style, storytelling and emotion. Created by Dianne and Vito alongside world-class choreographers and a visionary artistic team, this spectacular production delivers show-stopping moments, sensational creativity and stories that linger long after the final curtain.  Heading to Cardiff in spring, Back in Business promises glamour, rhythm and pure joy in one unforgettable evening.  Book your tickets now and experience Dianne and Vito back where they belong - centre stage!",
     "ticketPriceTo": 45.25,
     "subcategory": "Trafalgar Tickets > New Theatre > What's On > Dance > Dianne And Vito Back In Business",
+    "primaryCategory": "Theatre"
+  },
+  {
+    "title": "Buffy Revamped",
+    "date": "Monday, 19 April 2027",
+    "url": "https://trafalgartickets.com/new-theatre-cardiff/en-GB/event/play/buffy-revamped-tickets",
+    "venue": "New Theatre Cardiff",
+    "scrapedAt": "2026-11-16T13:19:15.656Z",
+    "imageUrl": "https://images.ctfassets.net/le9bkneeoxws/2Wu3uA86U3clj3L3YiTZj6/0547d2a096a4554f6086a62a459d56fa/1200x600.jpg",
+    "ticketPriceFrom": 29.5,
+    "ticketCurrency": "GBP",
+    "ticketPriceLabel": "from £29.50",
+    "category": "Play",
+    "subVenue": "Main Auditorium",
+    "promoter": "Seabright Live Ltd",
+    "genre": "Play",
+    "eventStartDate": "2027-04-19T18:30:00.000Z",
+    "eventEndDate": "2027-04-19T19:45:00.000Z",
+    "imageUrls": [
+      "https://images.ctfassets.net/le9bkneeoxws/2Wu3uA86U3clj3L3YiTZj6/0547d2a096a4554f6086a62a459d56fa/1200x600.jpg",
+      "https://images.ctfassets.net/le9bkneeoxws/7Al91DNeLjWVDPAdl8NwjO/3ed83f9740fe672a3c32e288a49dd627/600x600.jpg",
+      "https://trafalgartickets.com/new-theatre-cardiff/en-GB/event/play/buffy-revamped-tickets/opengraph-image?5b0acc77976c5b95",
+      "https://images.ctfassets.net/le9bkneeoxws/7Al91DNeLjWVDPAdl8NwjO/3ed83f9740fe672a3c32e288a49dd627/600x600.jpg?w=2048&fm=webp&q=70"
+    ],
+    "availability": "GOOD",
+    "availabilityRange": "20-50%",
+    "availabilityEstimate": 40,
+    "popularityScore": 33,
+    "popularityLabel": "Moderate demand",
+    "description": "Seventy minutes. Seven seasons. One Spike.",
+    "shortDescription": "This fast-paced gem brings you the entire 144 episodes of the hit 90s TV show, Buffy the Vampire Slayer, as told through the eyes of the one person who knows it inside out… Spike. Buffy Revamped tours the UK following its award-winning Edinburgh Fringe premiere in 2022, having since played international seasons in Ireland, Australia, Canada and the USA alongside several sold-out UK national tours.   Funny, satirical and bursting with 90s pop-culture references, it’s the perfect parody for Buffy aficionados and those who never enrolled at Sunnydale High alike.   Created by comedian Brendan Murphy whose last show, FRIEND (The One with Gunther), won Best Play at the World Wide Comedy Awards.",
+    "ticketPriceTo": 29.5,
+    "subcategory": "Trafalgar Tickets > New Theatre > What's On > Play > Buffy Revamped",
     "primaryCategory": "Theatre"
   },
   {
@@ -9741,16 +9800,16 @@
     ],
     "availability": "GOOD - SELLING FAST",
     "availabilityRange": "60-70%",
-    "availabilityEstimate": 67,
+    "availabilityEstimate": 68,
     "seatingAggregate": {
-      "avgOccupancyPct": 67,
-      "maxOccupancyPct": 67,
-      "minOccupancyPct": 67,
-      "totalAvailable": 338,
-      "totalOccupied": 696,
+      "avgOccupancyPct": 68,
+      "maxOccupancyPct": 68,
+      "minOccupancyPct": 68,
+      "totalAvailable": 336,
+      "totalOccupied": 698,
       "performancesWithData": 1
     },
-    "popularityScore": 53,
+    "popularityScore": 54,
     "popularityLabel": "High demand",
     "description": "Book your tickets to Flo And Joan: With Feeling at New Theatre Cardiff at the official Trafalgar Tickets, New Theatre Cardiff box office.",
     "shortDescription": "The time has come for critically acclaimed musical comedy duo Flo & Joan to write another bio as they make their highly anticipated return to the stage with a brand-new show.  “Gosh, they are almost like a real band” (Bruce Dessau, Beyond a Joke). The pair will try and take up as much of the stage and as little of your patience as possible as they use another \"real band's\" setlist to write their own show - ruminating on themes such as ‘what is music?’, ‘how do you be a band?’, and ‘is comedy?’ in the sharp-tongued, deadpan way they have become accustomed to.  As seen on Live at the Apollo, The Royal Variety Performance, Comic Relief's Red Nose Day Live 2023 and their own comedy special 'Alive on Stage' for Amazon Prime.",
@@ -10130,16 +10189,16 @@
     ],
     "availability": "LIMITED - SELLING FAST",
     "availabilityRange": "80-90%",
-    "availabilityEstimate": 87,
+    "availabilityEstimate": 88,
     "seatingAggregate": {
-      "avgOccupancyPct": 87,
-      "maxOccupancyPct": 87,
-      "minOccupancyPct": 87,
-      "totalAvailable": 138,
-      "totalOccupied": 896,
+      "avgOccupancyPct": 88,
+      "maxOccupancyPct": 88,
+      "minOccupancyPct": 88,
+      "totalAvailable": 129,
+      "totalOccupied": 905,
       "performancesWithData": 1
     },
-    "popularityScore": 52,
+    "popularityScore": 53,
     "popularityLabel": "High demand",
     "description": "Book your tickets to Lucy Beaumont - Bad At Quiz Shows, Good With Weirdos  at New Theatre Cardiff at the official Trafalgar Tickets, New Theatre Cardiff box office.",
     "shortDescription": "Lucy Beaumont has had quite the year. She lost a contestant £79,000 on The Wheel, forgot to revise for Mastermind, and generally confirmed she's terrible at quiz shows. So she's sticking with what she does best - this autumn, she's back on the road with a brand new show. Following the success of her sell-out debut UK tour, Lucy returns with Bad at Quiz Shows, Good with Weirdos - an evening packed with chaotic brilliance, mayhem, and beautifully surreal storytelling that's made her one of the UK's most beloved comedians. Expect tales of going into hiding after Celebrity Traitors, creating cow udder couture on The Great British Sewing Bee, and navigating life as someone for whom \"normal\" has never made much of an appearance. Whether you loved her on Taskmaster, know her from her award-winning sitcom, or just appreciate someone who turns everyday disasters into comedic gold, this is the night out you need. Come for the chaos. Stay for the weirdos.\n\nAge restriction: 14+",
@@ -10289,13 +10348,13 @@
     ],
     "availability": "GOOD - SELLING FAST",
     "availabilityRange": "70-80%",
-    "availabilityEstimate": 71,
+    "availabilityEstimate": 72,
     "seatingAggregate": {
-      "avgOccupancyPct": 71,
-      "maxOccupancyPct": 71,
-      "minOccupancyPct": 71,
-      "totalAvailable": 296,
-      "totalOccupied": 738,
+      "avgOccupancyPct": 72,
+      "maxOccupancyPct": 72,
+      "minOccupancyPct": 72,
+      "totalAvailable": 294,
+      "totalOccupied": 740,
       "performancesWithData": 1
     },
     "popularityScore": 62,
@@ -10330,16 +10389,16 @@
     ],
     "availability": "GOOD - SELLING FAST",
     "availabilityRange": "60-70%",
-    "availabilityEstimate": 62,
+    "availabilityEstimate": 64,
     "seatingAggregate": {
-      "avgOccupancyPct": 62,
-      "maxOccupancyPct": 62,
-      "minOccupancyPct": 62,
-      "totalAvailable": 390,
-      "totalOccupied": 644,
+      "avgOccupancyPct": 64,
+      "maxOccupancyPct": 64,
+      "minOccupancyPct": 64,
+      "totalAvailable": 368,
+      "totalOccupied": 666,
       "performancesWithData": 1
     },
-    "popularityScore": 54,
+    "popularityScore": 56,
     "popularityLabel": "High demand",
     "description": "Book your tickets to Rumours Of Fleetwood Mac: 50th Anniversary Tour  at New Theatre Cardiff at the official Trafalgar Tickets, New Theatre Cardiff box office.",
     "shortDescription": "Celebrating 50 years of the classic ‘Rumours’ album  Note for note, and in its entirety, plus all the greatest hits  Personally endorsed by Fleetwood Mac founding member, Mick Fleetwood, the Rumours of Fleetwood Mac show is the ultimate tribute to one of rock and roll’s most remarkable groups.  Channeling the spirit of Fleetwood Mac at their very best, Rumours of Fleetwood Mac offers a unique opportunity for fans, both old and new, to rediscover the songs and performances that have ensured Fleetwood Mac’s place as one of the most loved groups of all time.  “An extraordinary emotive performance of Fleetwood Mac” MICK FLEETWOOD  \"A stunning and incredibly accurate snapshot of the World’s first Super Group” SUNDAY TIMES  “They do Fleetwood Mac better than Fleetwood Mac.” MAIL ON SUNDAY",
@@ -10379,8 +10438,8 @@
       "avgOccupancyPct": 14,
       "maxOccupancyPct": 14,
       "minOccupancyPct": 14,
-      "totalAvailable": 894,
-      "totalOccupied": 140,
+      "totalAvailable": 891,
+      "totalOccupied": 143,
       "performancesWithData": 1
     },
     "popularityScore": 12,
@@ -10420,8 +10479,8 @@
       "avgOccupancyPct": 47,
       "maxOccupancyPct": 55,
       "minOccupancyPct": 40,
-      "totalAvailable": 1652,
-      "totalOccupied": 1454,
+      "totalAvailable": 1645,
+      "totalOccupied": 1461,
       "performancesWithData": 3
     },
     "popularityScore": 36,
@@ -10502,8 +10561,8 @@
       "avgOccupancyPct": 8,
       "maxOccupancyPct": 8,
       "minOccupancyPct": 8,
-      "totalAvailable": 952,
-      "totalOccupied": 82,
+      "totalAvailable": 950,
+      "totalOccupied": 84,
       "performancesWithData": 1
     },
     "popularityScore": 6,
@@ -10851,8 +10910,8 @@
       "avgOccupancyPct": 20,
       "maxOccupancyPct": 20,
       "minOccupancyPct": 20,
-      "totalAvailable": 758,
-      "totalOccupied": 193,
+      "totalAvailable": 760,
+      "totalOccupied": 191,
       "performancesWithData": 1
     },
     "popularityScore": 13,
@@ -11087,17 +11146,17 @@
       "https://images.ctfassets.net/le9bkneeoxws/23c8HZTJG5RyyNmH3KlIoF/3ff1a5829c4840fe4c7898114b56486e/JoeLycett_Cardiff_600x600.jpg?w=2048&fm=webp&q=70"
     ],
     "availability": "GOOD - SELLING FAST",
-    "availabilityRange": "10-20%",
-    "availabilityEstimate": 19,
+    "availabilityRange": "20-30%",
+    "availabilityEstimate": 20,
     "seatingAggregate": {
-      "avgOccupancyPct": 19,
-      "maxOccupancyPct": 19,
-      "minOccupancyPct": 19,
-      "totalAvailable": 842,
-      "totalOccupied": 192,
+      "avgOccupancyPct": 20,
+      "maxOccupancyPct": 20,
+      "minOccupancyPct": 20,
+      "totalAvailable": 827,
+      "totalOccupied": 207,
       "performancesWithData": 1
     },
-    "popularityScore": 16,
+    "popularityScore": 17,
     "popularityLabel": "Low demand",
     "description": "Book your tickets to Joe Lycett: Do You Really Lycett? at New Theatre Cardiff at the official Trafalgar Tickets, New Theatre Cardiff box office.",
     "shortDescription": "Chambers Touring Proudly Presents  Joe Lycett: Do You Really Lycett? Is It, Is It Wicked? We’re Lovin’ It, Lovin’ It, Lovin’ It, We’re Lovin’ It Lycett  Joe Lycett is back and he is unleashed! He was leashed! Now the leash has been removed, so there is no leash! Don’t come if you love leashes! You will HATE this show if you want someone on a leash!  Expect jokes, a sprinkling of social justice, some material about being a father and a little bit about being on the Celebrity Traitors.   joelycett.com | @joelycett",
@@ -11208,8 +11267,8 @@
       "avgOccupancyPct": 70,
       "maxOccupancyPct": 81,
       "minOccupancyPct": 61,
-      "totalAvailable": 1979,
-      "totalOccupied": 4513,
+      "totalAvailable": 1977,
+      "totalOccupied": 4515,
       "performancesWithData": 6
     },
     "popularityScore": 75,
@@ -11249,8 +11308,8 @@
       "avgOccupancyPct": 20,
       "maxOccupancyPct": 20,
       "minOccupancyPct": 20,
-      "totalAvailable": 826,
-      "totalOccupied": 208,
+      "totalAvailable": 823,
+      "totalOccupied": 211,
       "performancesWithData": 1
     },
     "popularityScore": 19,
@@ -11471,6 +11530,42 @@
     ]
   },
   {
+    "title": "In The Air Tonight",
+    "date": "Friday, 1 October 2027",
+    "url": "https://trafalgartickets.com/new-theatre-cardiff/en-GB/event/music/in-the-air-tonight-tickets",
+    "venue": "New Theatre Cardiff",
+    "scrapedAt": "2026-11-16T13:19:15.656Z",
+    "imageUrl": "https://images.ctfassets.net/le9bkneeoxws/2aYzw4cjdYKut16hJoUbS3/84bef9ce6c9a328a027b73efeb2f97f1/1200x600.jpg",
+    "ticketPriceFrom": 37,
+    "ticketCurrency": "GBP",
+    "ticketPriceLabel": "from £37",
+    "category": "Music",
+    "subVenue": "Main Auditorium",
+    "promoter": "Entertainers Show Providers Limited",
+    "genre": "Music",
+    "eventStartDate": "2027-10-01T18:30:00.000Z",
+    "eventEndDate": "2027-10-01T21:00:00.000Z",
+    "imageUrls": [
+      "https://images.ctfassets.net/le9bkneeoxws/2aYzw4cjdYKut16hJoUbS3/84bef9ce6c9a328a027b73efeb2f97f1/1200x600.jpg",
+      "https://images.ctfassets.net/le9bkneeoxws/5bH1XPVjrcZmIHkqfGRKdo/797d2a81fb991f8458fe94badd4b15f5/600x600.jpg",
+      "https://trafalgartickets.com/new-theatre-cardiff/en-GB/event/music/in-the-air-tonight-tickets/opengraph-image?5b0acc77976c5b95",
+      "https://images.ctfassets.net/le9bkneeoxws/5bH1XPVjrcZmIHkqfGRKdo/797d2a81fb991f8458fe94badd4b15f5/600x600.jpg?w=2048&fm=webp&q=70"
+    ],
+    "availability": "GOOD",
+    "availabilityRange": "20-50%",
+    "availabilityEstimate": 40,
+    "popularityScore": 29,
+    "popularityLabel": "Low demand",
+    "description": "Get ready for a Night to Remember – as we bring the unforgettable sound of Phil Collins to life!",
+    "shortDescription": "This is IN THE AIR TONIGHT - the ultimate live tribute to the one and only Phil Collins.  From the epic drum breaks to the soul-stirring ballads, this show brings the sound of a generation roaring back to life. Relive the magic of Phil’s greatest moments – from his Genesis roots to his incredible solo career - in a concert that will have you singing, swaying, and dancing all night long.  Starring an electrifying live band, powerhouse vocals, and a stellar cast of musicians, In The Air Tonight captures the unmistakable energy, emotion, and drive of Phil Collins like never before.  Featuring all the classics, including: \n“You Can’t Hurry Love,” “Take Me Home,” “I Wish It Would Rain Down,” “One More Night,” and the explosive “In the Air Tonight” - with that drum solo performed live and louder than ever.  Don’t miss your chance to experience the sound, the soul, and the sheer brilliance of Phil Collins - live on stage!",
+    "ticketPriceTo": 37,
+    "subcategory": "Trafalgar Tickets > New Theatre > What's On > Music > In The Air Tonight",
+    "primaryCategory": "Music",
+    "musicGenres": [
+      "Music"
+    ]
+  },
+  {
     "title": "Sophie McCartney: Queenage Dirtbag",
     "date": "Saturday, 2 October 2027",
     "url": "https://trafalgartickets.com/new-theatre-cardiff/en-GB/event/comedy/sophie-mccartney-queenage-dirtbag-tickets",
@@ -11573,8 +11668,8 @@
       "avgOccupancyPct": 61,
       "maxOccupancyPct": 62,
       "minOccupancyPct": 60,
-      "totalAvailable": 1268,
-      "totalOccupied": 1978,
+      "totalAvailable": 1270,
+      "totalOccupied": 1976,
       "performancesWithData": 3
     },
     "popularityScore": 62,
@@ -11784,8 +11879,8 @@
       "avgOccupancyPct": 72,
       "maxOccupancyPct": 72,
       "minOccupancyPct": 72,
-      "totalAvailable": 293,
-      "totalOccupied": 741,
+      "totalAvailable": 289,
+      "totalOccupied": 745,
       "performancesWithData": 1
     },
     "popularityScore": 50,
@@ -11794,6 +11889,39 @@
     "shortDescription": "Tom is totalling up what life is all about. He's been told to live in the moment, but gets distracted by old women on the bus listening to music without earphones. Annoying influencers show him what his house is supposed to look like, but his kitchen has just flooded and the plumber wants to fit a ‘fanny trap’? He knows he should be enjoying things but he still feels like he doesn’t quite fit in, and that he may have been getting life, just ever so slightly... wrong?  Co-host of ITV's Cooking with the Stars and the Like Minded Friends podcast, and host of everyone's favourite gardening visualised podcast, Pottering. You might have seen Tom on the likes of The Great British Bake Off: An Extra Slice, Last One Laughing: Halloween Special, Apprentice You’re Fired, Cats Does Countdown, Live at the Apollo, 8 Out of 10 Cats, Would I Lie To You? and QI. As well as starring in the hit musical Titanique, Tom is also a best-selling author with two memoirs, No Shame and Too Much and most recently his debut novel Common Decency. Tom’s returning to the stage and there's a lot to catch up about. His last tour, Completely, was a runaway sell-out success, and this one is 'Totally' tipped to follow.",
     "ticketPriceTo": 37,
     "subcategory": "Trafalgar Tickets > New Theatre > What's On > Comedy > Tom Allen: Totally",
+    "primaryCategory": "Comedy"
+  },
+  {
+    "title": "MC Hammersmith: Ice Ice Nepo Baby",
+    "date": "Saturday, 25 March 2028",
+    "url": "https://trafalgartickets.com/new-theatre-cardiff/en-GB/event/comedy/mc-hammersmith-ice-ice-nepo-baby-tickets",
+    "venue": "New Theatre Cardiff",
+    "scrapedAt": "2026-11-16T13:19:15.656Z",
+    "imageUrl": "https://images.ctfassets.net/le9bkneeoxws/1kFa58EM6pckxXWCsN4UjA/e4e4e9703814e9bf6fec785a8b3f9ee7/MC_Hammersmith_Ice_Ice_Nepo_Baby_1200x600.jpg",
+    "ticketPriceFrom": 39,
+    "ticketCurrency": "GBP",
+    "ticketPriceLabel": "from £39",
+    "category": "Comedy",
+    "subVenue": "Main Auditorium",
+    "promoter": "Avalon Entertainment",
+    "genre": "Comedy",
+    "eventStartDate": "2028-03-25T19:30:00.000Z",
+    "eventEndDate": "2028-03-25T22:00:00.000Z",
+    "imageUrls": [
+      "https://images.ctfassets.net/le9bkneeoxws/1kFa58EM6pckxXWCsN4UjA/e4e4e9703814e9bf6fec785a8b3f9ee7/MC_Hammersmith_Ice_Ice_Nepo_Baby_1200x600.jpg",
+      "https://images.ctfassets.net/le9bkneeoxws/2GBs31n3UwxbznWhxVm2zq/b2fb4a9a5f231a91033fff572d8f457b/MC_Hammersmith_Ice_Ice_Nepo_Baby_600x600.jpg",
+      "https://trafalgartickets.com/new-theatre-cardiff/en-GB/event/comedy/mc-hammersmith-ice-ice-nepo-baby-tickets/opengraph-image?5b0acc77976c5b95",
+      "https://images.ctfassets.net/le9bkneeoxws/2GBs31n3UwxbznWhxVm2zq/b2fb4a9a5f231a91033fff572d8f457b/MC_Hammersmith_Ice_Ice_Nepo_Baby_600x600.jpg?w=2048&fm=webp&q=70"
+    ],
+    "availability": "GOOD",
+    "availabilityRange": "20-50%",
+    "availabilityEstimate": 40,
+    "popularityScore": 28,
+    "popularityLabel": "Low demand",
+    "description": "Book your tickets to MC Hammersmith: Ice Ice Nepo Baby at New Theatre Cardiff at the official Trafalgar Tickets, New Theatre Cardiff box office.",
+    "shortDescription": "Following phenomenal demand, a complete sell-out first leg and his debut US & Canada tour, west London’s multi-award-winning freestyle rapper (over half a billion views online) has added over 40 dates in 2028. When MC Hammersmith turned 18, his parents (MC Hammer and Vanilla Ice) shockingly revealed he was adopted. His two famous dads helped him ascend to the top of the rap game. He now embarks on a quest to find his biological family, the only way he knows how: by performing an evening of improvised hip hop comedy based on audience suggestions. Lightning-fast freestyle raps, explosively funny rhymes, and utterly captivating genealogical investigation. A completely different show every single time! With some new added surprises for this run of shows in 2028!",
+    "ticketPriceTo": 39,
+    "subcategory": "Trafalgar Tickets > New Theatre > What's On > Comedy > MC Hammersmith: Ice Ice Nepo Baby",
     "primaryCategory": "Comedy"
   },
   {
@@ -12560,16 +12688,6 @@
     "primaryCategory": "Music",
     "description": "FRIDAY 26TH NOVEMBER 2027\n19:00 | 14+ (UNDER 16S TO BE ACCOMPANIED BY AN ADULT)",
     "date": "Friday, 26 November 2027"
-  },
-  {
-    "title": "Bill Bailey",
-    "date": "2026-11-15T00:00:00.000Z",
-    "details": "Sunday",
-    "url": "https://www.livenation.co.uk/event/bill-bailey-cardiff-tickets-edp1637510",
-    "venue": "Utilita Arena Cardiff",
-    "scrapedAt": "2026-05-28T11:32:08.295Z",
-    "primaryCategory": "Music",
-    "description": "Sunday"
   },
   {
     "title": "beabadoobee: The Powerlines Tour",
@@ -13920,6 +14038,40 @@
     "primaryCategory": "Music"
   },
   {
+    "title": "Steps",
+    "date": "Tuesday, 23 November 2027",
+    "details": "Tuesday",
+    "url": "https://www.livenation.co.uk/event/steps-cardiff-tickets-edp1713749",
+    "venue": "Utilita Arena Cardiff",
+    "scrapedAt": "2026-11-16T13:19:15.656Z",
+    "description": "Steps | 2027-11-23 | Utilita Arena Cardiff",
+    "shortDescription": "Buy tickets for Steps at Utilita Arena Cardiff on Tue, 23 Nov 2027 at www.livenation.co.uk. Search for United Kingdom and international concert tickets, tour dates and venues in your area with the world's largest concert search engine.",
+    "imageUrl": "https://dynamicmedia.livenationinternational.com/Media/n/y/p/f60fe8f7-be94-ce9e-3ed3-3963b8adc84b.jpg",
+    "imageUrls": [
+      "https://dynamicmedia.livenationinternational.com/Media/n/y/p/f60fe8f7-be94-ce9e-3ed3-3963b8adc84b.jpg"
+    ],
+    "eventStartDate": "2027-11-23",
+    "eventEndDate": "2027-11-23",
+    "primaryCategory": "Music"
+  },
+  {
+    "title": "The Human League",
+    "date": "Tuesday, 7 December 2027",
+    "details": "Tuesday",
+    "url": "https://www.livenation.co.uk/event/the-human-league-cardiff-tickets-edp1713753",
+    "venue": "Utilita Arena Cardiff",
+    "scrapedAt": "2026-11-16T13:19:15.656Z",
+    "description": "The Human League | 2027-12-07 | Utilita Arena Cardiff",
+    "shortDescription": "Buy tickets for The Human League at Utilita Arena Cardiff on Tue, 07 Dec 2027 at www.livenation.co.uk. Search for United Kingdom and international concert tickets, tour dates and venues in your area with the world's largest concert search engine.",
+    "imageUrl": "https://dynamicmedia.livenationinternational.com/y/y/b/979d4c18-85a0-4fc7-9890-579959c64841.jpg",
+    "imageUrls": [
+      "https://dynamicmedia.livenationinternational.com/y/y/b/979d4c18-85a0-4fc7-9890-579959c64841.jpg"
+    ],
+    "eventStartDate": "2027-12-07",
+    "eventEndDate": "2027-12-07",
+    "primaryCategory": "Music"
+  },
+  {
     "title": "PRESIDENT — Blood of Your Empire",
     "date": "Wednesday, 18 November 2026",
     "url": "https://depotcardiff.com/event/president-blood-of-your-empire/",
@@ -14579,6 +14731,577 @@
     "eventStartDate": "2027-03-06T13:00:00+00:00",
     "eventEndDate": "2027-03-06T22:00:00+00:00",
     "subcategory": "Wales v England: Six Nations 2027",
+    "primaryCategory": "Music"
+  },
+  {
+    "title": "Shangri-La presents TeeDee",
+    "date": "Saturday, 6 March 2027 – Sunday, 7 March 2027",
+    "url": "https://depotcardiff.com/event/shangri-la-presents-teedee/",
+    "venue": "Depot Cardiff",
+    "scrapedAt": "2026-11-16T13:19:15.656Z",
+    "imageUrl": "https://depotcardiff.com/wp-content/uploads/2026/11/WhatsApp-Image-2026-11-09-at-07.42.02.jpg",
+    "availability": "SOLD OUT",
+    "availabilityRange": "100%",
+    "availabilityEstimate": 100,
+    "description": "Rising UK talent TeeDee makes his highly anticipated DEPOT debut this March! He’ll be joined by some very special guests&#8230; 🎟 TICKETS &#8211; Sign up for priority access! → Priority Tickets: Thu 12th Nov, 10am → Any remaining Tickets: Fri 13th Nov, 10am",
+    "shortDescription": "Rising UK talent TeeDee makes his highly anticipated DEPOT debut this March! He’ll be joined by some very special guests...",
+    "imageUrls": [
+      "https://depotcardiff.com/wp-content/uploads/2026/11/WhatsApp-Image-2026-11-09-at-07.42.02.jpg",
+      "https://depotcardiff.com/wp-content/uploads/2026/11/WhatsApp-Image-2026-11-09-at-07.42.02.jpg.webp"
+    ],
+    "eventStartDate": "2027-03-06T20:00:00+00:00",
+    "eventEndDate": "2027-03-07T02:00:00+00:00",
+    "subcategory": "SOLD OUT: Shangri-La presents TeeDee",
+    "primaryCategory": "Music"
+  },
+  {
+    "title": "KEO: Put A Smile On For Me Tour 2027",
+    "date": "Monday, 8 March 2027",
+    "url": "https://depotcardiff.com/event/keo-put-a-smile-on-for-me-tour-2027/",
+    "venue": "Depot Cardiff",
+    "scrapedAt": "2026-11-16T13:19:15.656Z",
+    "imageUrl": "https://depotcardiff.com/wp-content/uploads/2026/10/KEO-new-press-shot.jpg",
+    "description": "KEO are adding a date in Cardiff to their 2027 ‘Put A Smile On For Me’ headline tour. On Monday 8 March, the London four-piece play DEPOT. It’s their biggest Cardiff show so far, months after selling out Tramshed. Their debut album ‘Put A Smile On For Me’ went in at #2 on the UK Official Albums Chart. It also reached #1 on both the Official Physical Albums Chart and the Official Vinyl Albums Chart. That made KEO the first UK band in over two years to sell more than 20,000 copies of a debut album in its first week. The band self-produced it and recorded most of it live in a matter of weeks. It’s raw and restless, with ragged guitars and big melodies, and it deals head-on with shame, memory and vulnerability. KEO have done most of this without leaning on social media. They built their following by word of mouth and constant touring. Their October tour sold more than 9,000 tickets in 24 hours, and O2 Academy Brixton sold out before the album was even released. In the past year they’ve also played the Main Stage at Reading &#038; Leeds and supported Wolf Alice. “This exceptional debut album will exceed the expectations of even those who packed those gigs.” – Kerrang! ★★★★★ “As far as debut albums go, it’s mission accomplished and then some.” – Rolling Stone UK ★★★★ “If you really want to know what Keo is about, see them live.” – Wonderland Most of the UK tour has already sold out, so book early. 🎟️ General sale Friday 23 October at 10am",
+    "shortDescription": "KEO play DEPOT, Cardiff on Monday 8 March 2027 on their ‘Put A Smile On For Me’ tour. New date added after their #2 debut album.",
+    "imageUrls": [
+      "https://depotcardiff.com/wp-content/uploads/2026/10/KEO-new-press-shot.jpg",
+      "https://depotcardiff.com/wp-content/uploads/2026/10/KEO-new-press-shot.jpg.webp"
+    ],
+    "eventStartDate": "2027-03-08T19:00:00+00:00",
+    "eventEndDate": "2027-03-08T23:00:00+00:00",
+    "subcategory": "KEO: Put A Smile On For Me Tour 2027",
+    "primaryCategory": "Theatre"
+  },
+  {
+    "title": "Super Saturday: Italy v Wales, Six Nations 2027",
+    "date": "Saturday, 13 March 2027",
+    "url": "https://depotcardiff.com/event/super-saturday-italy-v-wales-six-nations-2027/",
+    "venue": "Depot Cardiff",
+    "scrapedAt": "2026-11-16T13:19:15.656Z",
+    "imageUrl": "https://depotcardiff.com/wp-content/uploads/2026/11/DSC_6363-Enhanced-NR-2.jpg",
+    "description": "Three games, one massive day. Super Saturday at DEPOT FanHub. The final weekend of the Six Nations, and the whole championship comes down to one Saturday. Wales close out their campaign against Italy in Rome, and we’re showing every game on the day, so you won’t miss a minute of the finale. Wales kick off at 2:10pm, then it’s England v Scotland (4:40pm) and Ireland v France (8:10pm) to decide the title. Food, drink and big screens from first whistle to last. Kick-off 2:10pm Also showing: England v Scotland, 4:40pm · Ireland v France, 8:10pm",
+    "shortDescription": "Super Saturday at DEPOT FanHub, Cardiff: Italy v Wales, England v Scotland and Ireland v France, all live on the big screen. Book now.",
+    "imageUrls": [
+      "https://depotcardiff.com/wp-content/uploads/2026/11/DSC_6363-Enhanced-NR-2.jpg",
+      "https://depotcardiff.com/wp-content/uploads/2026/11/DSC_6363-Enhanced-NR-2.jpg.webp"
+    ],
+    "eventStartDate": "2027-03-13T13:00:00+00:00",
+    "eventEndDate": "2027-03-13T22:00:00+00:00",
+    "subcategory": "Super Saturday: Italy v Wales, Six Nations 2027",
+    "primaryCategory": "Music"
+  },
+  {
+    "title": "James Marriott",
+    "date": "Wednesday, 7 April 2027",
+    "url": "https://depotcardiff.com/event/james-marriott/",
+    "venue": "Depot Cardiff",
+    "scrapedAt": "2026-11-16T13:19:15.656Z",
+    "imageUrl": "https://depotcardiff.com/wp-content/uploads/2026/09/JM-web-pic.jpg",
+    "description": "James Marriott brings his UK Tour 2027 to Depot on 7 April TICKETS ➡️ Presale — Thu 1 Oct 2026, 09:00 ➡️ Any remaining tickets — Fri 2 Oct 2026, 09:00 SIGN UP FOR PRESALE ACCESS",
+    "shortDescription": "One of the UK's most talked-about young artists is heading to Cardiff. James Marriott brings his UK Tour 2027 to Depot.",
+    "imageUrls": [
+      "https://depotcardiff.com/wp-content/uploads/2026/09/JM-web-pic.jpg",
+      "https://depotcardiff.com/wp-content/uploads/2026/09/JM-web-pic.jpg.webp"
+    ],
+    "eventStartDate": "2027-04-07T19:00:00+01:00",
+    "eventEndDate": "2027-04-07T23:00:00+01:00",
+    "subcategory": "James Marriott",
+    "primaryCategory": "Music"
+  },
+  {
+    "title": "An Evening With Chicane",
+    "date": "Saturday, 17 April 2027",
+    "url": "https://depotcardiff.com/event/an-evening-with-chicane/",
+    "venue": "Depot Cardiff",
+    "scrapedAt": "2026-11-16T13:19:15.656Z",
+    "imageUrl": "https://depotcardiff.com/wp-content/uploads/2026/10/D3RPQjXZTRGtAyqDDqpWRP.jpg",
+    "description": "Join us in April as the legendary Chicane brings an evening of balearic beats to Cardiff for a huge headline show. Chicane is often seen as one of, if not the seminal Trance originator. With the track Offshore he refined cool in the dance genre, the name Chicane became synonymous with Ibiza and sunsets, and quality music, an aural security blanket. Saltwater followed on and became a UK top five hit. Worldwide success was sealed with a collaboration between Chicane and Bryan Adams, Don&#8217;t Give Up from the hit album Behind the Sun. The track has reached the number one spot on the UK Singles Chart. Now recognised as a dancefloor classic, it was one of the first dance collaboration tracks to reach such heights. In addition to his work as Chicane the artist, he has worked with and produced music with Cher, Sir Tom Jones, William Orbit, Natasha Bedingfield and composed for TV and film. Tickets for this are extremely limited. Secure yours before its too late! Chicane will be playing an exclusive 2 hour set with warm up support TBA",
+    "shortDescription": "Join us in April as the legendary Chicane brings an evening of balearic beats to Cardiff for a huge headline show.",
+    "imageUrls": [
+      "https://depotcardiff.com/wp-content/uploads/2026/10/D3RPQjXZTRGtAyqDDqpWRP.jpg",
+      "https://depotcardiff.com/wp-content/uploads/2026/10/D3RPQjXZTRGtAyqDDqpWRP.jpg.webp"
+    ],
+    "eventStartDate": "2027-04-17T16:00:00+01:00",
+    "eventEndDate": "2027-04-17T22:00:00+01:00",
+    "subcategory": "An Evening With Chicane",
+    "primaryCategory": "Film"
+  },
+  {
+    "title": "Sunn O)))",
+    "date": "Thursday, 29 April 2027",
+    "url": "https://depotcardiff.com/event/sunn-o/",
+    "venue": "Depot Cardiff",
+    "scrapedAt": "2026-11-16T13:19:15.656Z",
+    "imageUrl": "https://depotcardiff.com/wp-content/uploads/2026/11/Sunn-O-Charles-Peterson-L1007653-1.jpg",
+    "description": "Sunn O))) (pronounced simply as &#8220;sun&#8221;) is an American doom rock band, formed in March 1998. Known for their massive walls of amplifier feedback, sub-bass frequencies, and ritualistic live shows. Sunn O)))&#8217;s music is completely devoid of traditional hooks, tempos, or percussion. Instead, they focus entirely on volume, resonance, and physical texture. Over the years, their style evolved from the raw guitar-drone of The Grimmrobe Demos (1999) into massive, sprawling arrangements GEN SALE &#8211; Weds 18th November, 10am",
+    "shortDescription": "Sunno ))) are coming to DEPOT. Known for their massive walls of amplifier feedback, sub-bass frequencies, and ritualistic live shows.",
+    "imageUrls": [
+      "https://depotcardiff.com/wp-content/uploads/2026/11/Sunn-O-Charles-Peterson-L1007653-1.jpg",
+      "https://depotcardiff.com/wp-content/uploads/2026/11/Sunn-O-Charles-Peterson-L1007653-1.jpg.webp"
+    ],
+    "eventStartDate": "2027-04-29T19:00:00+01:00",
+    "eventEndDate": "2027-04-29T23:00:00+01:00",
+    "subcategory": "Sunn O)))",
+    "primaryCategory": "Music"
+  },
+  {
+    "title": "Indiepalooza Festival 2027",
+    "date": "Saturday, 8 May 2027",
+    "url": "https://depotcardiff.com/event/indiepalooza-festival-2027/",
+    "venue": "Depot Cardiff",
+    "scrapedAt": "2026-11-16T13:19:15.656Z",
+    "imageUrl": "https://depotcardiff.com/wp-content/uploads/2026/05/DSC_0161-1-1024x577.jpg",
+    "description": "Indie Tribute Festival &#8211; Killers v Fender v Monkeys v Oasis v Kasabian v Kaiser Indiepalooza is an amazing touring indie-rock tribute festival featuring leading tributes to the Killers, Arctic Monkeys, Oasis, Sam Fender, Kasabian and Kaiser Cheats all on night. This has sold out 1000 cap+ venues all over the country and in it’s 3rd year. The Kopycat Killers, Oasis 96, Scam Fender, Sub-Arctic Monkeys, Kasabiaint and Kaiser Cheats are some of the best tributes in the world, playing huge festivals both in the UK and abroad to thousands and thousands, now all coming together on this special touring festival show. “This. Is. Great. He is selling out all over the UK!” &#8211; Chris Moyles, Radio X “This is Great. He does sound great to be fair!” &#8211; Greg James, Radio 1 6 HOURS OF WALL TO WALL BANGERS ALL NIGHT!!! &#8211; Expect Mr Brightside, Don’t Look Back In Anger, Seventeen Going Under, I Bet That You Look Good On The Dancefloor, Hypersonic Missiles, Somebody Told Me, Wonderwall, Mardy Bum, Human, When You Were Young, Will We Talk?, Do I Wanna Know, Supersonic, All These Things That I’ve Done, She’s Electric, Why’d You Only Call Me When You’re High, Cigarettes and Alcohol, Read My Mind, Florescent Adolescent, Glamorous Indie Rock N Roll, R U Mine?, Smile Like You Mean It, Spit Of You, 505, Getting Started, Snap Out Of It, Some Might Say, People Watching and many more! &#8220;Best tribute band I&#8217;ve ever seen, and I&#8217;ve photographed hundreds&#8221; D.Cowley &#8220;Scam Fender sound great to be fair, this is great&#8221; &#8211; Greg James Radio One &#8211; 7.2.22 &#8220;I&#8217;ve booked tribute in LA for years, this is the best of the best&#8221; &#8211; Steve Ochs &#8220;I&#8217;ve seen Killers 50 times in 9 countries, I was blown away by this tribute&#8221; &#8211; V.Moran LINE UP: THE KOPYCAT KILLERS SCAM FENDER SUBARCTIC MONKEYS OASIS 96 KASABIAINT KAISER CHEATS SHOW INFO: 14+ show (14-16s must be accompanied)",
+    "shortDescription": "Indiepalooza is an amazing touring indie-rock tribute festival. Expect 6 hours of bangers from some of the best tributes in the world.",
+    "imageUrls": [
+      "https://depotcardiff.com/wp-content/uploads/2026/05/DSC_0161-1-1024x577.jpg",
+      "https://depotcardiff.com/wp-content/uploads/2026/05/DSC_0161-1.jpg.webp"
+    ],
+    "eventStartDate": "2027-05-08T17:00:00+01:00",
+    "eventEndDate": "2027-05-08T23:00:00+01:00",
+    "subcategory": "Indiepalooza Festival 2027",
+    "primaryCategory": "Music"
+  },
+  {
+    "title": "Professor Green: Live & At Your Service",
+    "date": "Saturday, 22 May 2027",
+    "url": "https://depotcardiff.com/event/professor-green-live-at-your-service/",
+    "venue": "Depot Cardiff",
+    "scrapedAt": "2026-11-16T13:19:15.656Z",
+    "imageUrl": "https://depotcardiff.com/wp-content/uploads/2026/10/Pro-Green-Banner-Image.jpg",
+    "description": "Multi-platinum rapper Professor Green brings his Live and At Your Service tour to Cardiff on 22n May. This is a celebration of a remarkable career, and the start of an exciting new chapter: a night of the anthems that made him one of the UK&#8217;s most distinctive and successful artists. From breakthrough hits &#8216;I Need You Tonight&#8217;, &#8216;Just Be Good To Green&#8217; and &#8216;Read All About It&#8217; to fan favourites from across his acclaimed catalogue, expect every word to be sung back at full volume. Since his platinum-selling debut Alive Till I&#8217;m Dead in 2010, Professor Green has racked up more than 3.5 million UK sales, two No.2 albums, multiple Top 10 singles and MOBO Award wins, all while connecting with audiences far beyond the boundaries of UK rap. But his story has always been about more than the music. Through documentaries on mental health and masculinity, his Times bestselling autobiography Lucky, and his support for suicide prevention charity CALM, he has become known for an honesty that few artists dare to share. Now, he&#8217;s bringing it all back to the stage. Don&#8217;t miss your chance to experience the hits, the energy and the unmistakable presence of Professor Green live.",
+    "shortDescription": "Professor Green brings his tour to Cardiff. Expect his biggest hits, fan favourites, and the start of an exciting new chapter.",
+    "imageUrls": [
+      "https://depotcardiff.com/wp-content/uploads/2026/10/Pro-Green-Banner-Image.jpg",
+      "https://depotcardiff.com/wp-content/uploads/2026/10/Pro-Green-Banner-Image.jpg.webp"
+    ],
+    "eventStartDate": "2027-05-22T17:00:00+01:00",
+    "eventEndDate": "2027-05-22T23:00:00+01:00",
+    "subcategory": "Professor Green: Live &#038; At Your Service",
+    "primaryCategory": "Music"
+  },
+  {
+    "title": "Sonny Fodera at Cardiff Castle",
+    "date": "Friday, 4 June 2027",
+    "url": "https://depotcardiff.com/event/sonny-fodera-at-cardiff-castle/",
+    "venue": "Depot Cardiff",
+    "scrapedAt": "2026-11-16T13:19:15.656Z",
+    "imageUrl": "https://depotcardiff.com/wp-content/uploads/2026/10/Untitled-Capture0995-1_SONNYxmoja.wtf-1.jpg",
+    "availability": "SOLD OUT",
+    "availabilityRange": "100%",
+    "availabilityEstimate": 100,
+    "description": "Sonny Fodera is bringing his melodic house sound to the grounds of Cardiff Castle this June. The London-based DJ, producer and Solotoko label boss has spent the last few years becoming one of the biggest names in UK dance music. “Asking” with MK and Clementine Douglas went gold, peaked at No. 7 and spent 27 weeks in the Top 40, all released independently through his own label. Add silver-certified hits “You &#038; I” and “One Night”, plus collaborations with Diplo, Becky Hill, Gorgon City and Jazzy, and you’ve got a set that’s wall-to-wall anthems. He’s headlined Creamfields, held down residencies at Amnesia and Pacha in Ibiza, and became the first DJ to sell out Co-op Live, the UK’s largest indoor arena. His last Cardiff show sold out too. This time it’s open air, under the castle walls, on a summer evening. Shangri-La are bringing the party. 🔞 Strictly 18+ only",
+    "shortDescription": "Gold-selling DJ and producer behind Asking plays an open-air summer set under the castle walls. Melodic house, big vocals, one huge night.",
+    "imageUrls": [
+      "https://depotcardiff.com/wp-content/uploads/2026/10/Untitled-Capture0995-1_SONNYxmoja.wtf-1.jpg",
+      "https://depotcardiff.com/wp-content/uploads/2026/10/Untitled-Capture0995-1_SONNYxmoja.wtf-1.jpg.webp"
+    ],
+    "eventStartDate": "2027-06-04T15:00:00+01:00",
+    "eventEndDate": "2027-06-04T23:00:00+01:00",
+    "subcategory": "SOLD OUT: Sonny Fodera at Cardiff Castle",
+    "primaryCategory": "Music"
+  },
+  {
+    "title": "METRIX Cardiff",
+    "date": "Saturday, 5 June 2027",
+    "url": "https://depotcardiff.com/event/metrix-cardiff-2/",
+    "venue": "Depot Cardiff",
+    "scrapedAt": "2026-11-16T13:19:15.656Z",
+    "imageUrl": "https://depotcardiff.com/wp-content/uploads/2026/11/Copy-of-220.-Magazine-x-Metrix-01.03.25-www.harbinson.uk-1-3-1.jpg",
+    "description": "METRIX is an immersive fitness competition where music powers performance. With live DJs, recovery zones, food and drink, METRIX is a curated, full day experience. The fitness competition is accessible enough for first-timers, scalable enough for athletes, everyone competing side by side, pushed further by the atmosphere. The stage is set. The countdown is on. We’ll see you on the DEPOT dance floor. JOIN THE WAIT LIST",
+    "shortDescription": "High-energy team fitness event with DJ-led workouts, recovery zones, food & festival-style production. Inclusive, immersive, for all levels.",
+    "imageUrls": [
+      "https://depotcardiff.com/wp-content/uploads/2026/11/Copy-of-220.-Magazine-x-Metrix-01.03.25-www.harbinson.uk-1-3-1.jpg",
+      "https://depotcardiff.com/wp-content/uploads/2026/11/Copy-of-220.-Magazine-x-Metrix-01.03.25-www.harbinson.uk-1-3-1.jpg.webp"
+    ],
+    "eventStartDate": "2027-06-05T08:00:00+01:00",
+    "eventEndDate": "2027-06-05T20:00:00+01:00",
+    "subcategory": "METRIX Cardiff",
+    "primaryCategory": "Music"
+  },
+  {
+    "title": "Sonny Fodera at Cardiff Castle",
+    "date": "Saturday, 5 June 2027",
+    "url": "https://depotcardiff.com/event/sonny-fodera-at-cardiff-castle-2/",
+    "venue": "Depot Cardiff",
+    "scrapedAt": "2026-11-16T13:19:15.656Z",
+    "imageUrl": "https://depotcardiff.com/wp-content/uploads/2026/10/Untitled-Capture0995-1_SONNYxmoja.wtf-1.jpg",
+    "description": "Presale for Sonny Fodera’s Friday night at Cardiff Castle went so fast that he’s added a second night. That makes him the first electronic artist ever to headline back-to-back nights at the Castle. The London-based DJ, producer and Solotoko label boss is one of the biggest names in UK dance music right now. “Asking” with MK and Clementine Douglas went gold, and he’s had silver-certified hits with “You &#038; I” and “One Night”. He’s also worked with Diplo, Becky Hill, Gorgon City and Jazzy. His 2027 arena tour has already sold out in Newcastle, Glasgow, Manchester and London’s The O2. Expect two nights of melodic house, big vocals and singalongs, open air under the castle walls in June. 🔞 Strictly 18+ only",
+    "shortDescription": "Gold-selling DJ and producer behind Asking plays an open-air summer set under the castle walls. Melodic house, big vocals, one huge night.",
+    "imageUrls": [
+      "https://depotcardiff.com/wp-content/uploads/2026/10/Untitled-Capture0995-1_SONNYxmoja.wtf-1.jpg",
+      "https://depotcardiff.com/wp-content/uploads/2026/10/Untitled-Capture0995-1_SONNYxmoja.wtf-1.jpg.webp"
+    ],
+    "eventStartDate": "2027-06-05T15:00:00+01:00",
+    "eventEndDate": "2027-06-05T23:00:00+01:00",
+    "subcategory": "Sonny Fodera at Cardiff Castle",
+    "primaryCategory": "Music"
+  },
+  {
+    "title": "Alex Warren at Blackweir",
+    "date": "Sunday, 20 June 2027",
+    "url": "https://depotcardiff.com/event/alex-warren-at-blackweir/",
+    "venue": "Depot Cardiff",
+    "scrapedAt": "2026-11-16T13:19:15.656Z",
+    "imageUrl": "https://depotcardiff.com/wp-content/uploads/2026/09/DSC2069NEWNEWNEW-1.jpg",
+    "description": "Alex Warren is coming to Blackweir. The GRAMMY-nominated singer opens his summer 2027 run of UK and European outdoor shows here on Sunday 20 June. It&#8217;s the first of eight dates, finishing at ParisLongchamp in July. He&#8217;s had quite a couple of years. &#8220;Ordinary&#8221; spent 13 weeks at No.1 in the UK and 10 weeks at the top of the Billboard Hot 100, and it ended up as the best-selling song of 2025. This August he released his second album, WILDCHILD. It&#8217;s a personal record about his childhood, his parents and what shaped him, with Nile Rodgers and John Mayer both featuring. It went to No.1 here and in the US. He&#8217;s now past 11 billion streams and has headlined sold-out arena tours around the world. Next summer he&#8217;s playing outdoors in Bute Park. £1 from every ticket goes to PLUS1, which will pass it on to children&#8217;s hospitals in the places where he plays. 🎟 Tickets Presale opens Thursday 1 October, 10AM General sale from Friday 2 October, 10AM",
+    "shortDescription": "The GRAMMY-nominated singer behind Ordinary, 2025's best-selling song, brings his new album WILDCHILD to Blackweir.",
+    "imageUrls": [
+      "https://depotcardiff.com/wp-content/uploads/2026/09/DSC2069NEWNEWNEW-1.jpg",
+      "https://depotcardiff.com/wp-content/uploads/2026/09/DSC2069NEWNEWNEW-1.jpg.webp"
+    ],
+    "eventStartDate": "2027-06-20T17:00:00+01:00",
+    "eventEndDate": "2027-06-20T22:30:00+01:00",
+    "subcategory": "Alex Warren at Blackweir",
+    "ticketPriceFrom": 1,
+    "ticketCurrency": "GBP",
+    "ticketPriceLabel": "£1",
+    "primaryCategory": "Music"
+  },
+  {
+    "title": "Shania Twain at Blackweir",
+    "date": "Tuesday, 22 June 2027",
+    "url": "https://depotcardiff.com/event/shania-twain-at-blackweir/",
+    "venue": "Depot Cardiff",
+    "scrapedAt": "2026-11-16T13:19:15.656Z",
+    "imageUrl": "https://depotcardiff.com/wp-content/uploads/2026/11/ST-SQ-Presshot-1.jpg",
+    "description": "Shania Twain is coming to Blackweir Fields on Tuesday 22 June 2027, bringing The Places I’ll Go Tour to the Welsh capital for one huge summer night. Five GRAMMYs, more than three decades at the top, and a run of songs that pretty much everyone knows every word to. Man! I Feel Like a Woman!, That Don’t Impress Me Much, You’re Still the One, Any Man of Mine, From This Moment On. This is a greatest hits show in the truest sense. 2027 is a big year for Shania. It marks 30 years of Come On Over and 25 years of Up!, two albums that tore down the walls between country and pop. She’s also fresh from Little Miss Twain, her seventh studio album, and its deluxe edition The Places I’ll Go. It’s a personal look back at the sounds that shaped her growing up in Canada, featuring Tanya Tucker, Ronnie Wood, Josh Homme and T Bone Burnett. She joins Alex Warren and Fontaines DC on the Blackweir 2027 line-up, with more still to be announced. Dust off the cowboy boots. You won’t want to miss this one. 🎟 Tickets Presale opens Thursday 5 November, 9AM General sale from Friday 6 November, 9AM",
+    "shortDescription": "Five GRAMMYs, 30 years of Come On Over and all the hits since ‘93. The Places I’ll Go Tour brings a huge night of country pop.",
+    "imageUrls": [
+      "https://depotcardiff.com/wp-content/uploads/2026/11/ST-SQ-Presshot-1.jpg",
+      "https://depotcardiff.com/wp-content/uploads/2026/11/ST-SQ-Presshot-1.jpg.webp"
+    ],
+    "eventStartDate": "2027-06-22T17:00:00+01:00",
+    "eventEndDate": "2027-06-22T22:30:00+01:00",
+    "subcategory": "Shania Twain at Blackweir",
+    "primaryCategory": "Music"
+  },
+  {
+    "title": "Kraftwerk at Cardiff Castle",
+    "date": "Wednesday, 23 June 2027",
+    "url": "https://depotcardiff.com/event/kraftwerk-at-cardiff-castle/",
+    "venue": "Depot Cardiff",
+    "scrapedAt": "2026-11-16T13:19:15.656Z",
+    "imageUrl": "https://depotcardiff.com/wp-content/uploads/2026/10/FAZ_A3_RED_V8_2_BG_edit26EXPORT-1.jpg",
+    "description": "The pioneers of electronic music bring their live show to the castle grounds for one open-air night. It mixes electronic music, computer animation and performance art into what the band call a Gesamtkunstwerk, a total work of art. Ralf Hütter and Florian Schneider started Kraftwerk in 1970 at their Kling Klang Studio in Düsseldorf, where every Kraftwerk album was made. By the mid-seventies their electronic soundscapes and their experiments with robotics had made them internationally known. Synthetic voices and computerised rhythms became the soundtrack to the digital age, and their influence reaches across electro, hip hop, techno and synth-pop. On stage, Ralf Hütter and his team show the belief that runs through the whole project: man and machine each have something to contribute. Recent years have taken Kraftwerk back to the art world they came from. After a retrospective of their catalogue at the Museum of Modern Art in New York, they played Tate Modern’s Turbine Hall, Sydney Opera House, Walt Disney Concert Hall, Fondation Louis Vuitton, Berlin’s Neue Nationalgalerie and the Guggenheim Bilbao. In 2014 they received a Grammy Lifetime Achievement Award, and in 2021 they were inducted into the Rock &#038; Roll Hall of Fame. This summer they played a special open-air concert in Germany for the 100th anniversary of the Bauhaus. 🎟 Tickets Presale opens Thursday 22 October, 10AM General sale from Friday 23 October, 10AM SIGN-UP FOR PRESALE TICKETS",
+    "shortDescription": "The pioneers of electronic music bring their landmark live show of sound, computer animation and performance art to Cardiff.",
+    "imageUrls": [
+      "https://depotcardiff.com/wp-content/uploads/2026/10/FAZ_A3_RED_V8_2_BG_edit26EXPORT-1.jpg",
+      "https://depotcardiff.com/wp-content/uploads/2026/10/FAZ_A3_RED_V8_2_BG_edit26EXPORT-1.jpg.webp"
+    ],
+    "eventStartDate": "2027-06-23T17:00:00+01:00",
+    "eventEndDate": "2027-06-23T22:30:00+01:00",
+    "subcategory": "Kraftwerk at Cardiff Castle",
+    "primaryCategory": "Theatre"
+  },
+  {
+    "title": "Muse at Blackweir",
+    "date": "Wednesday, 23 June 2027",
+    "url": "https://depotcardiff.com/event/muse-at-blackweir/",
+    "venue": "Depot Cardiff",
+    "scrapedAt": "2026-11-16T13:19:15.656Z",
+    "imageUrl": "https://depotcardiff.com/wp-content/uploads/2026/11/Muse-Pres-Cover.jpg",
+    "description": "MUSE are coming to Blackweir Fields on Wednesday 23 June 2027, bringing one of the biggest live shows in rock to the heart of Cardiff. Eight consecutive UK Number 1 albums. Two GRAMMYs. More than 30 million records sold. And a catalogue built for a field full of people singing back every word: Plug In Baby, Time Is Running Out, Supermassive Black Hole, Uprising. The band are riding high on The Wow! Signal, their 10th studio album, which went straight in at Number 1 earlier this year. The NME called it their &#8220;best album in 20 years&#8221;, and it&#8217;s packed with new favourites including Unravelling, Cryogen, Hexagons, Nightshift Superstar and Hush, a duet with Ellie Goulding. MUSE have built their name on vast, boundary-pushing productions. Next summer you get to see it under the open sky, with CHVRCHES joining them as special guests.",
+    "shortDescription": "MUSE bring The Wow! Signal and every anthem from Plug In Baby to Uprising to Blackweir Fields, Cardiff, with special guests CHVRCHES.",
+    "imageUrls": [
+      "https://depotcardiff.com/wp-content/uploads/2026/11/Muse-Pres-Cover.jpg",
+      "https://depotcardiff.com/wp-content/uploads/2026/11/Muse-Pres-Cover.jpg.webp"
+    ],
+    "eventStartDate": "2027-06-23T17:00:00+01:00",
+    "eventEndDate": "2027-06-23T22:30:00+01:00",
+    "subcategory": "Muse at Blackweir",
+    "primaryCategory": "Music"
+  },
+  {
+    "title": "Jack Savoretti & James Morrison at Cardiff Castle",
+    "date": "Thursday, 24 June 2027",
+    "url": "https://depotcardiff.com/event/jack-savoretti-james-morrison/",
+    "venue": "Depot Cardiff",
+    "scrapedAt": "2026-11-16T13:19:15.656Z",
+    "imageUrl": "https://depotcardiff.com/wp-content/uploads/2026/09/Jack-Savoretti-RAH-99-1.jpg",
+    "description": "Two of Britain&#8217;s most beloved singer-songwriters are hitting the road together next summer — and DEPOT Live is thrilled to bring them to the historic grounds of Cardiff Castle. Chart-topping British-Italian singer-songwriter Jack Savoretti and You Give Me Something hitmaker James Morrison join forces for a double-headline tour, taking it in turns to close the night. In Cardiff, it&#8217;s Jack Savoretti rounding off the evening under the castle walls. About Jack Savoretti 2026 marked 20 years since Jack&#8217;s debut album Between the Minds, celebrated with the release of his ninth studio album, We Will Always Be The Way We Were — a bold return to the raw storytelling and cinematic soul that defined his earliest work. With millions of global album sales, two number one albums and five UK Top 10 records to his name, he continues to tour across the UK and Europe, capping a landmark year with a sold-out 20th anniversary show at the Royal Albert Hall and a surprise Isle of Wight Festival appearance alongside KT Tunstall. About James Morrison Twenty years into his career, James Morrison&#8217;s music still simmers with the soul, emotion and quiet authority that have made him one of the UK&#8217;s most enduring singer-songwriters. He&#8217;s amassed two UK number one albums, five UK Top 10 singles, multiple Platinum-certified releases and a BRIT Award — and last autumn scored his highest chart position in 14 years with the Top 5 record Fight Another Day. A highly regarded live performer, he continues to sell out tours and reaffirm his lasting connection with audiences. 🎟 Tickets Presale opens Thursday 10 September, 10AM General sale from Friday 11 September, 10AM",
+    "shortDescription": "Jack Savoretti and James Morrison bring their double-headline tour to the historic grounds of Cardiff Castle",
+    "imageUrls": [
+      "https://depotcardiff.com/wp-content/uploads/2026/09/Jack-Savoretti-RAH-99-1.jpg",
+      "https://depotcardiff.com/wp-content/uploads/2026/09/Jack-Savoretti-RAH-99-1.jpg.webp"
+    ],
+    "eventStartDate": "2027-06-24T17:00:00+01:00",
+    "eventEndDate": "2027-06-24T22:30:00+01:00",
+    "subcategory": "Jack Savoretti &#038; James Morrison at Cardiff Castle",
+    "primaryCategory": "Music"
+  },
+  {
+    "title": "The Corrs at Cardiff Castle",
+    "date": "Sunday, 27 June 2027",
+    "url": "https://depotcardiff.com/event/the-corrs-at-cardiff-castle/",
+    "venue": "Depot Cardiff",
+    "scrapedAt": "2026-11-16T13:19:15.656Z",
+    "imageUrl": "https://depotcardiff.com/wp-content/uploads/2026/10/Preferred-2025Press-Shot-1.jpg",
+    "description": "Ireland’s first family of music headline DEPOT Live at Cardiff Castle next summer, bringing three decades of hits to the castle grounds for one open-air night. Andrea, Sharon, Caroline and Jim have sold more than 40 million albums since their 1995 debut Forgiven, Not Forgotten. Their mix of polished pop rock, close harmonies and Celtic folk took them around the world. Talk on Corners went to Number 1 in the UK, Breathless gave them their first UK Number 1 single, and In Blue topped the charts in 17 countries and went platinum in America. Since returning to the stage in 2023 with sold-out shows across South East Asia and Australia, they haven’t stopped. Expect Runaway, So Young, Dreams, What Can I Do, Only When I Sleep, Radio, Give Me A Reason and plenty more. Special guest Natalie Imbruglia broke through in 1997 with Torn, which topped charts around the world. Thirty years and more than 10 million album sales later, she’s picked up eight ARIA Awards, two BRITs and three GRAMMY nominations, and released her seventh album, Algorithm, this year. Opening the night are Belfast rock duo Dea Matrona. Orláith Forsythe and Mollie McGinn grew up on Fleetwood Mac and Led Zeppelin, and have since supported Sting, Sheryl Crow, Shania Twain and Bryan Adams, as well as The Corrs at the Royal Albert Hall.",
+    "shortDescription": "The multi-million selling Irish sibling quartet play their biggest hits, with special guests Natalie Imbruglia and Dea Matrona.",
+    "imageUrls": [
+      "https://depotcardiff.com/wp-content/uploads/2026/10/Preferred-2025Press-Shot-1.jpg",
+      "https://depotcardiff.com/wp-content/uploads/2026/10/Preferred-2025Press-Shot-1.jpg.webp"
+    ],
+    "eventStartDate": "2027-06-27T17:00:00+01:00",
+    "eventEndDate": "2027-06-27T22:30:00+01:00",
+    "subcategory": "The Corrs at Cardiff Castle",
+    "primaryCategory": "Theatre"
+  },
+  {
+    "title": "Fontaines D.C. at Blackweir",
+    "date": "Tuesday, 29 June 2027",
+    "url": "https://depotcardiff.com/event/fontaines-d-c-at-blackweir/",
+    "venue": "Depot Cardiff",
+    "scrapedAt": "2026-11-16T13:19:15.656Z",
+    "imageUrl": "https://depotcardiff.com/wp-content/uploads/2026/09/FDC26_Stad_Cardiff_1600x900px.jpg",
+    "description": "Following headline shows at Reading and Leeds festivals, Fontaines D.C. have announced a huge Welsh show at Blackweir, with support from Little Simz and Viagra Boys. The band will follow in the footsteps of the likes of The Cure, Stevie Wonder, Alanis Morissette, Slayer and Lewis Capaldi as headliners at the iconic new music series in the Welsh capital. The news follows the recent announcement of Fontaines D.C.&#8217;s fifth studio album, Dopamine Chamber, released on 16th October via XL Recordings. Produced by James Ford, it&#8217;s the follow-up to 2024&#8217;s UK platinum-certified Romance — the sound of a band moving decisively away from the guitar language of their early records and into their most seductive music yet. Preceded by lead single &#8220;Marianne&#8221;, the album asks how pleasure mutates amid peril, and what our pursuit of it reveals about us. &#8220;The album itself is a dopamine chamber,&#8221; says Chatten. &#8220;You step inside and we test these different mind- or mood-altering pieces of music on you.&#8221; From Dogrel (2019) to the anarchic, kaleidoscopic Romance (2024), Fontaines D.C. have spent five albums refusing to repeat themselves — and Dopamine Chamber is their most radical turn yet. 🎟 Tickets Presale opens Wednesday 9 September, 10AM General sale from Thursday 10 September, 10AM",
+    "shortDescription": "Fontaines D.C. return to Cardiff for a huge show summer show at Blackweir. Support from Little Simz and Viagra Boys.",
+    "imageUrls": [
+      "https://depotcardiff.com/wp-content/uploads/2026/09/FDC26_Stad_Cardiff_1600x900px.jpg",
+      "https://depotcardiff.com/wp-content/uploads/2026/09/FDC26_Stad_Cardiff_1600x900px.jpg.webp"
+    ],
+    "eventStartDate": "2027-06-29T17:00:00+01:00",
+    "eventEndDate": "2027-06-29T22:30:00+01:00",
+    "subcategory": "Fontaines D.C. at Blackweir",
+    "primaryCategory": "Music"
+  },
+  {
+    "title": "Mariah Carey at Cardiff Castle",
+    "date": "Tuesday, 29 June 2027",
+    "url": "https://depotcardiff.com/event/mariah-carey-at-cardiff-castle/",
+    "venue": "Depot Cardiff",
+    "scrapedAt": "2026-11-16T13:19:15.656Z",
+    "imageUrl": "https://depotcardiff.com/wp-content/uploads/2026/11/Mariah_CT_1920x1080.jpg",
+    "description": "Mariah Carey, the best-selling female artist of all time, brings her Firefly Summer Festivals Tour to DEPOT Live at Cardiff Castle on Tuesday 29 June 2027. It’s one of only four UK dates. The singer, songwriter and producer has sold more than 200 million albums and scored 19 Billboard Hot 100 Number 1 singles, 18 of which she wrote herself. She has five GRAMMY Awards from 34 nominations, three Guinness World Records and the World Music Award for World’s Best Selling Female Artist of the Millennium, and she is an inductee of the Songwriters Hall of Fame. In 2023 she was one of the first 13 artists to receive the BRIT Billion Award for passing one billion UK streams. Her 16th studio album, Here For It All, was released this year. It debuted in the Billboard 200 Top 10 and topped the Billboard charts for Top Album Sales, Top R&#038;B Albums and Independent Albums, which extends a 35-year run of Top 10 albums. She also recently marked 25 years of fan favourite Glitter with an expanded deluxe edition containing 15 additional tracks. And as the Queen of Christmas, she has kept All I Want For Christmas Is You on the Billboard Hot 100 for 65 weeks, making it one of the longest-charting singles of all time. Special guests on the night are Eternal. The powerhouse R&#038;B group formed in 1992 and went on to sell more than 10 million records worldwide. Their debut album Always &#038; Forever went four-times platinum, and they had 15 UK Top 20 hits, including the MOBO-winning Number 1 I Wanna Be the Only One. Easther Bennett, Vernie Bennett and Christel Lakhdar now bring the harmonies and the hits back to the stage.",
+    "shortDescription": "Mariah Carey live at Cardiff Castle on Tuesday 29 June 2027 with special guests Eternal. One of only four UK dates.",
+    "imageUrls": [
+      "https://depotcardiff.com/wp-content/uploads/2026/11/Mariah_CT_1920x1080.jpg",
+      "https://depotcardiff.com/wp-content/uploads/2026/11/Mariah_CT_1920x1080.jpg.webp"
+    ],
+    "eventStartDate": "2027-06-29T17:00:00+01:00",
+    "eventEndDate": "2027-06-29T22:30:00+01:00",
+    "subcategory": "Mariah Carey at Cardiff Castle",
+    "primaryCategory": "Music"
+  },
+  {
+    "title": "SLASH at Cardiff Castle",
+    "date": "Wednesday, 30 June 2027",
+    "url": "https://depotcardiff.com/event/slash-at-cardiff-castle/",
+    "venue": "Depot Cardiff",
+    "scrapedAt": "2026-11-16T13:19:15.656Z",
+    "imageUrl": "https://depotcardiff.com/wp-content/uploads/2026/10/Slash-banner.jpg",
+    "description": "SLASH featuring Myles Kennedy and The Conspirators Flying Blind World Tour 2027. Cardiff Cardiff Castle, Wednesday 30 June 2027 🎟 Tickets Presale opens Thursday 8 October, 10AM General sale from Friday 9 October, 10AM",
+    "shortDescription": "SLASH featuring Myles Kennedy and The Conspirators Flying Blind World Tour 2027. Cardiff Cardiff Castle, Wednesday 30 June 2027",
+    "imageUrls": [
+      "https://depotcardiff.com/wp-content/uploads/2026/10/Slash-banner.jpg",
+      "https://depotcardiff.com/wp-content/uploads/2026/10/Slash-banner.jpg.webp"
+    ],
+    "eventStartDate": "2027-06-30T17:00:00+01:00",
+    "eventEndDate": "2027-06-30T22:30:00+01:00",
+    "subcategory": "SLASH at Cardiff Castle",
+    "primaryCategory": "Music"
+  },
+  {
+    "title": "Ronan Keating & Blue at Cardiff Castle",
+    "date": "Friday, 9 July 2027",
+    "url": "https://depotcardiff.com/event/ronan-keating-at-cardiff-castle/",
+    "venue": "Depot Cardiff",
+    "scrapedAt": "2026-11-16T13:19:15.656Z",
+    "imageUrl": "https://depotcardiff.com/wp-content/uploads/2026/09/RK-2-1920x1080-1.jpg",
+    "description": "Ronan Keating is coming to Cardiff Castle. The pop icon brings his Just Getting Started World Tour to the Castle on Friday 9 July 2027 for a special open-air night marking three decades at the top: Boyzone classics and global solo hits under the summer sky, in one of Wales&#8217;s most spectacular settings. Thirty years in, this is Ronan at his most assured. The Just Getting Started tour celebrates the songs, stories and moments that have made him one of the world&#8217;s most enduring entertainers, bringing decades of hits into a new chapter with fresh energy and renewed passion. &#8220;The reason I&#8217;ve called this tour Just Getting Started is because I genuinely feel I&#8217;m entering a new chapter,&#8221; says Ronan. &#8220;I feel creatively energised, deeply grateful and more connected to what I do than ever, and I can&#8217;t wait to share that with people around the world.&#8221; It&#8217;s a career few can match: more than 45 million records sold, 21 albums, and a Guinness World Record for 30 consecutive UK Top 10 singles, surpassing the benchmark set by Elvis Presley. His debut solo album Ronan went straight to No.1 and spent over a year in the charts, while 10 Years of Hits has since passed two billion streams. It&#8217;s proof of just how timeless these songs remain. Joining him are Blue, back at the top of their game after more than 25 years. Double BRIT Award winners with three consecutive UK No.1 albums and a run of Noughties classics from All Rise to One Love, they arrive with their acclaimed new Top 5 album Reflections. Opening the night are Australian pop trio the Germein Sisters. 🎟 Tickets Presale opens Thursday 24 September, 10AM General sale from Friday 25 September, 10AM",
+    "shortDescription": "Ronan Keating, Blue and the Germein Sisters live at Depot Live at Cardiff Castle on 9 July 2027. Celebrate 30 years of hits.",
+    "imageUrls": [
+      "https://depotcardiff.com/wp-content/uploads/2026/09/RK-2-1920x1080-1.jpg",
+      "https://depotcardiff.com/wp-content/uploads/2026/09/RK-2-1920x1080-1.jpg.webp"
+    ],
+    "eventStartDate": "2027-07-09T17:00:00+01:00",
+    "eventEndDate": "2027-07-09T22:30:00+01:00",
+    "subcategory": "Ronan Keating &#038; Blue at Cardiff Castle",
+    "primaryCategory": "Music"
+  },
+  {
+    "title": "Bananarama at Cardiff Castle",
+    "date": "Saturday, 10 July 2027",
+    "url": "https://depotcardiff.com/event/bananarama-at-cardiff-castle/",
+    "venue": "Depot Cardiff",
+    "scrapedAt": "2026-11-16T13:19:15.656Z",
+    "imageUrl": "https://depotcardiff.com/wp-content/uploads/2026/10/banana-16x9-press.jpg",
+    "description": "Bananarama bring their Too Hot To Handle Greatest Hits Summer Tour to Cardiff Castle next summer for a night of 80s pop. With more than 30 million records sold, 10 UK Top 10 hits and a Guinness World Record for the most chart entries by an all-female group, Sara Dallin and Keren Woodward have one of the biggest catalogues in British pop. Expect Cruel Summer, Venus, Love In The First Degree, Nathan Jones, Robert De Niro&#8217;s Waiting and I Heard A Rumour. They marked 40 years of True Confessions this summer with an anniversary edition that reached Number Six in the UK Album Chart. &#8220;We promise a night of real 80s nostalgia,&#8221; says Keren. &#8220;Along with our special guests, we guarantee an evening that will have everyone dancing and singing along.&#8221; Special guest Tony Hadley fronted New Romantic pioneers Spandau Ballet through True, Gold, Only When You Leave and Through the Barricades. Almost 40 years on, after a successful solo career, his voice is as recognisable as ever. Opening the night are Scottish new wave favourites Altered Images, fronted by Clare Grogan, with hits including Happy Birthday, I Could Be Happy and Don&#8217;t Talk to Me About Love. 🎟 Tickets Presale opens Thursday 8 October, 10AM General sale from Friday 9 October, 10AM",
+    "shortDescription": "80s pop icons play Venus, Cruel Summer and every hit in between, with special guests Tony Hadley and Altered Images.",
+    "imageUrls": [
+      "https://depotcardiff.com/wp-content/uploads/2026/10/banana-16x9-press.jpg",
+      "https://depotcardiff.com/wp-content/uploads/2026/10/banana-16x9-press.jpg.webp"
+    ],
+    "eventStartDate": "2027-07-10T17:00:00+01:00",
+    "eventEndDate": "2027-07-10T22:30:00+01:00",
+    "subcategory": "Bananarama at Cardiff Castle",
+    "primaryCategory": "Theatre"
+  },
+  {
+    "title": "DEPOT In The Castle ’27: Craig David Presents TS5",
+    "date": "Saturday, 17 July 2027",
+    "url": "https://depotcardiff.com/event/depot-in-the-castle-27-craig-david-presents-ts5/",
+    "venue": "Depot Cardiff",
+    "scrapedAt": "2026-11-16T13:19:15.656Z",
+    "imageUrl": "https://depotcardiff.com/wp-content/uploads/2026/11/Craig-David1438-1_Ejatu-Shaw%E2%94%AC%C2%AE-1-1.jpg",
+    "description": "Craig David presents TS5 headlines DEPOT in the Castle on Saturday 17 July 2027, with a full day of music and family entertainment inside Cardiff Castle. TS5 is Craig&#8217;s own live show. He sings, DJs and MCs his way through UK garage, R&#038;B, house and bashment, mixing his own hits with the party anthems that defined the early 2000s. What started as a party in his Miami penthouse now plays festivals and arenas around the world, and next summer it&#8217;s back inside the castle walls. With Born to Do It, more than 15 million album sales and his 2025 album Commitment behind him, Craig is one of the UK&#8217;s most enduring performers. There&#8217;s more to come on the day, with a second stage, a children&#8217;s tent and further acts still to be announced. 🎟️ TICKETS Presale: 10am Thursday 19 November General sale: 10am Friday 20 November SIGN-UP FOR PRESALE ACCESS",
+    "shortDescription": "TS5 brings Craig David's live vocals, DJ sets and MCing to a full day of garage, R&B and family fun. Full lineup TBA.",
+    "imageUrls": [
+      "https://depotcardiff.com/wp-content/uploads/2026/11/Craig-David1438-1_Ejatu-Shaw%E2%94%AC%C2%AE-1-1.jpg",
+      "https://depotcardiff.com/wp-content/uploads/2026/11/Craig-David1438-1_Ejatu-Shaw%E2%94%AC%C2%AE-1-1.jpg.webp"
+    ],
+    "eventStartDate": "2027-07-17T12:00:00+01:00",
+    "eventEndDate": "2027-07-17T22:30:00+01:00",
+    "subcategory": "DEPOT In The Castle &#8217;27: Craig David Presents TS5",
+    "primaryCategory": "Family"
+  },
+  {
+    "title": "alt J at Cardiff Castle",
+    "date": "Sunday, 18 July 2027",
+    "url": "https://depotcardiff.com/event/alt-j-at-cardiff-castle/",
+    "venue": "Depot Cardiff",
+    "scrapedAt": "2026-11-16T13:19:15.656Z",
+    "imageUrl": "https://depotcardiff.com/wp-content/uploads/2026/11/Alt-J-LN-Website-1920x1080-1.jpg",
+    "description": "alt-J bring the Then Again Tour to DEPOT Live at Cardiff Castle on Sunday 18 July 2027, one of just four UK headline shows at some of the country&#8217;s most iconic live music venues. The tour arrives 15 years after An Awesome Wave, the Mercury Prize and Ivor Novello Award-winning debut that introduced alt-J to audiences around the world. The band will draw on their entire catalogue, bringing together the songs that have defined their career. Formed while studying at university, alt-J have become one of the most successful British bands of the millennium, with more than two million albums sold and over two billion streams. This Is All Yours gave them a UK number one album and GRAMMY and BRIT nominations. RELAXER went straight into the UK Top 10 and became their second Mercury-nominated record, followed by headline shows at London&#8217;s O2 Arena and festivals worldwide. 🎟️ TICKETS Presale: Thursday 19 November 2026, 10am General sale: Friday 20 November 2026, 10am SIGN-UP FOR PRESALE ACCESS",
+    "shortDescription": "alt-J bring the Then Again Tour to DEPOT Live at Cardiff Castle on Sunday 18 July 2027. One of four UK headline shows.",
+    "imageUrls": [
+      "https://depotcardiff.com/wp-content/uploads/2026/11/Alt-J-LN-Website-1920x1080-1.jpg",
+      "https://depotcardiff.com/wp-content/uploads/2026/11/Alt-J-LN-Website-1920x1080-1.jpg.webp"
+    ],
+    "eventStartDate": "2027-07-18T17:00:00+01:00",
+    "eventEndDate": "2027-07-18T22:30:00+01:00",
+    "subcategory": "alt J at Cardiff Castle",
+    "primaryCategory": "Music"
+  },
+  {
+    "title": "Public Service Broadcasting at Cardiff Castle",
+    "date": "Saturday, 31 July 2027",
+    "url": "https://depotcardiff.com/event/public-service-broadcasting-at-cardiff-castle/",
+    "venue": "Depot Cardiff",
+    "scrapedAt": "2026-11-16T13:19:15.656Z",
+    "imageUrl": "https://depotcardiff.com/wp-content/uploads/2026/11/PUBLIC-SERVICE-BROADCASTING-credit-Alex-Lake-1.jpg",
+    "description": "Public Service Broadcasting are bringing Every Valley home. To mark ten years since the album&#8217;s release, the band will play it in full at Cardiff Castle on Saturday 31 July 2027, in a world exclusive show. Recorded in the former mining and steelworks town of Ebbw Vale, Every Valley tells the story of the rise and decline of the Welsh coal industry. It became the band&#8217;s first UK Top 5 album, and it remains the record most closely tied to Wales in their catalogue. &#8220;We&#8217;ve been lucky to play some memorable gigs in amazing places before, and this will be right up there with them,&#8221; said J. Willgoose, Esq. &#8220;This record means a lot to us, and we know it means a lot to our fans, too. We hope to put on a really special show and to make it one to remember.&#8221; Since 2009 the band have turned archive film, sampled voices and live instrumentation into some of the most inventive records and shows in the UK. Inform-Educate-Entertain took on Everest and wartime Britain, The Race for Space went into orbit, and 2024&#8217;s The Last Flight followed Amelia Earhart&#8217;s final voyage. This September they played their biggest headline show yet, a sold-out night at London&#8217;s Alexandra Palace. This is the only place in the world Every Valley will be played in full for its anniversary. Expect fans from across Wales and well beyond. 🎟️ TICKETS Presale: 10am Thursday 19 November General sale: 10am Friday 20 November 🔘 SIGN-UP FOR PRESALE ACCESS",
+    "shortDescription": "Ten years of Every Valley, the album that told the story of Welsh coal, played in full at a world exclusive show.",
+    "imageUrls": [
+      "https://depotcardiff.com/wp-content/uploads/2026/11/PUBLIC-SERVICE-BROADCASTING-credit-Alex-Lake-1.jpg",
+      "https://depotcardiff.com/wp-content/uploads/2026/11/PUBLIC-SERVICE-BROADCASTING-credit-Alex-Lake-1.jpg.webp"
+    ],
+    "eventStartDate": "2027-07-31T17:00:00+01:00",
+    "eventEndDate": "2027-07-31T22:30:00+01:00",
+    "subcategory": "Public Service Broadcasting at Cardiff Castle",
+    "primaryCategory": "Theatre"
+  },
+  {
+    "title": "Kingfishr at Cardiff Castle",
+    "date": "Friday, 6 August 2027",
+    "url": "https://depotcardiff.com/event/kingfishr-at-cardiff-castle/",
+    "venue": "Depot Cardiff",
+    "scrapedAt": "2026-11-16T13:19:15.656Z",
+    "imageUrl": "https://depotcardiff.com/wp-content/uploads/2026/11/kingfishr-1920x1080-1.jpg",
+    "description": "Kingfishr return to Cardiff next summer, headlining DEPOT Live at Cardiff Castle on Friday 6 August 2027 as part of their Weight of the Feather tour. It&#8217;s a big step up from their sold-out show at DEPOT earlier this year. Fronted by Eddie Keogh, alongside close friends Eoghan &#8220;McGoo&#8221; McGrath and Eoin &#8220;Fitz&#8221; Fitzgibbon, the Limerick trio blend emotionally charged songwriting with a rousing, joyous folk sound that feels as intimate as it is euphoric. Their 2025 debut Halcyon went straight to number one in Ireland and into the UK Top 10, driven largely by word of mouth and the runaway success of Killeagh. The track has been certified more than 22 times platinum in Ireland, spent a combined 17 weeks at number one, and was called &#8220;a modern addition to the Irish folk canon&#8221; by The Guardian. Built on relentless touring, their rise has taken them from sold-out venues and park stages across Ireland to Australia, the US and a fully sold-out 16-date European headline tour this winter. Second album Weight of the Feather lands in April, written during a period of huge change for the band and exploring the pressures of success and the friendships at its heart. 🎟️ TICKETS Presale: Thursday 19 November 2026, 10am General sale: Friday 20 November 2026, 10am SIGN-UP FOR PRESALE ACCESS",
+    "shortDescription": "The Limerick trio behind Irish No.1 album Halcyon and 22x platinum hit Killeagh bring their rousing, euphoric live show to the castle.",
+    "imageUrls": [
+      "https://depotcardiff.com/wp-content/uploads/2026/11/kingfishr-1920x1080-1.jpg",
+      "https://depotcardiff.com/wp-content/uploads/2026/11/kingfishr-1920x1080-1.jpg.webp"
+    ],
+    "eventStartDate": "2027-08-06T17:00:00+01:00",
+    "eventEndDate": "2027-08-06T22:30:00+01:00",
+    "subcategory": "Kingfishr at Cardiff Castle",
+    "primaryCategory": "Music"
+  },
+  {
+    "title": "Franky Rizardo at Cardiff Castle",
+    "date": "Saturday, 7 August 2027",
+    "url": "https://depotcardiff.com/event/franky-rizardo-at-cardiff-castle/",
+    "venue": "Depot Cardiff",
+    "scrapedAt": "2026-11-16T13:19:15.656Z",
+    "imageUrl": "https://depotcardiff.com/wp-content/uploads/2026/10/FRANKYRIZARDO_2026_18-1.jpg",
+    "description": "Franky Rizardo brings his high-energy house sound to DEPOT Live at Cardiff Castle on Saturday 7 August 2027, turning one of Wales’ most iconic landmarks into a huge open-air dancefloor. Franky is the Netherlands’ most internationally booked DJ, and his sets blend groove, energy and emotion. As a core member of the Music On family, he plays some of the world’s biggest stages, with regular appearances at Pacha Ibiza, Space Miami and Reframe Studios in Los Angeles. In 2026 he sold out Amsterdam’s Ziggo Dome with his new concept, More To Life, bringing 15,000 people together at one of the most prestigious venues in the Netherlands. He also founded FLOW, the event brand he launched in 2015. It has since grown into a global movement built on music, connection and community. FLOW has run events from New York and Miami to Ibiza, South America and across Europe, and now has a residency at Pacha Ibiza. In the studio, his productions have racked up millions of streams worldwide, and his label LTF Records ranks among Beatport’s top 10 best-selling house labels. 🔞 Strictly 18+ only =",
+    "shortDescription": "Dutch house heavyweight and FLOW founder brings his high-energy open-air show to the Welsh capital. Strictly 18+.",
+    "imageUrls": [
+      "https://depotcardiff.com/wp-content/uploads/2026/10/FRANKYRIZARDO_2026_18-1.jpg",
+      "https://depotcardiff.com/wp-content/uploads/2026/10/FRANKYRIZARDO_2026_18-1.jpg.webp"
+    ],
+    "eventStartDate": "2027-08-07T14:00:00+01:00",
+    "eventEndDate": "2027-08-07T23:00:00+01:00",
+    "subcategory": "Franky Rizardo at Cardiff Castle",
+    "primaryCategory": "Music"
+  },
+  {
+    "title": "SImply Red at Singleton Park",
+    "date": "Friday, 20 August 2027",
+    "url": "https://depotcardiff.com/event/simply-red-at-singleton-park/",
+    "venue": "Depot Cardiff",
+    "scrapedAt": "2026-11-16T13:19:15.656Z",
+    "imageUrl": "https://depotcardiff.com/wp-content/uploads/2026/09/Simply-Red-16x9-1.jpg",
+    "description": "Simply Red are back on the road. After a year away from the spotlight, Mick Hucknall and the band return in 2027 with Summer Funk &#8217;27 — a UK and European headline tour built as a proper summer spectacle, calling at some of the continent&#8217;s most extraordinary settings. The Welsh leg lands at Swansea&#8217;s Singleton Park on Friday 20 August. This is a tour made for long, sun-soaked evenings. Across the summer it winds through historic wonders and breathtaking natural backdrops — the ancient Anfiteatro agli Scavi in Pompeii, the Roman arena at Pula, the open-air greenery of Germany&#8217;s Sauerland Park — alongside landmark UK dates including a first-ever show at London&#8217;s Gunnersbury Park and Halifax&#8217;s magnificent Piece Hall. Singleton Park takes its place among some of the most beautiful stages in Europe. At the heart of it is Hucknall&#8217;s timeless blue-eyed soul voice — still soaring, as the Mail on Sunday put it — leading a band on formidable form: Ian Kirkham (sax), Kenji Suzuki (guitar), Kevin Robinson (trumpet), Roman Roth (drums), Gary Sanctuary (keys) and Orefo Orakwue (bass). Expect a high-energy, celebratory set — &#8220;raucous,&#8221; in the words of The Times — stacked with the hits: the rush of Fairground, the funk of Something Got Me Started, the soul of Money&#8217;s Too Tight (To Mention), drawn from a catalogue spanning more than four decades. &#8220;You can expect a set full of Simply Red upbeat hits to get you on your feet having fun in the sun with friends and family,&#8221; says Mick Hucknall. Summer Funk &#8217;27 is the band&#8217;s first tour since their sold-out 2025 40th anniversary run — nearly 50 shows across the UK, Europe and Latin America that sparked a full critical reappraisal. And the numbers speak for themselves: five number one albums, a number one single, nine further UK Top 10 hits, three BRIT Awards, two Ivor Novellos and a MOBO for Outstanding Achievement, with 1991&#8217;s Stars the best-selling album in Britain and Europe two years running. For the Swansea show, Simply Red are joined by two more of British music&#8217;s most distinctive voices: Lisa Stansfield and Heather Small. One of the great live bands of the last forty years, on one of the summer&#8217;s most spectacular tours — and Swansea is on the map. 🎟 Tickets Presale opens Wednesday 23 September, 10AM General sale from Thursday 24 September, 10AM",
+    "shortDescription": "Simply Red live at Singleton Park, Swansea — Fri 20 Aug 2027. Summer Funk '27 tour with special guests Lisa Stansfield & Heather Small.",
+    "imageUrls": [
+      "https://depotcardiff.com/wp-content/uploads/2026/09/Simply-Red-16x9-1.jpg",
+      "https://depotcardiff.com/wp-content/uploads/2026/09/Simply-Red-16x9-1.jpg.webp"
+    ],
+    "eventStartDate": "2027-08-20T17:00:00+01:00",
+    "eventEndDate": "2027-08-20T22:30:00+01:00",
+    "subcategory": "SImply Red at Singleton Park",
+    "primaryCategory": "Music"
+  },
+  {
+    "title": "Craig Charles Funk & Soul House Party",
+    "date": "Saturday, 4 September 2027",
+    "url": "https://depotcardiff.com/event/craig-charles-funk-soul-house-party/",
+    "venue": "Depot Cardiff",
+    "scrapedAt": "2026-11-16T13:19:15.656Z",
+    "imageUrl": "https://depotcardiff.com/wp-content/uploads/2026/10/Craig-Charles-Cover.jpg",
+    "description": "Step into Craig&#8217;s living room and immerse yourself in the ultimate Funk &#038; Soul House Party experience. Renowned DJ Craig Charles invites fans to join him as he delves into his extensive record collection, spinning straight-up groove bangers, exclusive funk and soul cuts, and much more. With over 30 years in the music industry, Craig Charles has cemented his status as one of the most exciting DJs around. From the iconic stages of Glastonbury to the airwaves of BBC Radio 6 Music, Craig has captivated audiences with his infectious energy and unbeatable music taste. Now, fans have the opportunity to be part of the action as Craig brings his unparalleled talent to the intimate setting of his own living room. Whether you&#8217;re a die-hard fan or simply looking for a night of unforgettable music, Craig&#8217;s Funk &#038; Soul House Party promises to deliver an experience like no other. So, turn up the volume, hit the dancefloor, and get ready for a night that will leave you grooving until the early hours. 🎟 Tickets Presale opens Wednesday 14 October, 11AM General sale from Thursday 15 October, 11AM SIGN-UP FOR PRESALE ACCESS",
+    "shortDescription": "Craig Charles delves into his extensive record collection, spinning straight-up groove bangers, exclusive funk and soul cuts, plus more.",
+    "imageUrls": [
+      "https://depotcardiff.com/wp-content/uploads/2026/10/Craig-Charles-Cover.jpg",
+      "https://depotcardiff.com/wp-content/uploads/2026/10/Craig-Charles-Cover.jpg.webp"
+    ],
+    "eventStartDate": "2027-09-04T07:00:00+01:00",
+    "eventEndDate": "2027-09-04T23:59:00+01:00",
+    "subcategory": "Craig Charles Funk &#038; Soul House Party",
+    "primaryCategory": "Music",
+    "genre": "Soul",
+    "musicGenres": [
+      "Soul"
+    ]
+  },
+  {
+    "title": "The Dualers",
+    "date": "Saturday, 25 September 2027",
+    "url": "https://depotcardiff.com/event/the-dualers/",
+    "venue": "Depot Cardiff",
+    "scrapedAt": "2026-11-16T13:19:15.656Z",
+    "imageUrl": "https://depotcardiff.com/wp-content/uploads/2026/08/Dualers-Promo-Pic-2026-1-1.jpg",
+    "description": "The Dualers – Britain’s finest Ska &#038; Reggae band – are bringing their legendary live show to Depot, for one unforgettable night. The 9-piece South-East London outfit first broke through with their chart hit Kiss on the Lips, and have since sold out arenas and theatres across the UK, Europe and Asia, including record-breaking runs at London’s O2 Indigo and headline shows at Wembley Arena and Manchester Apollo. Now, with new music from their hotly anticipated album Beach Life, The Dualers are back on tour – ready to deliver their unique blend of Jamaican Rhythm &#038; Blues, Ska and Reggae to the Tiger Yard stage. Expect an electric atmosphere, unstoppable dancing, and all the feel-good energy that has made The Dualers a must-see live act.",
+    "shortDescription": "The Dualers – Britain’s finest Ska & Reggae band – are bringing their legendary live show to Depot, for one unforgettable night.",
+    "imageUrls": [
+      "https://depotcardiff.com/wp-content/uploads/2026/08/Dualers-Promo-Pic-2026-1-1.jpg",
+      "https://depotcardiff.com/wp-content/uploads/2026/08/Dualers-Promo-Pic-2026-1-1.jpg.webp"
+    ],
+    "eventStartDate": "2027-09-25T17:00:00+01:00",
+    "eventEndDate": "2027-09-25T21:00:00+01:00",
+    "subcategory": "The Dualers",
+    "primaryCategory": "Music"
+  },
+  {
+    "title": "History Of Jungle",
+    "date": "Saturday, 6 November 2027",
+    "url": "https://depotcardiff.com/event/history-of-jungle/",
+    "venue": "Depot Cardiff",
+    "scrapedAt": "2026-11-16T13:19:15.656Z",
+    "imageUrl": "https://depotcardiff.com/wp-content/uploads/2026/09/cardiff-2027-sign-up-event-cover-1.jpg",
+    "description": "After a sold out debut, History of Jungle returns to DEPOT on Saturday 6 November 2027. The first one went clean out. DEPOT filled, rewinds all night, and a city that proved it still knows every break. So we are coming back bigger. Same building, more of everything. Strictly jungle from the years the sound was built, played properly, on a system rigged to carry it. Line up announced soon. Sign up now at www.cardiffforever.co.uk and you get the line up before it goes public, plus first access when pre-sale tickets go on sale on Thursday 1 October at 9am.",
+    "shortDescription": "History of Jungle returns to DEPOT, Cardiff, Saturday 6 November 2027, after a sold out debut. Lineup TBA.",
+    "imageUrls": [
+      "https://depotcardiff.com/wp-content/uploads/2026/09/cardiff-2027-sign-up-event-cover-1.jpg",
+      "https://depotcardiff.com/wp-content/uploads/2026/09/cardiff-2027-sign-up-event-cover-1.jpg.webp"
+    ],
+    "eventStartDate": "2027-11-06T14:00:00+00:00",
+    "eventEndDate": "2027-11-06T23:00:00+00:00",
+    "subcategory": "History Of Jungle",
     "primaryCategory": "Music"
   },
   {
@@ -15314,52 +16037,6 @@
     "ticketCurrency": "GBP",
     "primaryCategory": "Music",
     "ticketPriceLabel": "£28.5"
-  },
-  {
-    "title": "TAKE ME OUT",
-    "date": "Saturday, 14 November 2026 – Sunday, 15 November 2026",
-    "details": "11.00pm • £3.50+ • 18+",
-    "url": "https://www.fatsoma.com/e/1yput18j/take-me-out",
-    "venue": "Clwb Ifor Bach",
-    "scrapedAt": "2026-11-13T11:05:38.034Z",
-    "imageUrl": "https://cdn2.fatsoma.com/media/W1siZiIsInB1YmxpYy8yMDI2LzEwLzI3LzE1LzMvMzkvODAxL1JhY2tNdWx0aXBhcnQyMDI2MDgzMS01OC01b2x2azguanBnIl1d",
-    "description": "rock anthems and alternative bangers you know all the words to, croeso to Caerdydd's ultimate indie night out.\nffo: arctic monkeys * the killers * wet leg* paramore*  wolf alice * tame impala *  stereophonics * the killers franz ferdinand * oasis * two door cinema club + \n1 TICKET = ACCES TO ALL FLOORS",
-    "shortDescription": "TAKE ME OUT at Clwb Ifor Bach, Cardiff on 14th Nov 2026. Buy tickets in just 2-clicks with our super-fast checkout",
-    "imageUrls": [
-      "https://cdn2.fatsoma.com/media/W1siZiIsInB1YmxpYy8yMDI2LzEwLzI3LzE1LzMvMzkvODAxL1JhY2tNdWx0aXBhcnQyMDI2MDgzMS01OC01b2x2azguanBnIl1d",
-      "https://fatsoma.imgix.net/W1siZiIsInB1YmxpYy8yMDI2LzEwLzI3LzE1LzMvMzkvODAxL1JhY2tNdWx0aXBhcnQyMDI2MDgzMS01OC01b2x2azguanBnIl1d?auto=format%2Ccompress",
-      "https://clwb.net/wp-content/uploads/2026/09/Nu-Take-Me-Out-320x160.jpg"
-    ],
-    "eventStartDate": "2026-11-14T23:00:00.000Z",
-    "eventEndDate": "2026-11-15T04:00:00.000Z",
-    "ticketPriceFrom": 3,
-    "ticketPriceTo": 5,
-    "ticketCurrency": "GBP",
-    "primaryCategory": "Film",
-    "ticketPriceLabel": "£3–£5"
-  },
-  {
-    "title": "RUSH",
-    "date": "Saturday, 14 November 2026 – Sunday, 15 November 2026",
-    "details": "11.00pm • £3.50+ • 18+",
-    "url": "https://www.fatsoma.com/e/x3px83ec/rush",
-    "venue": "Clwb Ifor Bach",
-    "scrapedAt": "2026-11-13T11:05:38.034Z",
-    "imageUrl": "https://cdn2.fatsoma.com/media/W1siZiIsInB1YmxpYy8yMDI2LzEwLzI3LzE1LzEwLzUxLzgyMS9SYWNrTXVsdGlwYXJ0MjAyNjA4MzEtNjctNGZ0d3NnLmpwZyJdXQ",
-    "description": "why choose when you could have it all? high tempo, pop &amp; disco that will keep you dancing till the early hours of Sunday morning, every saturday, week in, week out.\n\n zara larsson · audrey hobert · olivia dean · olivia rodrigo · britney spears · sabrina carpenter · chappell roan · madonna  ·  billie eillish · cher · charli xcx · pinkpantheress · tyla · abba · lorde · lady gaga · kylie minogue · sister sledge · rihanna · troye sivan · donna summer · addison rae · katseye · taylor swift · jade · chic +\n\n★ IMPORTANT INFO ★ \nThis ticket guarantees access to all floors at Clwb.\nDue to high demand for this event we will be selling MORE tickets on the door - this means that the online tickets will sell out faster - if you want guaranteed entry, you will need to be quick! \n\n\n\n⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⠀⠀⠀⠀⠀",
-    "shortDescription": "RUSH  at Clwb Ifor Bach, Cardiff on 14th Nov 2026. Buy tickets in just 2-clicks with our super-fast checkout",
-    "imageUrls": [
-      "https://cdn2.fatsoma.com/media/W1siZiIsInB1YmxpYy8yMDI2LzEwLzI3LzE1LzEwLzUxLzgyMS9SYWNrTXVsdGlwYXJ0MjAyNjA4MzEtNjctNGZ0d3NnLmpwZyJdXQ",
-      "https://fatsoma.imgix.net/W1siZiIsInB1YmxpYy8yMDI2LzEwLzI3LzE1LzEwLzUxLzgyMS9SYWNrTXVsdGlwYXJ0MjAyNjA4MzEtNjctNGZ0d3NnLmpwZyJdXQ?auto=format%2Ccompress",
-      "https://clwb.net/wp-content/uploads/2026/09/RUSH-FRESHERS-320x160.jpg"
-    ],
-    "eventStartDate": "2026-11-14T23:00:00.000Z",
-    "eventEndDate": "2026-11-15T04:00:00.000Z",
-    "ticketPriceFrom": 3,
-    "ticketPriceTo": 5,
-    "ticketCurrency": "GBP",
-    "primaryCategory": "Music",
-    "ticketPriceLabel": "£3–£5"
   },
   {
     "title": "BOKO YOUT",
@@ -16688,6 +17365,23 @@
     "ticketPriceLabel": "£17.50"
   },
   {
+    "title": "THE KAIROS",
+    "date": "Saturday, 27 March 2027",
+    "details": "7.30pm • £15 • 18+",
+    "url": "https://clwbiforbach.seetickets.com/event/the-kairos/clwb-ifor-bach/3756141",
+    "venue": "Clwb Ifor Bach",
+    "scrapedAt": "2026-11-16T13:19:15.656Z",
+    "imageUrl": "https://clwb.net/wp-content/uploads/2026/11/Kairos-website-320x160.jpg",
+    "imageUrls": [
+      "https://clwb.net/wp-content/uploads/2026/11/Kairos-website-320x160.jpg"
+    ],
+    "primaryCategory": "Music",
+    "description": "7.30pm • £15 • 18+",
+    "ticketPriceFrom": 15,
+    "ticketCurrency": "GBP",
+    "ticketPriceLabel": "£15"
+  },
+  {
     "title": "WYATT @ CANOPI",
     "date": "Thursday, 1 April 2027",
     "details": "7.00pm • £13 • 14+ (Under 16's accompanied by an adult)",
@@ -16790,6 +17484,23 @@
     "ticketPriceLabel": "£17.50"
   },
   {
+    "title": "CAMMY BARNES @ THE GLOBE",
+    "date": "Sunday, 18 April 2027",
+    "details": "7.30pm • £20 • 14+ (Under 16's accompanied by an adult)",
+    "url": "https://clwbiforbach.seetickets.com/event/cammy-barnes/the-globe/3750809",
+    "venue": "Clwb Ifor Bach",
+    "scrapedAt": "2026-11-16T13:19:15.656Z",
+    "imageUrl": "https://clwb.net/wp-content/uploads/2026/11/Cammy-Barnes-website-320x160.jpg",
+    "imageUrls": [
+      "https://clwb.net/wp-content/uploads/2026/11/Cammy-Barnes-website-320x160.jpg"
+    ],
+    "primaryCategory": "Music",
+    "description": "7.30pm • £20 • 14+ (Under 16's accompanied by an adult)",
+    "ticketPriceFrom": 20,
+    "ticketCurrency": "GBP",
+    "ticketPriceLabel": "£20"
+  },
+  {
     "title": "REDCHECKS",
     "date": "Friday, 23 April 2027",
     "details": "7.00pm • £12 • 18+",
@@ -16815,12 +17526,12 @@
     "scrapedAt": "2026-11-13T11:05:38.034Z",
     "imageUrl": "https://dice-media.imgix.net/attachments/2026-09-29/c64baebe-85b7-465b-8551-c05c542ac2cf.jpg?rect=0%2C1181%2C5906%2C3544",
     "description": "Rising from the ashes, Noizzefest will return to Cardiff’s legendary Womanby Street for our fourth edition in 2027. Bringing together some of the most exciting talent in the underground scene. Once again we will be hosting 18 bands across 3 stages, both rooms in Clwb Ifor Bach alongside Fuel Rock Club. Taking place on Saturday, April 24th, 2027.\n\nOur first wave of bands features TJP Tours stage headliners, Ronker. The downstairs room of CLWB won’t know what hit it when the noizzey gang from Belgium hit the stage. Off the back of a superb second album ‘Respect The Hustle, I Won’t Be Your Dog Forever’ they bring their high energy live show to Cardiff. Expect chaos.\n\nHeadlining our FUEL stage we welcome De’Lour. Hailing from South Wales they will be very much representing the city with their atmospheric, soaring yet heavy metal. Expect emotion and riffs galore. In addition we bring along Beyond Extinction, Sans Froid, Dye, Breichiau Hir & AARONSON to Cardiff for a day of top bands, top hangs with mates and probably a beer or two.\n\n11 more bands will be announced including our Main Stage headliners in the coming months, plus news on our partners who will be joining us.\n\nTickets are on sale now via DICE for £34 + booking fees.\n\nIf you have any accessibility questions please email us at business@noizze.co.uk\n\nWe are proud to again be partnering with TJP Tours/TJP Merchandise.\n\nPoster Design by Laurence Crow.",
-    "shortDescription": "Rising from the ashes, Noizzefest will return to Cardiff’s legendary Womanby Street for our fourth edition in 2027. Bringing together some of the most exciti...",
+    "shortDescription": "We’ll get you out more. We bring the best live events to people around the world. See what concerts, tours, and festivals are happening in your area.",
     "imageUrls": [
       "https://dice-media.imgix.net/attachments/2026-09-29/c64baebe-85b7-465b-8551-c05c542ac2cf.jpg?rect=0%2C1181%2C5906%2C3544",
       "https://dice-media.imgix.net/attachments/2026-09-29/c64baebe-85b7-465b-8551-c05c542ac2cf.jpg?rect=1329%2C0%2C3248%2C5906",
       "https://dice-media.imgix.net/attachments/2026-09-29/c64baebe-85b7-465b-8551-c05c542ac2cf.jpg?rect=0%2C0%2C5906%2C5906",
-      "https://dice-media.imgix.net/attachments/2026-09-29/c64baebe-85b7-465b-8551-c05c542ac2cf.jpg?rect=0%2C1181%2C5906%2C3544&w=1300&h=630&auto=compress",
+      "https://dice.fm/static/images/dice-fan-social.png",
       "https://clwb.net/wp-content/uploads/2026/09/Noizzefest-website-320x160.jpg"
     ],
     "eventStartDate": "2027-04-24T13:00:00+01:00",
@@ -16830,6 +17541,23 @@
     "ticketCurrency": "GBP",
     "primaryCategory": "Music",
     "ticketPriceLabel": "£39.63"
+  },
+  {
+    "title": "SUNN O))) @ DEPOT",
+    "date": "Thursday, 29 April 2027",
+    "details": "7.00pm • £30 • 14+ (under 16s accompanied by an adult)",
+    "url": "https://clwbiforbach.seetickets.com/event/sunn-o-/depot/3750906",
+    "venue": "Clwb Ifor Bach",
+    "scrapedAt": "2026-11-16T13:19:15.656Z",
+    "imageUrl": "https://clwb.net/wp-content/uploads/2026/11/sunno-website-320x160.jpg",
+    "imageUrls": [
+      "https://clwb.net/wp-content/uploads/2026/11/sunno-website-320x160.jpg"
+    ],
+    "primaryCategory": "Music",
+    "description": "7.00pm • £30 • 14+ (under 16s accompanied by an adult)",
+    "ticketPriceFrom": 30,
+    "ticketCurrency": "GBP",
+    "ticketPriceLabel": "£30"
   },
   {
     "title": "BARE JAMS",
@@ -17898,19 +18626,6 @@
     "ticketCurrency": "GBP",
     "ticketPriceLabel": "£11.00",
     "primaryCategory": "Musical Theatre"
-  },
-  {
-    "title": "Bring On Tomorrow",
-    "date": "Sunday, 15 November 2026",
-    "eventStartDate": "2026-11-15",
-    "description": "Tickets available online.",
-    "venue": "Stage & Stem",
-    "url": "https://stageandstem.com/book-a-table.html",
-    "scrapedAt": "2026-11-15T12:36:41.834Z",
-    "subcategory": "Live Music · Theatre",
-    "eventKeywords": "Live Music, Theatre",
-    "category": "Music",
-    "primaryCategory": "Music"
   },
   {
     "title": "Open Mic Night",

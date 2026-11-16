@@ -1,16 +1,16 @@
 {
-  "generatedAt": "2026-11-16T00:08:25.114Z",
+  "generatedAt": "2026-11-16T13:19:15.668Z",
   "run": {
     "mode": "full",
-    "durationMs": 2910728,
+    "durationMs": 2968617,
     "scrapersAttempted": 17,
     "scrapersTotal": 17
   },
   "totals": {
-    "previousEvents": 747,
-    "currentEvents": 715,
-    "change": -32,
-    "newEvents": 0
+    "previousEvents": 715,
+    "currentEvents": 752,
+    "change": 37,
+    "newEvents": 41
   },
   "summary": {
     "ok": 14,
@@ -36,9 +36,9 @@
       "currentCount": 2,
       "change": 0,
       "lastSuccess": "2026-11-15T15:18:10.764Z",
-      "consecutiveFailures": 3,
+      "consecutiveFailures": 4,
       "attempts": 1,
-      "durationMs": 45710,
+      "durationMs": 46100,
       "error": null
     },
     {
@@ -51,9 +51,9 @@
       "currentCount": 42,
       "change": 0,
       "lastSuccess": null,
-      "consecutiveFailures": 15,
+      "consecutiveFailures": 16,
       "attempts": 1,
-      "durationMs": 7745,
+      "durationMs": 7291,
       "error": null
     },
     {
@@ -66,9 +66,9 @@
       "currentCount": 19,
       "change": 0,
       "lastSuccess": null,
-      "consecutiveFailures": 15,
+      "consecutiveFailures": 16,
       "attempts": 1,
-      "durationMs": 5699,
+      "durationMs": 5594,
       "error": null
     },
     {
@@ -80,10 +80,10 @@
       "previousCount": 9,
       "currentCount": 9,
       "change": 0,
-      "lastSuccess": "2026-11-16T00:08:25.114Z",
+      "lastSuccess": "2026-11-16T13:19:15.668Z",
       "consecutiveFailures": 0,
       "attempts": 1,
-      "durationMs": 2854,
+      "durationMs": 3702,
       "error": null
     },
     {
@@ -95,10 +95,10 @@
       "previousCount": 23,
       "currentCount": 23,
       "change": 0,
-      "lastSuccess": "2026-11-16T00:08:25.114Z",
+      "lastSuccess": "2026-11-16T13:19:15.668Z",
       "consecutiveFailures": 0,
       "attempts": 1,
-      "durationMs": 4866,
+      "durationMs": 2486,
       "error": null
     },
     {
@@ -106,14 +106,14 @@
       "venue": "Clwb Ifor Bach",
       "status": "ok",
       "dataFrom": "this-run",
-      "eventsReturned": 87,
+      "eventsReturned": 88,
       "previousCount": 86,
-      "currentCount": 86,
-      "change": 0,
-      "lastSuccess": "2026-11-16T00:08:25.114Z",
+      "currentCount": 87,
+      "change": 1,
+      "lastSuccess": "2026-11-16T13:19:15.668Z",
       "consecutiveFailures": 0,
       "attempts": 1,
-      "durationMs": 2250,
+      "durationMs": 1205,
       "error": null
     },
     {
@@ -121,14 +121,14 @@
       "venue": "Depot Cardiff",
       "status": "ok",
       "dataFrom": "this-run",
-      "eventsReturned": 38,
-      "previousCount": 65,
-      "currentCount": 36,
-      "change": -29,
-      "lastSuccess": "2026-11-16T00:08:25.114Z",
+      "eventsReturned": 69,
+      "previousCount": 36,
+      "currentCount": 67,
+      "change": 31,
+      "lastSuccess": "2026-11-16T13:19:15.668Z",
       "consecutiveFailures": 0,
       "attempts": 1,
-      "durationMs": 9072,
+      "durationMs": 14169,
       "error": null
     },
     {
@@ -140,10 +140,10 @@
       "previousCount": 18,
       "currentCount": 18,
       "change": 0,
-      "lastSuccess": "2026-11-16T00:08:25.114Z",
+      "lastSuccess": "2026-11-16T13:19:15.668Z",
       "consecutiveFailures": 0,
       "attempts": 1,
-      "durationMs": 35943,
+      "durationMs": 38135,
       "error": null
     },
     {
@@ -151,14 +151,14 @@
       "venue": "New Theatre Cardiff",
       "status": "ok",
       "dataFrom": "this-run",
-      "eventsReturned": 115,
-      "previousCount": 116,
-      "currentCount": 115,
-      "change": -1,
-      "lastSuccess": "2026-11-16T00:08:25.114Z",
+      "eventsReturned": 119,
+      "previousCount": 115,
+      "currentCount": 119,
+      "change": 4,
+      "lastSuccess": "2026-11-16T13:19:15.668Z",
       "consecutiveFailures": 0,
       "attempts": 1,
-      "durationMs": 640553,
+      "durationMs": 666210,
       "error": null
     },
     {
@@ -170,10 +170,10 @@
       "previousCount": 11,
       "currentCount": 11,
       "change": 0,
-      "lastSuccess": "2026-11-16T00:08:25.114Z",
+      "lastSuccess": "2026-11-16T13:19:15.668Z",
       "consecutiveFailures": 0,
       "attempts": 1,
-      "durationMs": 4414,
+      "durationMs": 6313,
       "error": null
     },
     {
@@ -185,10 +185,10 @@
       "previousCount": 16,
       "currentCount": 16,
       "change": 0,
-      "lastSuccess": "2026-11-16T00:08:25.114Z",
+      "lastSuccess": "2026-11-16T13:19:15.668Z",
       "consecutiveFailures": 0,
       "attempts": 1,
-      "durationMs": 352149,
+      "durationMs": 342173,
       "error": null
     },
     {
@@ -196,14 +196,14 @@
       "venue": "Stage & Stem",
       "status": "ok",
       "dataFrom": "this-run",
-      "eventsReturned": 16,
+      "eventsReturned": 15,
       "previousCount": 16,
-      "currentCount": 16,
-      "change": 0,
-      "lastSuccess": "2026-11-16T00:08:25.114Z",
+      "currentCount": 15,
+      "change": -1,
+      "lastSuccess": "2026-11-16T13:19:15.668Z",
       "consecutiveFailures": 0,
       "attempts": 1,
-      "durationMs": 3731,
+      "durationMs": 3069,
       "error": null
     },
     {
@@ -215,10 +215,10 @@
       "previousCount": 20,
       "currentCount": 20,
       "change": 0,
-      "lastSuccess": "2026-11-16T00:08:25.114Z",
+      "lastSuccess": "2026-11-16T13:19:15.668Z",
       "consecutiveFailures": 0,
       "attempts": 1,
-      "durationMs": 756,
+      "durationMs": 1984,
       "error": null
     },
     {
@@ -226,14 +226,14 @@
       "venue": "The Globe Cardiff",
       "status": "ok",
       "dataFrom": "this-run",
-      "eventsReturned": 158,
-      "previousCount": 77,
-      "currentCount": 76,
-      "change": -1,
-      "lastSuccess": "2026-11-16T00:08:25.114Z",
+      "eventsReturned": 160,
+      "previousCount": 76,
+      "currentCount": 77,
+      "change": 1,
+      "lastSuccess": "2026-11-16T13:19:15.668Z",
       "consecutiveFailures": 0,
       "attempts": 1,
-      "durationMs": 4936,
+      "durationMs": 7845,
       "error": null
     },
     {
@@ -245,10 +245,10 @@
       "previousCount": 53,
       "currentCount": 53,
       "change": 0,
-      "lastSuccess": "2026-11-16T00:08:25.114Z",
+      "lastSuccess": "2026-11-16T13:19:15.668Z",
       "consecutiveFailures": 0,
       "attempts": 1,
-      "durationMs": 5923,
+      "durationMs": 10308,
       "error": null
     },
     {
@@ -256,14 +256,14 @@
       "venue": "Utilita Arena Cardiff",
       "status": "ok",
       "dataFrom": "this-run",
-      "eventsReturned": 80,
+      "eventsReturned": 81,
       "previousCount": 80,
-      "currentCount": 80,
-      "change": 0,
-      "lastSuccess": "2026-11-16T00:08:25.114Z",
+      "currentCount": 81,
+      "change": 1,
+      "lastSuccess": "2026-11-16T13:19:15.668Z",
       "consecutiveFailures": 0,
       "attempts": 1,
-      "durationMs": 9911,
+      "durationMs": 8198,
       "error": null
     },
     {
@@ -272,13 +272,13 @@
       "status": "ok",
       "dataFrom": "this-run",
       "eventsReturned": 93,
-      "previousCount": 94,
+      "previousCount": 93,
       "currentCount": 93,
-      "change": -1,
-      "lastSuccess": "2026-11-16T00:08:25.114Z",
+      "change": 0,
+      "lastSuccess": "2026-11-16T13:19:15.668Z",
       "consecutiveFailures": 0,
       "attempts": 1,
-      "durationMs": 526551,
+      "durationMs": 547511,
       "error": null
     }
   ]

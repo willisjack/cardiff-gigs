@@ -1,59 +1,59 @@
 {
-  "generatedAt": "2026-11-17T22:46:58.622Z",
+  "generatedAt": "2026-11-18T02:18:07.278Z",
   "run": {
     "mode": "full",
-    "durationMs": 2776056,
+    "durationMs": 2868489,
     "scrapersAttempted": 17,
     "scrapersTotal": 17
   },
   "totals": {
-    "previousEvents": 760,
-    "currentEvents": 761,
-    "change": 1,
+    "previousEvents": 761,
+    "currentEvents": 759,
+    "change": -2,
     "newEvents": 1
   },
   "summary": {
     "ok": 14,
     "degraded": 0,
-    "empty": 2,
+    "empty": 3,
     "unknown": 0,
-    "failed": 1,
+    "failed": 0,
     "notRun": 0
   },
   "alerts": [
-    "Depot Cardiff (Depot): empty; last succeeded 2026-11-17T19:45:03.226Z",
-    "Fuel Rock Club (Fuel): failed — page.evaluate: Execution context was destroyed, most likely because of a navigation; no recorded success",
+    "Fuel Rock Club (Fuel): empty; no recorded success",
+    "CultVR (CultVR): empty; last succeeded 2026-11-17T22:46:58.622Z",
     "Paradise Garden (Paradise Garden): empty; no recorded success"
   ],
   "venues": [
     {
+      "scraper": "CultVR",
+      "venue": "CultVR",
+      "status": "empty",
+      "dataFrom": "preserved-from-earlier-run",
+      "eventsReturned": 0,
+      "previousCount": 3,
+      "currentCount": 3,
+      "change": 0,
+      "lastSuccess": "2026-11-17T22:46:58.622Z",
+      "consecutiveFailures": 1,
+      "attempts": 1,
+      "durationMs": 45673,
+      "error": null
+    },
+    {
       "scraper": "Fuel",
       "venue": "Fuel Rock Club",
-      "status": "failed",
+      "status": "empty",
       "dataFrom": "preserved-from-earlier-run",
       "eventsReturned": 0,
       "previousCount": 42,
       "currentCount": 42,
       "change": 0,
       "lastSuccess": null,
-      "consecutiveFailures": 24,
-      "attempts": 3,
-      "durationMs": 22025,
-      "error": "page.evaluate: Execution context was destroyed, most likely because of a navigation"
-    },
-    {
-      "scraper": "Depot",
-      "venue": "Depot Cardiff",
-      "status": "empty",
-      "dataFrom": "preserved-from-earlier-run",
-      "eventsReturned": 0,
-      "previousCount": 68,
-      "currentCount": 68,
-      "change": 0,
-      "lastSuccess": "2026-11-17T19:45:03.226Z",
-      "consecutiveFailures": 1,
+      "consecutiveFailures": 25,
       "attempts": 1,
-      "durationMs": 23678,
+      "durationMs": 6524,
       "error": null
     },
     {
@@ -66,9 +66,9 @@
       "currentCount": 19,
       "change": 0,
       "lastSuccess": null,
-      "consecutiveFailures": 24,
+      "consecutiveFailures": 25,
       "attempts": 1,
-      "durationMs": 5168,
+      "durationMs": 5045,
       "error": null
     },
     {
@@ -80,10 +80,10 @@
       "previousCount": 10,
       "currentCount": 10,
       "change": 0,
-      "lastSuccess": "2026-11-17T22:46:58.622Z",
+      "lastSuccess": "2026-11-18T02:18:07.278Z",
       "consecutiveFailures": 0,
       "attempts": 1,
-      "durationMs": 2596,
+      "durationMs": 2683,
       "error": null
     },
     {
@@ -95,10 +95,10 @@
       "previousCount": 23,
       "currentCount": 23,
       "change": 0,
-      "lastSuccess": "2026-11-17T22:46:58.622Z",
+      "lastSuccess": "2026-11-18T02:18:07.278Z",
       "consecutiveFailures": 0,
       "attempts": 1,
-      "durationMs": 1701,
+      "durationMs": 1653,
       "error": null
     },
     {
@@ -110,25 +110,25 @@
       "previousCount": 89,
       "currentCount": 89,
       "change": 0,
-      "lastSuccess": "2026-11-17T22:46:58.622Z",
+      "lastSuccess": "2026-11-18T02:18:07.278Z",
       "consecutiveFailures": 0,
       "attempts": 1,
-      "durationMs": 1008,
+      "durationMs": 1003,
       "error": null
     },
     {
-      "scraper": "CultVR",
-      "venue": "CultVR",
+      "scraper": "Depot",
+      "venue": "Depot Cardiff",
       "status": "ok",
       "dataFrom": "this-run",
-      "eventsReturned": 3,
-      "previousCount": 2,
-      "currentCount": 3,
-      "change": 1,
-      "lastSuccess": "2026-11-17T22:46:58.622Z",
+      "eventsReturned": 70,
+      "previousCount": 68,
+      "currentCount": 68,
+      "change": 0,
+      "lastSuccess": "2026-11-18T02:18:07.278Z",
       "consecutiveFailures": 0,
       "attempts": 1,
-      "durationMs": 6180,
+      "durationMs": 13980,
       "error": null
     },
     {
@@ -140,10 +140,10 @@
       "previousCount": 18,
       "currentCount": 18,
       "change": 0,
-      "lastSuccess": "2026-11-17T22:46:58.622Z",
+      "lastSuccess": "2026-11-18T02:18:07.278Z",
       "consecutiveFailures": 0,
       "attempts": 1,
-      "durationMs": 35756,
+      "durationMs": 34571,
       "error": null
     },
     {
@@ -155,10 +155,10 @@
       "previousCount": 120,
       "currentCount": 120,
       "change": 0,
-      "lastSuccess": "2026-11-17T22:46:58.622Z",
+      "lastSuccess": "2026-11-18T02:18:07.278Z",
       "consecutiveFailures": 0,
       "attempts": 1,
-      "durationMs": 641354,
+      "durationMs": 646790,
       "error": null
     },
     {
@@ -170,10 +170,10 @@
       "previousCount": 11,
       "currentCount": 11,
       "change": 0,
-      "lastSuccess": "2026-11-17T22:46:58.622Z",
+      "lastSuccess": "2026-11-18T02:18:07.278Z",
       "consecutiveFailures": 0,
       "attempts": 1,
-      "durationMs": 2939,
+      "durationMs": 3108,
       "error": null
     },
     {
@@ -185,10 +185,10 @@
       "previousCount": 16,
       "currentCount": 16,
       "change": 0,
-      "lastSuccess": "2026-11-17T22:46:58.622Z",
+      "lastSuccess": "2026-11-18T02:18:07.278Z",
       "consecutiveFailures": 0,
       "attempts": 1,
-      "durationMs": 337735,
+      "durationMs": 348374,
       "error": null
     },
     {
@@ -200,10 +200,10 @@
       "previousCount": 17,
       "currentCount": 17,
       "change": 0,
-      "lastSuccess": "2026-11-17T22:46:58.622Z",
+      "lastSuccess": "2026-11-18T02:18:07.278Z",
       "consecutiveFailures": 0,
       "attempts": 1,
-      "durationMs": 3478,
+      "durationMs": 3050,
       "error": null
     },
     {
@@ -215,10 +215,10 @@
       "previousCount": 20,
       "currentCount": 20,
       "change": 0,
-      "lastSuccess": "2026-11-17T22:46:58.622Z",
+      "lastSuccess": "2026-11-18T02:18:07.278Z",
       "consecutiveFailures": 0,
       "attempts": 1,
-      "durationMs": 620,
+      "durationMs": 2685,
       "error": null
     },
     {
@@ -226,14 +226,14 @@
       "venue": "The Globe Cardiff",
       "status": "ok",
       "dataFrom": "this-run",
-      "eventsReturned": 162,
+      "eventsReturned": 160,
       "previousCount": 78,
-      "currentCount": 78,
-      "change": 0,
-      "lastSuccess": "2026-11-17T22:46:58.622Z",
+      "currentCount": 77,
+      "change": -1,
+      "lastSuccess": "2026-11-18T02:18:07.278Z",
       "consecutiveFailures": 0,
       "attempts": 1,
-      "durationMs": 8699,
+      "durationMs": 7238,
       "error": null
     },
     {
@@ -241,14 +241,14 @@
       "venue": "Tramshed Cardiff",
       "status": "ok",
       "dataFrom": "this-run",
-      "eventsReturned": 59,
+      "eventsReturned": 58,
       "previousCount": 53,
-      "currentCount": 53,
-      "change": 0,
-      "lastSuccess": "2026-11-17T22:46:58.622Z",
+      "currentCount": 52,
+      "change": -1,
+      "lastSuccess": "2026-11-18T02:18:07.278Z",
       "consecutiveFailures": 0,
       "attempts": 1,
-      "durationMs": 4481,
+      "durationMs": 9465,
       "error": null
     },
     {
@@ -260,10 +260,10 @@
       "previousCount": 81,
       "currentCount": 81,
       "change": 0,
-      "lastSuccess": "2026-11-17T22:46:58.622Z",
+      "lastSuccess": "2026-11-18T02:18:07.278Z",
       "consecutiveFailures": 0,
       "attempts": 1,
-      "durationMs": 6555,
+      "durationMs": 5451,
       "error": null
     },
     {
@@ -275,10 +275,10 @@
       "previousCount": 93,
       "currentCount": 93,
       "change": 0,
-      "lastSuccess": "2026-11-17T22:46:58.622Z",
+      "lastSuccess": "2026-11-18T02:18:07.278Z",
       "consecutiveFailures": 0,
       "attempts": 1,
-      "durationMs": 449039,
+      "durationMs": 473599,
       "error": null
     }
   ]

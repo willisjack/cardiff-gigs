@@ -1,16 +1,16 @@
 {
-  "generatedAt": "2026-11-19T19:33:42.765Z",
+  "generatedAt": "2026-11-19T22:43:07.520Z",
   "run": {
     "mode": "full",
-    "durationMs": 2743884,
+    "durationMs": 2660458,
     "scrapersAttempted": 17,
     "scrapersTotal": 17
   },
   "totals": {
-    "previousEvents": 729,
+    "previousEvents": 730,
     "currentEvents": 730,
-    "change": 1,
-    "newEvents": 1
+    "change": 0,
+    "newEvents": 0
   },
   "summary": {
     "ok": 14,
@@ -36,9 +36,9 @@
       "currentCount": 3,
       "change": 0,
       "lastSuccess": "2026-11-18T19:36:53.630Z",
-      "consecutiveFailures": 5,
+      "consecutiveFailures": 6,
       "attempts": 1,
-      "durationMs": 45799,
+      "durationMs": 45718,
       "error": null
     },
     {
@@ -51,9 +51,9 @@
       "currentCount": 19,
       "change": 0,
       "lastSuccess": null,
-      "consecutiveFailures": 33,
+      "consecutiveFailures": 34,
       "attempts": 1,
-      "durationMs": 5487,
+      "durationMs": 5059,
       "error": null
     },
     {
@@ -66,9 +66,9 @@
       "currentCount": 93,
       "change": 0,
       "lastSuccess": "2026-11-19T01:47:55.233Z",
-      "consecutiveFailures": 3,
+      "consecutiveFailures": 4,
       "attempts": 1,
-      "durationMs": 237482,
+      "durationMs": 237378,
       "error": null
     },
     {
@@ -80,10 +80,10 @@
       "previousCount": 10,
       "currentCount": 10,
       "change": 0,
-      "lastSuccess": "2026-11-19T19:33:42.765Z",
+      "lastSuccess": "2026-11-19T22:43:07.520Z",
       "consecutiveFailures": 0,
       "attempts": 1,
-      "durationMs": 3077,
+      "durationMs": 4404,
       "error": null
     },
     {
@@ -95,10 +95,10 @@
       "previousCount": 23,
       "currentCount": 23,
       "change": 0,
-      "lastSuccess": "2026-11-19T19:33:42.765Z",
+      "lastSuccess": "2026-11-19T22:43:07.520Z",
       "consecutiveFailures": 0,
       "attempts": 1,
-      "durationMs": 2949,
+      "durationMs": 2562,
       "error": null
     },
     {
@@ -110,10 +110,10 @@
       "previousCount": 87,
       "currentCount": 87,
       "change": 0,
-      "lastSuccess": "2026-11-19T19:33:42.765Z",
+      "lastSuccess": "2026-11-19T22:43:07.520Z",
       "consecutiveFailures": 0,
       "attempts": 1,
-      "durationMs": 1153,
+      "durationMs": 2029,
       "error": null
     },
     {
@@ -125,10 +125,10 @@
       "previousCount": 68,
       "currentCount": 68,
       "change": 0,
-      "lastSuccess": "2026-11-19T19:33:42.765Z",
+      "lastSuccess": "2026-11-19T22:43:07.520Z",
       "consecutiveFailures": 0,
       "attempts": 1,
-      "durationMs": 14195,
+      "durationMs": 14046,
       "error": null
     },
     {
@@ -140,10 +140,10 @@
       "previousCount": 12,
       "currentCount": 12,
       "change": 0,
-      "lastSuccess": "2026-11-19T19:33:42.765Z",
+      "lastSuccess": "2026-11-19T22:43:07.520Z",
       "consecutiveFailures": 0,
       "attempts": 1,
-      "durationMs": 6815,
+      "durationMs": 7873,
       "error": null
     },
     {
@@ -155,10 +155,10 @@
       "previousCount": 18,
       "currentCount": 18,
       "change": 0,
-      "lastSuccess": "2026-11-19T19:33:42.765Z",
+      "lastSuccess": "2026-11-19T22:43:07.520Z",
       "consecutiveFailures": 0,
       "attempts": 1,
-      "durationMs": 39121,
+      "durationMs": 37661,
       "error": null
     },
     {
@@ -170,10 +170,10 @@
       "previousCount": 122,
       "currentCount": 122,
       "change": 0,
-      "lastSuccess": "2026-11-19T19:33:42.765Z",
+      "lastSuccess": "2026-11-19T22:43:07.520Z",
       "consecutiveFailures": 0,
       "attempts": 1,
-      "durationMs": 765927,
+      "durationMs": 723870,
       "error": null
     },
     {
@@ -185,10 +185,10 @@
       "previousCount": 11,
       "currentCount": 11,
       "change": 0,
-      "lastSuccess": "2026-11-19T19:33:42.765Z",
+      "lastSuccess": "2026-11-19T22:43:07.520Z",
       "consecutiveFailures": 0,
       "attempts": 1,
-      "durationMs": 4118,
+      "durationMs": 3822,
       "error": null
     },
     {
@@ -200,10 +200,10 @@
       "previousCount": 16,
       "currentCount": 16,
       "change": 0,
-      "lastSuccess": "2026-11-19T19:33:42.765Z",
+      "lastSuccess": "2026-11-19T22:43:07.520Z",
       "consecutiveFailures": 0,
       "attempts": 1,
-      "durationMs": 341108,
+      "durationMs": 343301,
       "error": null
     },
     {
@@ -215,10 +215,10 @@
       "previousCount": 17,
       "currentCount": 17,
       "change": 0,
-      "lastSuccess": "2026-11-19T19:33:42.765Z",
+      "lastSuccess": "2026-11-19T22:43:07.520Z",
       "consecutiveFailures": 0,
       "attempts": 1,
-      "durationMs": 3392,
+      "durationMs": 3290,
       "error": null
     },
     {
@@ -230,10 +230,10 @@
       "previousCount": 20,
       "currentCount": 20,
       "change": 0,
-      "lastSuccess": "2026-11-19T19:33:42.765Z",
+      "lastSuccess": "2026-11-19T22:43:07.520Z",
       "consecutiveFailures": 0,
       "attempts": 1,
-      "durationMs": 1413,
+      "durationMs": 961,
       "error": null
     },
     {
@@ -245,10 +245,10 @@
       "previousCount": 77,
       "currentCount": 77,
       "change": 0,
-      "lastSuccess": "2026-11-19T19:33:42.765Z",
+      "lastSuccess": "2026-11-19T22:43:07.520Z",
       "consecutiveFailures": 0,
       "attempts": 1,
-      "durationMs": 14679,
+      "durationMs": 6934,
       "error": null
     },
     {
@@ -260,10 +260,10 @@
       "previousCount": 52,
       "currentCount": 52,
       "change": 0,
-      "lastSuccess": "2026-11-19T19:33:42.765Z",
+      "lastSuccess": "2026-11-19T22:43:07.520Z",
       "consecutiveFailures": 0,
       "attempts": 1,
-      "durationMs": 5410,
+      "durationMs": 8885,
       "error": null
     },
     {
@@ -272,13 +272,13 @@
       "status": "ok",
       "dataFrom": "this-run",
       "eventsReturned": 82,
-      "previousCount": 81,
+      "previousCount": 82,
       "currentCount": 82,
-      "change": 1,
-      "lastSuccess": "2026-11-19T19:33:42.765Z",
+      "change": 0,
+      "lastSuccess": "2026-11-19T22:43:07.520Z",
       "consecutiveFailures": 0,
       "attempts": 1,
-      "durationMs": 7748,
+      "durationMs": 4494,
       "error": null
     }
   ]

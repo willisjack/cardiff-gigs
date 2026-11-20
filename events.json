@@ -5241,20 +5241,6 @@
     "primaryCategory": "Comedy"
   },
   {
-    "title": "BOOTLEG BLONDIE",
-    "details": "THURSDAY 19TH NOVEMBER\n19:00 | 14+ (UNDER 16S TO BE ACCOMPANIED BY AN ADULT)",
-    "url": "https://www.tixr.com/groups/theglobe/events/bootleg-blondie-171485",
-    "venue": "The Globe Cardiff",
-    "scrapedAt": "2026-05-28T11:32:08.295Z",
-    "imageUrl": "https://www.globecardiff.co.uk/wp-content/uploads/2026/01/Bootleg-Blondie-16x9-1.jpg",
-    "imageUrls": [
-      "https://www.globecardiff.co.uk/wp-content/uploads/2026/01/Bootleg-Blondie-16x9-1.jpg"
-    ],
-    "primaryCategory": "Music",
-    "description": "THURSDAY 19TH NOVEMBER\n19:00 | 14+ (UNDER 16S TO BE ACCOMPANIED BY AN ADULT)",
-    "date": "Thursday, 19 November 2026"
-  },
-  {
     "title": "‘FONTAINES DC V TWO DOOR CINEMA CLUB’ TRIBUTE DOUBLE HEADER",
     "details": "FRIDAY 20TH NOVEMBER\n19:00 | 14+ (UNDER 16S TO BE ACCOMPANIED BY AN ADULT)",
     "url": "https://www.tixr.com/groups/theglobe/events/-fontaines-dc-v-two-door-cinema-club-tribute-double-header-183426",
@@ -5985,20 +5971,6 @@
     "date": "Friday, 12 March 2027"
   },
   {
-    "title": "THE SISTERS OF MURPHY",
-    "details": "SATURDAY 6TH NOVEMBER 2027\n19:00 | 14+ (UNDER 16’S ACCOMPANIED WITH AN ADULT 18)",
-    "url": "https://www.tixr.com/groups/theglobe/events/the-sisters-of-murphy-206134",
-    "venue": "The Globe Cardiff",
-    "scrapedAt": "2026-11-06T18:20:44.122Z",
-    "imageUrl": "https://www.globecardiff.co.uk/wp-content/uploads/2026/10/Sisters-of-Murphy-Cardiff-Event.png",
-    "imageUrls": [
-      "https://www.globecardiff.co.uk/wp-content/uploads/2026/10/Sisters-of-Murphy-Cardiff-Event.png"
-    ],
-    "primaryCategory": "Music",
-    "description": "SATURDAY 6TH NOVEMBER 2027\n19:00 | 14+ (UNDER 16’S ACCOMPANIED WITH AN ADULT 18)",
-    "date": "Saturday, 6 November 2027"
-  },
-  {
     "title": "DREAM STATE",
     "details": "SATURDAY 13TH MARCH\n19:00 | 14+ (UNDER 16’S ACCOMPANIED WITH AN ADULT 18)",
     "url": "https://www.tixr.com/groups/theglobe/events/dream-state-211450",
@@ -6011,6 +5983,20 @@
     "primaryCategory": "Music",
     "description": "SATURDAY 13TH MARCH\n19:00 | 14+ (UNDER 16’S ACCOMPANIED WITH AN ADULT 18)",
     "date": "Saturday, 13 March 2027"
+  },
+  {
+    "title": "THE SISTERS OF MURPHY",
+    "details": "SATURDAY 6TH NOVEMBER 2027\n19:00 | 14+ (UNDER 16’S ACCOMPANIED WITH AN ADULT 18)",
+    "url": "https://www.tixr.com/groups/theglobe/events/the-sisters-of-murphy-206134",
+    "venue": "The Globe Cardiff",
+    "scrapedAt": "2026-11-06T18:20:44.122Z",
+    "imageUrl": "https://www.globecardiff.co.uk/wp-content/uploads/2026/10/Sisters-of-Murphy-Cardiff-Event.png",
+    "imageUrls": [
+      "https://www.globecardiff.co.uk/wp-content/uploads/2026/10/Sisters-of-Murphy-Cardiff-Event.png"
+    ],
+    "primaryCategory": "Music",
+    "description": "SATURDAY 6TH NOVEMBER 2027\n19:00 | 14+ (UNDER 16’S ACCOMPANIED WITH AN ADULT 18)",
+    "date": "Saturday, 6 November 2027"
   },
   {
     "title": "IST IST",
@@ -6367,8 +6353,8 @@
       "avgOccupancyPct": 79,
       "maxOccupancyPct": 85,
       "minOccupancyPct": 75,
-      "totalAvailable": 672,
-      "totalOccupied": 2574,
+      "totalAvailable": 676,
+      "totalOccupied": 2570,
       "performancesWithData": 3
     },
     "popularityScore": 54,
@@ -6851,13 +6837,13 @@
     ],
     "availability": "GOOD - SELLING FAST",
     "availabilityRange": "60-70%",
-    "availabilityEstimate": 68,
+    "availabilityEstimate": 67,
     "seatingAggregate": {
-      "avgOccupancyPct": 68,
-      "maxOccupancyPct": 68,
-      "minOccupancyPct": 68,
-      "totalAvailable": 336,
-      "totalOccupied": 698,
+      "avgOccupancyPct": 67,
+      "maxOccupancyPct": 67,
+      "minOccupancyPct": 67,
+      "totalAvailable": 338,
+      "totalOccupied": 696,
       "performancesWithData": 1
     },
     "popularityScore": 35,
@@ -7768,8 +7754,8 @@
       "avgOccupancyPct": 76,
       "maxOccupancyPct": 76,
       "minOccupancyPct": 76,
-      "totalAvailable": 247,
-      "totalOccupied": 787,
+      "totalAvailable": 248,
+      "totalOccupied": 786,
       "performancesWithData": 1
     },
     "popularityScore": 44,
@@ -7979,8 +7965,8 @@
       "avgOccupancyPct": 76,
       "maxOccupancyPct": 85,
       "minOccupancyPct": 56,
-      "totalAvailable": 1615,
-      "totalOccupied": 5039,
+      "totalAvailable": 1611,
+      "totalOccupied": 5043,
       "performancesWithData": 6
     },
     "popularityScore": 67,
@@ -8020,8 +8006,8 @@
       "avgOccupancyPct": 39,
       "maxOccupancyPct": 39,
       "minOccupancyPct": 39,
-      "totalAvailable": 632,
-      "totalOccupied": 402,
+      "totalAvailable": 630,
+      "totalOccupied": 404,
       "performancesWithData": 1
     },
     "popularityScore": 31,
@@ -8105,8 +8091,8 @@
       "avgOccupancyPct": 69,
       "maxOccupancyPct": 69,
       "minOccupancyPct": 69,
-      "totalAvailable": 325,
-      "totalOccupied": 709,
+      "totalAvailable": 322,
+      "totalOccupied": 712,
       "performancesWithData": 1
     },
     "popularityScore": 50,
@@ -8799,8 +8785,8 @@
       "avgOccupancyPct": 49,
       "maxOccupancyPct": 49,
       "minOccupancyPct": 49,
-      "totalAvailable": 527,
-      "totalOccupied": 507,
+      "totalAvailable": 523,
+      "totalOccupied": 511,
       "performancesWithData": 1
     },
     "popularityScore": 41,
@@ -9128,8 +9114,8 @@
       "avgOccupancyPct": 68,
       "maxOccupancyPct": 68,
       "minOccupancyPct": 68,
-      "totalAvailable": 335,
-      "totalOccupied": 699,
+      "totalAvailable": 332,
+      "totalOccupied": 702,
       "performancesWithData": 1
     },
     "popularityScore": 43,
@@ -9333,8 +9319,8 @@
       "avgOccupancyPct": 47,
       "maxOccupancyPct": 47,
       "minOccupancyPct": 47,
-      "totalAvailable": 543,
-      "totalOccupied": 491,
+      "totalAvailable": 544,
+      "totalOccupied": 490,
       "performancesWithData": 1
     },
     "popularityScore": 40,
@@ -9377,8 +9363,8 @@
       "avgOccupancyPct": 82,
       "maxOccupancyPct": 82,
       "minOccupancyPct": 82,
-      "totalAvailable": 186,
-      "totalOccupied": 848,
+      "totalAvailable": 187,
+      "totalOccupied": 847,
       "performancesWithData": 1
     },
     "popularityScore": 66,
@@ -9659,8 +9645,8 @@
       "avgOccupancyPct": 73,
       "maxOccupancyPct": 73,
       "minOccupancyPct": 73,
-      "totalAvailable": 282,
-      "totalOccupied": 752,
+      "totalAvailable": 280,
+      "totalOccupied": 754,
       "performancesWithData": 1
     },
     "popularityScore": 63,
@@ -9777,8 +9763,8 @@
       "avgOccupancyPct": 48,
       "maxOccupancyPct": 56,
       "minOccupancyPct": 41,
-      "totalAvailable": 1610,
-      "totalOccupied": 1496,
+      "totalAvailable": 1612,
+      "totalOccupied": 1494,
       "performancesWithData": 3
     },
     "popularityScore": 36,
@@ -10491,8 +10477,8 @@
       "avgOccupancyPct": 23,
       "maxOccupancyPct": 23,
       "minOccupancyPct": 23,
-      "totalAvailable": 796,
-      "totalOccupied": 238,
+      "totalAvailable": 794,
+      "totalOccupied": 240,
       "performancesWithData": 1
     },
     "popularityScore": 19,
@@ -10699,8 +10685,8 @@
       "avgOccupancyPct": 65,
       "maxOccupancyPct": 65,
       "minOccupancyPct": 65,
-      "totalAvailable": 358,
-      "totalOccupied": 676,
+      "totalAvailable": 359,
+      "totalOccupied": 675,
       "performancesWithData": 1
     },
     "popularityScore": 58,
@@ -11322,20 +11308,6 @@
     "ticketPriceTo": 39,
     "subcategory": "Trafalgar Tickets > New Theatre > What's On > Comedy > MC Hammersmith: Ice Ice Nepo Baby",
     "primaryCategory": "Comedy"
-  },
-  {
-    "title": "GETDOWN SERVICES",
-    "details": "THURSDAY 19TH NOVEMBER\n19:00 | 14+ (UNDER 16S TO BE ACCOMPANIED BY AN ADULT)",
-    "url": "https://www.tixr.com/groups/tramshed/events/getdown-services-189784",
-    "venue": "Tramshed Cardiff",
-    "scrapedAt": "2026-05-28T11:32:08.295Z",
-    "imageUrl": "https://www.tramshedcardiff.com/wp-content/uploads/2026/06/Getdown-Screen-Second-Show.jpg",
-    "imageUrls": [
-      "https://www.tramshedcardiff.com/wp-content/uploads/2026/06/Getdown-Screen-Second-Show.jpg"
-    ],
-    "primaryCategory": "Music",
-    "description": "THURSDAY 19TH NOVEMBER\n19:00 | 14+ (UNDER 16S TO BE ACCOMPANIED BY AN ADULT)",
-    "date": "Thursday, 19 November 2026"
   },
   {
     "title": "THE BLACK CHARADE | FELL OUT BOY | L1NKN.P4RK | DOOKIE",
@@ -12073,23 +12045,6 @@
     "primaryCategory": "Music",
     "description": "FRIDAY 26TH NOVEMBER 2027\n19:00 | 14+ (UNDER 16S TO BE ACCOMPANIED BY AN ADULT)",
     "date": "Friday, 26 November 2027"
-  },
-  {
-    "title": "Myles Smith: My Mess, My Heart, My Life.",
-    "date": "Thursday, 19 November 2026",
-    "details": "Thursday Doors: 18:30 Curfew: 23:00",
-    "url": "https://www.livenation.co.uk/event/myles-smith-my-mess-my-heart-my-life--cardiff-tickets-edp1660961",
-    "venue": "Utilita Arena Cardiff",
-    "scrapedAt": "2026-05-28T11:32:08.295Z",
-    "description": "Myles Smith: My Mess, My Heart, My Life. | 2026-11-19T23:59:00Z | Utilita Arena Cardiff",
-    "shortDescription": "Buy tickets for Myles Smith: My Mess, My Heart, My Life. at Utilita Arena Cardiff on Thu, 19 Nov 2026 at www.livenation.co.uk. Search for United Kingdom and international concert tickets, tour dates and venues in your area with the world's largest concert search engine.",
-    "imageUrl": "https://dynamicmedia.livenationinternational.com/l/x/z/6fb5cd3f-c0ed-44e9-93b1-cd9082a35ec7.png",
-    "imageUrls": [
-      "https://dynamicmedia.livenationinternational.com/l/x/z/6fb5cd3f-c0ed-44e9-93b1-cd9082a35ec7.png"
-    ],
-    "eventStartDate": "2026-11-19T23:59:00Z",
-    "eventEndDate": "2026-11-19",
-    "primaryCategory": "Music"
   },
   {
     "title": "Boxxer presents PRICE V KOTASKOVA",
@@ -14722,20 +14677,6 @@
     "primaryCategory": "Music"
   },
   {
-    "title": "Teenage Fanclub",
-    "date": "Thursday, 19 November 2026",
-    "location": "Y Plas",
-    "url": "https://www.cardiffstudents.com/ents/event/42705/",
-    "venue": "Cardiff SU",
-    "scrapedAt": "2026-05-28T11:32:08.295Z",
-    "imageUrl": "https://www.cardiffstudents.com/asset/Event/6033/TFC-SCREEN.jpg?thumbnail_width=100&thumbnail_height=100&resize_type=CropToFit",
-    "imageUrls": [
-      "https://www.cardiffstudents.com/asset/Event/6033/TFC-SCREEN.jpg?thumbnail_width=100&thumbnail_height=100&resize_type=CropToFit"
-    ],
-    "primaryCategory": "Music",
-    "description": "universe: teenage-fanclub-tickets-38Z1LD"
-  },
-  {
     "title": "Second Speed w. Azyr",
     "date": "Friday, 20 November 2026",
     "location": "The Great Hall",
@@ -17227,22 +17168,23 @@
     ]
   },
   {
-    "title": "CONTRASTS",
-    "date": "Wednesday, 4 November 2026",
-    "eventStartDate": "2026-11-04T19:00:00+00:00",
-    "url": "https://www.fuelrockclub.co.uk/contrasts/",
-    "imageUrl": "https://www.fuelrockclub.co.uk/wp-content/uploads/2026/11/ticket.png",
+    "title": "ROMES",
+    "date": "Thursday, 19 November 2026",
+    "eventStartDate": "2026-11-19T19:30:00+00:00",
+    "url": "https://www.fuelrockclub.co.uk/romes/",
+    "imageUrl": "https://www.fuelrockclub.co.uk/wp-content/uploads/2026/11/fuel-event-8692-web.webp",
     "venue": "Fuel Rock Club",
-    "scrapedAt": "2026-11-19T01:47:55.218Z",
-    "description": "From the 2026 archive: Contrasts at Fuel Rock Club, Cardiff. Original event listing for 4 November.",
-    "shortDescription": "From the 2026 archive: Contrasts at Fuel Rock Club, Cardiff. Original event listing for 4 November.",
+    "scrapedAt": "2026-11-20T01:51:37.041Z",
+    "description": "ROMES bring their high-voltage Punktronic sound to Fuel Rock Club, Cardiff on 19 November 2026. Discover the electronic rock duo and ticket details.",
+    "shortDescription": "ROMES bring their high-voltage Punktronic sound to Fuel Rock Club, Cardiff on 19 November 2026. Discover the electronic rock duo and ticket details.",
     "imageUrls": [
-      "https://www.fuelrockclub.co.uk/wp-content/uploads/2026/11/ticket.png"
+      "https://www.fuelrockclub.co.uk/wp-content/uploads/2026/11/fuel-event-8692-web.webp"
     ],
-    "subcategory": "Contrasts",
-    "ticketPriceFrom": 8,
+    "eventEndDate": "2026-11-19T22:30:00+00:00",
+    "subcategory": "ROMES",
+    "ticketPriceFrom": 10,
     "ticketCurrency": "GBP",
-    "ticketPriceLabel": "£8.00",
+    "ticketPriceLabel": "£10.00",
     "primaryCategory": "Music"
   },
   {
@@ -17947,23 +17889,6 @@
     "primaryCategory": "Other"
   },
   {
-    "title": "The Music of Bruce Springsteen - The Candlelight Concert",
-    "date": "2026-11-19",
-    "startTime": "",
-    "venue": "Llandaff Cathedral",
-    "url": "https://www.ents24.com/cardiff-events/llandaff-cathedral/the-music-of-bruce-springsteen-the-candlelight-concert/7381916",
-    "description": "Official tickets and information for The Music of Bruce Springsteen - The Candlelight Concert at Llandaff Cathedral from Ents24 - rated Excellent on Trustpilot.",
-    "imageUrl": "https://ents24.imgix.net/image/000/014/386/c37b5e5e17caac18c56c29641a99924d4c108502.jpg?auto=format&crop=faces&w=630&h=315",
-    "performerNames": [],
-    "scrapedAt": "2026-10-03T10:44:38.049Z",
-    "shortDescription": "Official tickets and information for The Music of Bruce Springsteen - The Candlelight Concert at Llandaff Cathedral from Ents24 - rated Excellent on Trustpilot.",
-    "imageUrls": [
-      "https://ents24.imgix.net/image/000/014/386/c37b5e5e17caac18c56c29641a99924d4c108502.jpg?auto=format&crop=faces&w=630&h=315",
-      "https://ents24.imgix.net/image/000/014/386/c37b5e5e17caac18c56c29641a99924d4c108502.jpg"
-    ],
-    "primaryCategory": "Other"
-  },
-  {
     "title": "Candlelight: The Lord of the Rings",
     "date": "2026-11-22",
     "startTime": "",
@@ -18292,18 +18217,6 @@
     "ticketPriceFrom": 11,
     "ticketCurrency": "GBP",
     "ticketPriceLabel": "£11.00",
-    "primaryCategory": "Musical Theatre"
-  },
-  {
-    "title": "Musical Theatre Takeover",
-    "date": "Thursday, 19 November 2026",
-    "eventStartDate": "2026-11-19",
-    "description": "",
-    "venue": "Stage & Stem",
-    "url": "https://stageandstem.com/book-a-table.html",
-    "scrapedAt": "2026-11-15T12:36:41.834Z",
-    "subcategory": "Musical Theatre",
-    "eventKeywords": "Theatre, Music, Weekly Event",
     "primaryCategory": "Musical Theatre"
   },
   {

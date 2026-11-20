@@ -1,46 +1,30 @@
 {
-  "generatedAt": "2026-11-20T16:53:13.084Z",
+  "generatedAt": "2026-11-20T18:57:56.366Z",
   "run": {
     "mode": "full",
-    "durationMs": 2703736,
+    "durationMs": 2561069,
     "scrapersAttempted": 17,
     "scrapersTotal": 17
   },
   "totals": {
-    "previousEvents": 725,
+    "previousEvents": 726,
     "currentEvents": 726,
-    "change": 1,
-    "newEvents": 1
+    "change": 0,
+    "newEvents": 0
   },
   "summary": {
-    "ok": 14,
+    "ok": 15,
     "degraded": 0,
-    "empty": 3,
+    "empty": 2,
     "unknown": 0,
     "failed": 0,
     "notRun": 0
   },
   "alerts": [
     "Wales Millennium Centre (WMC): empty; last succeeded 2026-11-19T01:47:55.233Z",
-    "CultVR (CultVR): empty; last succeeded 2026-11-18T19:36:53.630Z",
     "Paradise Garden (Paradise Garden): empty; no recorded success"
   ],
   "venues": [
-    {
-      "scraper": "CultVR",
-      "venue": "CultVR",
-      "status": "empty",
-      "dataFrom": "preserved-from-earlier-run",
-      "eventsReturned": 0,
-      "previousCount": 3,
-      "currentCount": 3,
-      "change": 0,
-      "lastSuccess": "2026-11-18T19:36:53.630Z",
-      "consecutiveFailures": 9,
-      "attempts": 1,
-      "durationMs": 46048,
-      "error": null
-    },
     {
       "scraper": "Paradise Garden",
       "venue": "Paradise Garden",
@@ -51,9 +35,9 @@
       "currentCount": 19,
       "change": 0,
       "lastSuccess": null,
-      "consecutiveFailures": 37,
+      "consecutiveFailures": 38,
       "attempts": 1,
-      "durationMs": 6077,
+      "durationMs": 6215,
       "error": null
     },
     {
@@ -66,9 +50,9 @@
       "currentCount": 93,
       "change": 0,
       "lastSuccess": "2026-11-19T01:47:55.233Z",
-      "consecutiveFailures": 7,
+      "consecutiveFailures": 8,
       "attempts": 1,
-      "durationMs": 237871,
+      "durationMs": 236539,
       "error": null
     },
     {
@@ -80,10 +64,10 @@
       "previousCount": 10,
       "currentCount": 10,
       "change": 0,
-      "lastSuccess": "2026-11-20T16:53:13.084Z",
+      "lastSuccess": "2026-11-20T18:57:56.366Z",
       "consecutiveFailures": 0,
       "attempts": 1,
-      "durationMs": 3528,
+      "durationMs": 2542,
       "error": null
     },
     {
@@ -95,10 +79,10 @@
       "previousCount": 23,
       "currentCount": 23,
       "change": 0,
-      "lastSuccess": "2026-11-20T16:53:13.084Z",
+      "lastSuccess": "2026-11-20T18:57:56.366Z",
       "consecutiveFailures": 0,
       "attempts": 1,
-      "durationMs": 3181,
+      "durationMs": 1742,
       "error": null
     },
     {
@@ -107,13 +91,28 @@
       "status": "ok",
       "dataFrom": "this-run",
       "eventsReturned": 87,
-      "previousCount": 85,
+      "previousCount": 86,
       "currentCount": 86,
-      "change": 1,
-      "lastSuccess": "2026-11-20T16:53:13.084Z",
+      "change": 0,
+      "lastSuccess": "2026-11-20T18:57:56.366Z",
       "consecutiveFailures": 0,
       "attempts": 1,
-      "durationMs": 1394,
+      "durationMs": 1083,
+      "error": null
+    },
+    {
+      "scraper": "CultVR",
+      "venue": "CultVR",
+      "status": "ok",
+      "dataFrom": "this-run",
+      "eventsReturned": 3,
+      "previousCount": 3,
+      "currentCount": 3,
+      "change": 0,
+      "lastSuccess": "2026-11-20T18:57:56.366Z",
+      "consecutiveFailures": 0,
+      "attempts": 1,
+      "durationMs": 8391,
       "error": null
     },
     {
@@ -125,10 +124,10 @@
       "previousCount": 68,
       "currentCount": 68,
       "change": 0,
-      "lastSuccess": "2026-11-20T16:53:13.084Z",
+      "lastSuccess": "2026-11-20T18:57:56.366Z",
       "consecutiveFailures": 0,
       "attempts": 1,
-      "durationMs": 14225,
+      "durationMs": 13835,
       "error": null
     },
     {
@@ -140,10 +139,10 @@
       "previousCount": 12,
       "currentCount": 12,
       "change": 0,
-      "lastSuccess": "2026-11-20T16:53:13.084Z",
+      "lastSuccess": "2026-11-20T18:57:56.366Z",
       "consecutiveFailures": 0,
       "attempts": 1,
-      "durationMs": 6867,
+      "durationMs": 6191,
       "error": null
     },
     {
@@ -155,10 +154,10 @@
       "previousCount": 17,
       "currentCount": 17,
       "change": 0,
-      "lastSuccess": "2026-11-20T16:53:13.084Z",
+      "lastSuccess": "2026-11-20T18:57:56.366Z",
       "consecutiveFailures": 0,
       "attempts": 1,
-      "durationMs": 39463,
+      "durationMs": 32844,
       "error": null
     },
     {
@@ -170,10 +169,10 @@
       "previousCount": 122,
       "currentCount": 122,
       "change": 0,
-      "lastSuccess": "2026-11-20T16:53:13.084Z",
+      "lastSuccess": "2026-11-20T18:57:56.366Z",
       "consecutiveFailures": 0,
       "attempts": 1,
-      "durationMs": 730540,
+      "durationMs": 711856,
       "error": null
     },
     {
@@ -185,10 +184,10 @@
       "previousCount": 11,
       "currentCount": 11,
       "change": 0,
-      "lastSuccess": "2026-11-20T16:53:13.084Z",
+      "lastSuccess": "2026-11-20T18:57:56.366Z",
       "consecutiveFailures": 0,
       "attempts": 1,
-      "durationMs": 4953,
+      "durationMs": 4035,
       "error": null
     },
     {
@@ -200,10 +199,10 @@
       "previousCount": 16,
       "currentCount": 16,
       "change": 0,
-      "lastSuccess": "2026-11-20T16:53:13.084Z",
+      "lastSuccess": "2026-11-20T18:57:56.366Z",
       "consecutiveFailures": 0,
       "attempts": 1,
-      "durationMs": 343585,
+      "durationMs": 337057,
       "error": null
     },
     {
@@ -215,10 +214,10 @@
       "previousCount": 16,
       "currentCount": 16,
       "change": 0,
-      "lastSuccess": "2026-11-20T16:53:13.084Z",
+      "lastSuccess": "2026-11-20T18:57:56.366Z",
       "consecutiveFailures": 0,
       "attempts": 1,
-      "durationMs": 3793,
+      "durationMs": 3060,
       "error": null
     },
     {
@@ -230,10 +229,10 @@
       "previousCount": 20,
       "currentCount": 20,
       "change": 0,
-      "lastSuccess": "2026-11-20T16:53:13.084Z",
+      "lastSuccess": "2026-11-20T18:57:56.366Z",
       "consecutiveFailures": 0,
       "attempts": 1,
-      "durationMs": 2808,
+      "durationMs": 480,
       "error": null
     },
     {
@@ -245,10 +244,10 @@
       "previousCount": 78,
       "currentCount": 78,
       "change": 0,
-      "lastSuccess": "2026-11-20T16:53:13.084Z",
+      "lastSuccess": "2026-11-20T18:57:56.366Z",
       "consecutiveFailures": 0,
       "attempts": 1,
-      "durationMs": 2570,
+      "durationMs": 7290,
       "error": null
     },
     {
@@ -260,10 +259,10 @@
       "previousCount": 51,
       "currentCount": 51,
       "change": 0,
-      "lastSuccess": "2026-11-20T16:53:13.084Z",
+      "lastSuccess": "2026-11-20T18:57:56.366Z",
       "consecutiveFailures": 0,
       "attempts": 1,
-      "durationMs": 6305,
+      "durationMs": 1941,
       "error": null
     },
     {
@@ -275,10 +274,10 @@
       "previousCount": 81,
       "currentCount": 81,
       "change": 0,
-      "lastSuccess": "2026-11-20T16:53:13.084Z",
+      "lastSuccess": "2026-11-20T18:57:56.366Z",
       "consecutiveFailures": 0,
       "attempts": 1,
-      "durationMs": 7510,
+      "durationMs": 8194,
       "error": null
     }
   ]

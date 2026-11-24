@@ -8335,8 +8335,8 @@
       "avgOccupancyPct": 36,
       "maxOccupancyPct": 36,
       "minOccupancyPct": 36,
-      "totalAvailable": 671,
-      "totalOccupied": 375,
+      "totalAvailable": 673,
+      "totalOccupied": 373,
       "performancesWithData": 1
     },
     "popularityScore": 22,
@@ -17156,6 +17156,26 @@
     "genre": "Events, Football"
   },
   {
+    "title": "Pinocchio (In English)",
+    "date": "Tuesday, 26 January 2027 – Saturday, 2 January 2027",
+    "description": "A new version by Jennifer Lunn Welsh translation by Hanna Jarman",
+    "category": "Christmas",
+    "url": "https://www.shermantheatre.co.uk/event/pinocchio-2/",
+    "imageUrl": "https://www.shermantheatre.co.uk/wp-content/uploads/2025/12/PinnochioMay-2-1-1272x954.jpg",
+    "venue": "Sherman Theatre",
+    "scrapedAt": "2026-11-24T05:03:04.173Z",
+    "details": "23 Nov 2026 - 2 Jan 2027",
+    "imageUrls": [
+      "https://www.shermantheatre.co.uk/wp-content/uploads/2025/12/PinnochioMay-2-1-1272x954.jpg"
+    ],
+    "subcategory": "Pinocchio (In English)",
+    "ticketPriceFrom": 10,
+    "ticketCurrency": "GBP",
+    "ticketPriceLabel": "£10",
+    "primaryCategory": "Other",
+    "genre": "Christmas"
+  },
+  {
     "title": "Pinocchio (In Welsh)",
     "date": "Tuesday, 26 January 2027 – Saturday, 2 January 2027",
     "description": "A new version by Jennifer Lunn Welsh translation by Hanna Jarman",
@@ -17434,6 +17454,11 @@
     "venue": "Sherman Theatre",
     "scrapedAt": "2026-10-08T02:48:56.020Z",
     "details": "7 May 2027",
+    "availability": "SOLD OUT",
+    "availabilityRange": "100%",
+    "availabilityEstimate": 100,
+    "popularityScore": 80,
+    "popularityLabel": "Very high demand",
     "imageUrls": [
       "https://www.shermantheatre.co.uk/wp-content/uploads/2024/11/AM_PEACH_FUZZ_16X9_CLEAN-1272x900.jpg"
     ],
@@ -17878,25 +17903,16 @@
   {
     "title": "👑 Buff Bingo Bottomless Drag Brunch",
     "date": "Saturday, 28 November 2026",
-    "eventStartDate": "2026-11-28T12:00:00+00:00",
+    "eventStartDate": "2026-11-28",
     "description": "Boys, balls, bottomless booze & drag queens! Four full hours of party with a brunch dish of your choice, 90 minutes of bottomless drinks, drag queen hosts and performances, buff butler service, bingo and games with prizes worth up to £200, and a DJ with dancing after the show. 🎟️ Tickets: Early Bird Bottomless £42.95, Bottomless £49.95, Brunch Food Only £29.95, Day Party Only £15. ⏰ Arrival and bar open 12pm, show and games from 1pm, DJ and dancing 3–4pm. 🎉 Celebrating? Stage passes (£60) and shout-outs (£25) are available, and groups of 10 or more get 10 tickets for the price of 9.",
     "venue": "Stage & Stem",
     "url": "https://www.tickettailor.com/events/buffbingodragbrunch/2410763",
     "scrapedAt": "2026-11-16T20:48:00.045Z",
     "subcategory": "Drag · Brunch",
     "eventKeywords": "Drag, Cabaret, Food & Drink",
-    "ticketPriceFrom": 6,
+    "ticketPriceFrom": 15,
     "ticketCurrency": "GBP",
     "ticketPriceLabel": "from £15",
-    "shortDescription": "BUFF BINGO BOTTOMLESS DRAG BRUNCH CARDIFF – Stage & Stem, Multiple dates and times - \n\nBUFF BINGO DRAG BRUNCH CARDIFF\nBOYS, BALLS, BOTTOMLESS BOOZE &amp; DRAG QUEENS!...",
-    "imageUrl": "https://uploads.tickettailorassets.com/c_scale,w_1920/v1/production/userfiles/krx4j1fztha0apobd92d.jpg?_a=BAAAEvDQ",
-    "imageUrls": [
-      "https://uploads.tickettailorassets.com/c_scale,w_1920/v1/production/userfiles/krx4j1fztha0apobd92d.jpg?_a=BAAAEvDQ",
-      "https://uploads.tickettailorassets.com/c_scale,w_720/v1/production/userfiles/fhhtrohiyikgj3fb9k8t.jpg?_a=BAAAEvDQ",
-      "https://uploads.tickettailorassets.com/c_scale,w_800/v1/production/userfiles/krx4j1fztha0apobd92d.jpg?_a=BAAAEvDQ"
-    ],
-    "eventEndDate": "2026-11-28T16:00:00+00:00",
-    "ticketPriceTo": 49.95,
     "primaryCategory": "Other"
   },
   {

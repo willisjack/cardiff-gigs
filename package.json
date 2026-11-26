@@ -6,7 +6,8 @@
   "scripts": {
     "scrape": "node scrape.js",
     "review-duplicates": "node scrape.js --review-duplicates",
-    "dedupe-events": "node scrape.js --dedupe-events"
+    "dedupe-events": "node scrape.js --dedupe-events",
+    "test": "node --test test/*.test.js"
   },
   "keywords": [],
   "author": "",

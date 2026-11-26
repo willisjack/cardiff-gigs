@@ -2,6 +2,7 @@ const { chromium } = require('playwright');
 const fs = require('fs');
 const path = require('path');
 const axios = require('axios');
+const cheerio = require('cheerio');
 
 // ---------------------------------------------------------------------------
 // Welsh-language acts list (curated, case-insensitive lookup)
@@ -100,7 +101,7 @@ function wmcParseSubVenue(rawPrefix) {
   if (!rawPrefix) return null;
   const lower = rawPrefix.toLowerCase().trim();
   for (const { match, label } of WMC_SUB_VENUES) {
-    if (lower.startsWith(match)) return label;
+    if (lower.includes(match)) return label;
   }
   return null;
 }
@@ -304,64 +305,6 @@ function wmcComputePopularity(ev) {
   else                            popularityLabel = 'Very low demand';
 
   return { popularityScore, popularityLabel };
-}
-
-async function wmcWaitForAngularBind(page, timeout = 15_000) {
-  try {
-    await page.waitForFunction(
-      () => {
-        const list = document.querySelector('.calendar-list-filter-list--performance-list');
-        if (!list) return false;
-        if (list.classList.contains('ng-hide')) {
-          return !!document.querySelector('.events-error:not(.ng-hide)');
-        }
-        const availDivs = list.querySelectorAll('.calendar-list-entry__availablity');
-        if (availDivs.length === 0) return true;
-        return Array.from(availDivs).some((el) => !el.innerText.includes('{{'));
-      },
-      { timeout }
-    );
-  } catch {}
-}
-
-async function wmcScrapeAvailability(context, eventUrl) {
-  const perfUrl = `${eventUrl.replace(/\/$/, '')}/performances`;
-  const page = await context.newPage();
-  try {
-    await page.goto(perfUrl, { waitUntil: 'domcontentloaded', timeout: 45_000 });
-    await wmcWaitForAngularBind(page);
-    const entries = await page.evaluate(() => {
-      const list = document.querySelector('.calendar-list-filter-list--performance-list');
-      if (!list) return [];
-      const clean = (t) => (t || '').replace(/\s+/g, ' ').trim();
-
-      // Preferred: one row per performance so we can attach a date to each
-      // availability label (BEM: the availability node lives inside the entry).
-      const rows = Array.from(list.querySelectorAll('.calendar-list-entry'));
-      if (rows.length) {
-        return rows
-          .map((row) => {
-            const label = clean(row.querySelector('.calendar-list-entry__availablity')?.innerText);
-            const dateEl = row.querySelector(
-              '.calendar-list-entry__date, .calendar-list-entry__time, time, [class*="date"], [class*="time"]'
-            );
-            const date = dateEl ? clean(dateEl.innerText || dateEl.textContent) : null;
-            return { date: date || null, label };
-          })
-          .filter((e) => e.label && !e.label.includes('{{'));
-      }
-
-      // Fallback: flat availability nodes only (no per-night date available).
-      return Array.from(list.querySelectorAll('.calendar-list-entry__availablity'))
-        .map((el) => ({ date: null, label: clean(el.innerText) }))
-        .filter((e) => e.label && !e.label.includes('{{'));
-    });
-    return wmcComputeAvailability(entries);
-  } catch {
-    return null;
-  } finally {
-    await page.close();
-  }
 }
 
 /**
@@ -1641,182 +1584,172 @@ async function scrapeGlobe(context) {
   console.log(`  Globe: ${events.length} events`);
   return events;
 }
+// WMC moved to a new site (Basker CMS + Tessitura) around 2026-11-19. The old
+// Angular listing at /en/whats-on/events now redirects to a "featured" page,
+// and the full "Everything" listing is drawn client-side from this JSON feed,
+// with one row per performance.
+const WMC_ORIGIN = 'https://www.wmc.org.uk';
+const WMC_INSTANCES_API = `${WMC_ORIGIN}/api/event-instances.json?locale=en`;
+
+/** "Thu 5 Nov 2026" style parts in Europe/London. */
+function wmcLondonDateParts(iso) {
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return null;
+  const fmt = (opts) => new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/London', ...opts }).format(d);
+  return {
+    weekday: fmt({ weekday: 'long' }),
+    day:     fmt({ day: 'numeric' }),
+    month:   fmt({ month: 'long' }),
+    year:    fmt({ year: 'numeric' }),
+    time:    fmt({ hour: 'numeric', minute: '2-digit', hour12: true }).replace(/\s+/g, '').toLowerCase(),
+    ymdhm:   new Intl.DateTimeFormat('sv-SE', {
+      timeZone: 'Europe/London', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit',
+    }).format(d) + ':00',
+  };
+}
+
+/**
+ * Availability label for one performance, using the same rule as the WMC
+ * site's own bundle: remaining seats as a share of the venue's capacity
+ * (<10% limited, <40% moderate, otherwise good), and 0 seats = sold out.
+ * Returns null when there's no usable signal (not on sale / no capacity).
+ */
+function wmcInstanceAvailabilityLabel(inst) {
+  const raw = inst?.tessitura?.availability;
+  if (raw == null || raw === '') return null;
+  const seats = parseInt(raw, 10);
+  if (Number.isNaN(seats)) return null;
+  if (inst.bookingStatus === 'comingSoon') return null;
+  if (seats <= 0) return 'sold out';
+  const capacity = parseInt(inst?.event?.venue?.attributes?.custom?.capacity || 0, 10);
+  if (!capacity) return null;
+  const pct = (seats / capacity) * 100;
+  if (pct < 10) return 'limited availability';
+  if (pct < 40) return 'moderate availability';
+  return 'good availability';
+}
+
+async function wmcFetchEventPage(context, url) {
+  const res = await context.request.get(url, { timeout: 30_000 });
+  if (!res.ok()) throw new Error(`HTTP ${res.status()}`);
+  const $ = cheerio.load(await res.text());
+  const paragraphs = [];
+  $('.content-blocks .rich-text__body').find('h2, h3, p, li').each((_, el) => {
+    const t = $(el).text().replace(/\s+/g, ' ').trim();
+    if (t) paragraphs.push(t);
+  });
+  return {
+    description: paragraphs.join('\n\n'),
+    headerVenue: $('.event-header__venue').first().text().replace(/\s+/g, ' ').trim(),
+  };
+}
+
 async function scrapeWMC(context) {
   console.log('Scraping WMC...');
-  const page = await context.newPage();
- 
-  // Retry listing load up to 3 times if Angular doesn't render cards
-  let events = [];
+
+  let docs = [];
   for (let attempt = 1; attempt <= 3; attempt++) {
-    await gotoAndSettle(page, 'https://www.wmc.org.uk/en/whats-on/events', 'div.production-card');
-    await page.waitForFunction(
-      () => {
-        const cards = document.querySelectorAll('div.production-card');
-        if (cards.length === 0) return false;
-        const title = cards[0].querySelector('h4.production-card__title');
-        return title && !title.innerText.includes('{{');
-      },
-      { timeout: 25_000 }
-    ).catch(() => {});
- 
-    events = await page.evaluate(() => {
-      return Array.from(document.querySelectorAll('div.production-card')).map((item) => {
-        let imageUrl = '';
-        const img = item.querySelector('img[src], img[data-src], img[data-lazy-src]');
-        if (img) {
-          const raw = img.getAttribute('src') || img.getAttribute('data-src') || img.getAttribute('data-lazy-src') || '';
-          if (raw && !raw.startsWith('data:')) {
-            try { imageUrl = new URL(raw, location.href).href; } catch { imageUrl = raw.trim(); }
-          }
-        }
-        const prefixEl = item.querySelector('p.production-card__prefix');
-        const prefix = (!prefixEl || prefixEl.getAttribute('aria-hidden') === 'true')
-          ? '' : prefixEl.innerText.trim();
-        return {
-          title:     item.querySelector('h4.production-card__title')?.innerText.trim() || '',
-          date:      item.querySelector('p.production-card__date')?.innerText.trim() || '',
-          url:       item.querySelector('a.production-card__link-overlay')?.href || '',
-          venue:     'Wales Millennium Centre',
-          scrapedAt: new Date().toISOString(),
-          _prefix:   prefix,
-          ...(imageUrl ? { imageUrl } : {}),
-        };
-      }).filter((e) => e.title);
-    });
- 
-    if (events.length > 0) break;
-    console.log(`  WMC: 0 cards on attempt ${attempt}, retrying...`);
-    await new Promise(r => setTimeout(r, 3_000));
-  }
- 
-  // Resolve sub-venues
-  for (const event of events) {
-    const subVenue = wmcParseSubVenue(event._prefix);
-    if (subVenue) event.subVenue = subVenue;
-    delete event._prefix;
-  }
- 
-  await page.close();
-  console.log(`  WMC: ${events.length} events found, fetching availability + descriptions...`);
- 
-  // ── Description fetch: concurrency 4 ──────────────────────────────────────
-  const DESC_CONCURRENCY = 4;
-  async function fetchDescription(event) {
-    if (!event.url) return;
-    const descPage = await context.newPage();
     try {
-      await descPage.goto(event.url, { waitUntil: 'domcontentloaded', timeout: 30_000 });
-      // Wait for Angular to render the production detail content.
-      // Try for up to 6 s; fall through gracefully if it never appears.
-      await descPage.waitForSelector('.production-details, .o-lede, [class*="elemental"]', { timeout: 6_000 }).catch(() => {});
-      await descPage.waitForTimeout(1000);
-      const pageData = await descPage.evaluate(() => {
-        // Description — try structured elemental content blocks first
-        const detailsEl = document.querySelector('.production-details');
-        let description = '';
-        if (detailsEl) {
-          const contentBlocks = detailsEl.querySelectorAll('.dnadesign__elemental__models__elementcontent .content-element__content');
-          const paragraphs = [];
-          contentBlocks.forEach(block => {
-            // Only skip blocks that are *entirely* a .o-well (practical info box);
-            // blocks that merely contain one should still yield their other paragraphs.
-            const wells = block.querySelectorAll('.o-well');
-            block.querySelectorAll('p').forEach(p => {
-              // skip paragraphs that live inside an .o-well
-              let inWell = false;
-              for (const w of wells) { if (w.contains(p)) { inWell = true; break; } }
-              if (inWell) return;
-              // Use textContent rather than innerText: wow.js starts elements with
-              // visibility:hidden, and innerText returns "" for hidden elements.
-              const text = (p.textContent || '').trim();
-              if (text) paragraphs.push(text);
-            });
-          });
-          if (paragraphs.length) {
-            description = paragraphs.join('\n\n');
-          } else {
-            // Fallbacks: lede, any paragraph, or the whole details block text
-            const lede = detailsEl.querySelector('p.o-lede, .o-lede p');
-            if (lede) {
-              description = (lede.textContent || '').trim();
-            } else {
-              const firstP = detailsEl.querySelector('p');
-              description = (firstP?.textContent || detailsEl.textContent || '').trim().slice(0, 1000);
-            }
-          }
-        }
-        // Last-resort: og:description meta tag
-        if (!description) {
-          description = document.querySelector('meta[property="og:description"], meta[name="description"]')?.getAttribute('content')?.trim() || '';
-        }
-
-        // Sub-venue from event page header (fallback when card had no prefix)
-        // textContent used for the same visibility reason
-        const headerVenue = (document.querySelector('.production-header__venue')?.textContent || '').trim();
-
-        // Booking ticket URL from the CTA button
-        const ticketUrl = document.querySelector('.production-header__cta a[href]')?.href || '';
-
-        // Price shown on the booking button
-        const ticketPrice = (document.querySelector('.production-header__btn-price')?.textContent || '').trim();
-
-        // On-sale schedule (.production-header__onsale) — only rendered when the
-        // production isn't bookable yet but has scheduled pre-sale/public on-sale
-        // dates. Grab the "on sale to public" tier (or the last tier if there's
-        // no public one) so we can show a real date instead of guessing at
-        // availability. textContent is used since these items can be ng-hide'd.
-        let onSaleDate = '';
-        const onsaleEl = document.querySelector('.production-header__onsale');
-        if (onsaleEl && onsaleEl.getAttribute('aria-hidden') !== 'true') {
-          const items = Array.from(onsaleEl.querySelectorAll('.production-header__onsale-item'));
-          const publicItem = items.find((it) =>
-            /public/i.test((it.querySelector('.production-header__onsale-label')?.textContent || ''))
-          ) || items[items.length - 1];
-          if (publicItem) {
-            onSaleDate = (publicItem.querySelector('.production-header__onsale-date')?.textContent || '').trim();
-          }
-        }
-
-        return { description, headerVenue, ticketUrl, ticketPrice, onSaleDate };
-      });
-
-      event.description = pageData.description;
-
-      // Apply sub-venue from header if not already resolved from listing card prefix
-      if (!event.subVenue && pageData.headerVenue) {
-        const subVenue = wmcParseSubVenue(pageData.headerVenue);
-        if (subVenue) event.subVenue = subVenue;
+      const res = await context.request.get(WMC_INSTANCES_API, { timeout: 60_000 });
+      if (!res.ok()) throw new Error(`HTTP ${res.status()}`);
+      const body = await res.json();
+      docs = Array.isArray(body?.docs) ? body.docs : [];
+      if (body?.hasNextPage) {
+        console.warn(`  WMC: feed reports more pages (totalDocs=${body.totalDocs}, limit=${body.limit}); only page 1 read`);
       }
-
-      // Stash ticket URL, price and on-sale date for use in the availability pass
-      if (pageData.ticketUrl) event._ticketUrl = pageData.ticketUrl;
-      if (pageData.onSaleDate) event._onSaleDate = pageData.onSaleDate;
-      if (pageData.ticketPrice && !event.ticketPriceLabel) {
-        const m = pageData.ticketPrice.match(/£(\d+(?:\.\d+)?)/);
-        if (m) {
-          event.ticketPriceFrom = Number(m[1]);
-          event.ticketPriceTo   = Number(m[1]);
-          event.ticketCurrency  = 'GBP';
-          event.ticketPriceLabel = `£${m[1]}`;
-        }
-      }
+      if (docs.length) break;
+      throw new Error('empty feed');
     } catch (err) {
-      console.warn(`  WMC: could not scrape description for ${event.url}: ${err.message}`);
-      event.description = '';
-    } finally {
-      await descPage.close();
+      console.log(`  WMC: feed attempt ${attempt} failed: ${err.message}`);
+      if (attempt < 3) await new Promise((r) => setTimeout(r, 3_000));
     }
   }
 
-  // Run descriptions in batches of DESC_CONCURRENCY
-  for (let i = 0; i < events.length; i += DESC_CONCURRENCY) {
-    await Promise.all(events.slice(i, i + DESC_CONCURRENCY).map(fetchDescription));
+  // Group performances by parent event, dropping past performances and
+  // events WMC hides from its own What's On listing.
+  const nowMs = Date.now();
+  const byEvent = new Map();
+  for (const inst of docs) {
+    const ev = inst?.event;
+    if (!ev?.id || !ev.url || inst._status !== 'published') continue;
+    if (ev.attributes?.custom?.hide_in_whats_on === true) continue;
+    const startMs = Date.parse(inst.startDate);
+    if (!Number.isNaN(startMs) && startMs < nowMs - 3 * 3600_000) continue;
+    if (!byEvent.has(ev.id)) byEvent.set(ev.id, { ev, instances: [] });
+    byEvent.get(ev.id).instances.push(inst);
   }
 
-  // ── Availability (sequential — hits /performances sub-page, with ticket-page fallback) ──
+  const scrapedAt = new Date().toISOString();
+  const events = [];
+  for (const { ev, instances } of byEvent.values()) {
+    instances.sort((a, b) => Date.parse(a.startDate) - Date.parse(b.startDate));
+    // Run dates come from the event itself (covers performances already past),
+    // falling back to the instances we kept.
+    const startIso = ev.startDate || instances[0]?.startDate;
+    const endIso   = ev.endDate   || instances[instances.length - 1]?.startDate;
+    const s = startIso && wmcLondonDateParts(startIso);
+    const e = endIso && wmcLondonDateParts(endIso);
+    let date = '';
+    if (s) {
+      date = `${s.weekday} ${s.day} ${s.month} ${s.year}`;
+      if (e && `${e.day} ${e.month} ${e.year}` !== `${s.day} ${s.month} ${s.year}`) {
+        date += ` – ${e.weekday} ${e.day} ${e.month} ${e.year}`;
+      }
+    }
+
+    const imageSrc = ev.image?.url || ev.image?.src || '';
+    const venueTitle = ev.venue?.title || '';
+    const out = {
+      title:     String(ev.title || instances[0]?.displayTitle || '').trim(),
+      date,
+      url:       new URL(ev.url, WMC_ORIGIN).href,
+      venue:     'Wales Millennium Centre',
+      scrapedAt,
+      ...(imageSrc ? { imageUrl: `${imageSrc}?w=600&h=400` } : {}),
+      ...(s ? { eventStartDate: s.ymdhm } : {}),
+      ...(e ? { eventEndDate: e.ymdhm } : {}),
+    };
+    if (!out.title) continue;
+    const subVenue = wmcParseSubVenue(venueTitle);
+    if (subVenue) out.subVenue = subVenue;
+    out._instances = instances;
+    events.push(out);
+  }
+
+  console.log(`  WMC: ${events.length} events (${docs.length} performances in feed), fetching descriptions...`);
+
+  // ── Descriptions: event pages are server-rendered, no browser needed ──────
+  const DESC_CONCURRENCY = 4;
+  for (let i = 0; i < events.length; i += DESC_CONCURRENCY) {
+    await Promise.all(events.slice(i, i + DESC_CONCURRENCY).map(async (event) => {
+      try {
+        const pageData = await wmcFetchEventPage(context, event.url);
+        event.description = pageData.description;
+        if (!event.subVenue) {
+          const subVenue = wmcParseSubVenue(pageData.headerVenue);
+          if (subVenue) event.subVenue = subVenue;
+        }
+      } catch (err) {
+        console.warn(`  WMC: could not scrape description for ${event.url}: ${err.message}`);
+        event.description = '';
+      }
+    }));
+  }
+
+  // ── Availability straight from the feed's per-performance seat counts ─────
   for (const event of events) {
-    if (!event.url) continue;
-    const computed = await wmcScrapeAvailability(context, event.url);
+    const instances = event._instances;
+    delete event._instances;
+    const entries = instances
+      .map((inst) => {
+        const label = wmcInstanceAvailabilityLabel(inst);
+        if (!label) return null;
+        const p = wmcLondonDateParts(inst.startDate);
+        const date = p ? `${p.weekday.slice(0, 3)} ${p.day} ${p.month.slice(0, 3)} ${p.year}, ${p.time}` : null;
+        return { date, label };
+      })
+      .filter(Boolean);
+    const computed = wmcComputeAvailability(entries);
     if (computed) {
       event.availability         = computed.availability;
       event.availabilityRange    = computed.availabilityRange;
@@ -1825,53 +1758,19 @@ async function scrapeWMC(context) {
       if (computed.performances && computed.performances.length > 1) {
         event.performances = computed.performances;
       }
-      Object.assign(event, wmcComputePopularity(event));
-    } else if (event._onSaleDate) {
-      // Not bookable yet, but the page told us exactly when it goes on sale —
-      // show that instead of guessing at a tier or a generic "unknown".
-      event.availability         = `Tickets on sale: ${event._onSaleDate}`;
+    } else if (instances.length && instances.every((inst) => inst.bookingStatus === 'comingSoon')) {
+      event.availability         = 'COMING SOON';
       event.availabilityRange    = null;
       event.availabilityEstimate = null;
-      Object.assign(event, wmcComputePopularity(event));
-    } else if (event._ticketUrl) {
-      // No /performances page — check the direct booking page for sold-out status
-      const bestAvailUrl = event._ticketUrl.replace(
-        /\/en\/booking\/production\/(\d+)$/,
-        '/en/booking/production/bestavailable/$1'
-      );
-      const ticketPage = await context.newPage();
-      try {
-        await ticketPage.goto(bestAvailUrl, { waitUntil: 'domcontentloaded', timeout: 30_000 });
-        await ticketPage.waitForTimeout(1000);
-        const soldOut = await ticketPage.evaluate(() => {
-          const content = document.querySelector('.content.group, #page-content');
-          if (!content) return false;
-          return /\bsold\s*out\b/i.test(content.innerText || '');
-        });
-        if (soldOut) {
-          event.availability         = 'SOLD OUT';
-          event.availabilityRange    = '100%';
-          event.availabilityEstimate = 100;
-        } else {
-          // No seat-map/tier breakdown is exposed on this page — it's just an
-          // unreserved "on sale" or not-yet-public "upcoming" allocation, so
-          // there's no real signal to estimate a tier from. Don't guess.
-          event.availability         = 'UNKNOWN';
-          event.availabilityRange    = null;
-          event.availabilityEstimate = null;
-        }
-        Object.assign(event, wmcComputePopularity(event));
-      } catch {
-        // leave availability unset
-      } finally {
-        await ticketPage.close();
-      }
+    } else {
+      event.availability         = 'UNKNOWN';
+      event.availabilityRange    = null;
+      event.availabilityEstimate = null;
     }
-    delete event._ticketUrl;
-    delete event._onSaleDate;
+    Object.assign(event, wmcComputePopularity(event));
   }
 
-  const withAvailability = events.filter((e) => e.availability).length;
+  const withAvailability = events.filter((e) => e.availabilityEstimate != null).length;
   const withSubVenue     = events.filter((e) => e.subVenue).length;
   const withDescription  = events.filter((e) => e.description).length;
   console.log(`  WMC: done. ${withAvailability}/${events.length} with availability, ${withSubVenue}/${events.length} with sub-venue, ${withDescription}/${events.length} with description.`);

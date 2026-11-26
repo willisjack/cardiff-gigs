@@ -2,6 +2,7 @@ const { chromium } = require('playwright');
 const fs = require('fs');
 const path = require('path');
 const axios = require('axios');
+const cheerio = require('cheerio');
 
 // ---------------------------------------------------------------------------
 // Welsh-language acts list (curated, case-insensitive lookup)
@@ -100,7 +101,7 @@ function wmcParseSubVenue(rawPrefix) {
   if (!rawPrefix) return null;
   const lower = rawPrefix.toLowerCase().trim();
   for (const { match, label } of WMC_SUB_VENUES) {
-    if (lower.startsWith(match)) return label;
+    if (lower.includes(match)) return label;
   }
   return null;
 }
@@ -304,64 +305,6 @@ function wmcComputePopularity(ev) {
   else                            popularityLabel = 'Very low demand';
 
   return { popularityScore, popularityLabel };
-}
-
-async function wmcWaitForAngularBind(page, timeout = 15_000) {
-  try {
-    await page.waitForFunction(
-      () => {
-        const list = document.querySelector('.calendar-list-filter-list--performance-list');
-        if (!list) return false;
-        if (list.classList.contains('ng-hide')) {
-          return !!document.querySelector('.events-error:not(.ng-hide)');
-        }
-        const availDivs = list.querySelectorAll('.calendar-list-entry__availablity');
-        if (availDivs.length === 0) return true;
-        return Array.from(availDivs).some((el) => !el.innerText.includes('{{'));
-      },
-      { timeout }
-    );
-  } catch {}
-}
-
-async function wmcScrapeAvailability(context, eventUrl) {
-  const perfUrl = `${eventUrl.replace(/\/$/, '')}/performances`;
-  const page = await context.newPage();
-  try {
-    await page.goto(perfUrl, { waitUntil: 'domcontentloaded', timeout: 45_000 });
-    await wmcWaitForAngularBind(page);
-    const entries = await page.evaluate(() => {
-      const list = document.querySelector('.calendar-list-filter-list--performance-list');
-      if (!list) return [];
-      const clean = (t) => (t || '').replace(/\s+/g, ' ').trim();
-
-      // Preferred: one row per performance so we can attach a date to each
-      // availability label (BEM: the availability node lives inside the entry).
-      const rows = Array.from(list.querySelectorAll('.calendar-list-entry'));
-      if (rows.length) {
-        return rows
-          .map((row) => {
-            const label = clean(row.querySelector('.calendar-list-entry__availablity')?.innerText);
-            const dateEl = row.querySelector(
-              '.calendar-list-entry__date, .calendar-list-entry__time, time, [class*="date"], [class*="time"]'
-            );
-            const date = dateEl ? clean(dateEl.innerText || dateEl.textContent) : null;
-            return { date: date || null, label };
-          })
-          .filter((e) => e.label && !e.label.includes('{{'));
-      }
-
-      // Fallback: flat availability nodes only (no per-night date available).
-      return Array.from(list.querySelectorAll('.calendar-list-entry__availablity'))
-        .map((el) => ({ date: null, label: clean(el.innerText) }))
-        .filter((e) => e.label && !e.label.includes('{{'));
-    });
-    return wmcComputeAvailability(entries);
-  } catch {
-    return null;
-  } finally {
-    await page.close();
-  }
 }
 
 /**
@@ -1641,182 +1584,172 @@ async function scrapeGlobe(context) {
   console.log(`  Globe: ${events.length} events`);
   return events;
 }
+// WMC moved to a new site (Basker CMS + Tessitura) around 2026-11-19. The old
+// Angular listing at /en/whats-on/events now redirects to a "featured" page,
+// and the full "Everything" listing is drawn client-side from this JSON feed,
+// with one row per performance.
+const WMC_ORIGIN = 'https://www.wmc.org.uk';
+const WMC_INSTANCES_API = `${WMC_ORIGIN}/api/event-instances.json?locale=en`;
+
+/** "Thu 5 Nov 2026" style parts in Europe/London. */
+function wmcLondonDateParts(iso) {
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return null;
+  const fmt = (opts) => new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/London', ...opts }).format(d);
+  return {
+    weekday: fmt({ weekday: 'long' }),
+    day:     fmt({ day: 'numeric' }),
+    month:   fmt({ month: 'long' }),
+    year:    fmt({ year: 'numeric' }),
+    time:    fmt({ hour: 'numeric', minute: '2-digit', hour12: true }).replace(/\s+/g, '').toLowerCase(),
+    ymdhm:   new Intl.DateTimeFormat('sv-SE', {
+      timeZone: 'Europe/London', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit',
+    }).format(d) + ':00',
+  };
+}
+
+/**
+ * Availability label for one performance, using the same rule as the WMC
+ * site's own bundle: remaining seats as a share of the venue's capacity
+ * (<10% limited, <40% moderate, otherwise good), and 0 seats = sold out.
+ * Returns null when there's no usable signal (not on sale / no capacity).
+ */
+function wmcInstanceAvailabilityLabel(inst) {
+  const raw = inst?.tessitura?.availability;
+  if (raw == null || raw === '') return null;
+  const seats = parseInt(raw, 10);
+  if (Number.isNaN(seats)) return null;
+  if (inst.bookingStatus === 'comingSoon') return null;
+  if (seats <= 0) return 'sold out';
+  const capacity = parseInt(inst?.event?.venue?.attributes?.custom?.capacity || 0, 10);
+  if (!capacity) return null;
+  const pct = (seats / capacity) * 100;
+  if (pct < 10) return 'limited availability';
+  if (pct < 40) return 'moderate availability';
+  return 'good availability';
+}
+
+async function wmcFetchEventPage(context, url) {
+  const res = await context.request.get(url, { timeout: 30_000 });
+  if (!res.ok()) throw new Error(`HTTP ${res.status()}`);
+  const $ = cheerio.load(await res.text());
+  const paragraphs = [];
+  $('.content-blocks .rich-text__body').find('h2, h3, p, li').each((_, el) => {
+    const t = $(el).text().replace(/\s+/g, ' ').trim();
+    if (t) paragraphs.push(t);
+  });
+  return {
+    description: paragraphs.join('\n\n'),
+    headerVenue: $('.event-header__venue').first().text().replace(/\s+/g, ' ').trim(),
+  };
+}
+
 async function scrapeWMC(context) {
   console.log('Scraping WMC...');
-  const page = await context.newPage();
- 
-  // Retry listing load up to 3 times if Angular doesn't render cards
-  let events = [];
+
+  let docs = [];
   for (let attempt = 1; attempt <= 3; attempt++) {
-    await gotoAndSettle(page, 'https://www.wmc.org.uk/en/whats-on/events', 'div.production-card');
-    await page.waitForFunction(
-      () => {
-        const cards = document.querySelectorAll('div.production-card');
-        if (cards.length === 0) return false;
-        const title = cards[0].querySelector('h4.production-card__title');
-        return title && !title.innerText.includes('{{');
-      },
-      { timeout: 25_000 }
-    ).catch(() => {});
- 
-    events = await page.evaluate(() => {
-      return Array.from(document.querySelectorAll('div.production-card')).map((item) => {
-        let imageUrl = '';
-        const img = item.querySelector('img[src], img[data-src], img[data-lazy-src]');
-        if (img) {
-          const raw = img.getAttribute('src') || img.getAttribute('data-src') || img.getAttribute('data-lazy-src') || '';
-          if (raw && !raw.startsWith('data:')) {
-            try { imageUrl = new URL(raw, location.href).href; } catch { imageUrl = raw.trim(); }
-          }
-        }
-        const prefixEl = item.querySelector('p.production-card__prefix');
-        const prefix = (!prefixEl || prefixEl.getAttribute('aria-hidden') === 'true')
-          ? '' : prefixEl.innerText.trim();
-        return {
-          title:     item.querySelector('h4.production-card__title')?.innerText.trim() || '',
-          date:      item.querySelector('p.production-card__date')?.innerText.trim() || '',
-          url:       item.querySelector('a.production-card__link-overlay')?.href || '',
-          venue:     'Wales Millennium Centre',
-          scrapedAt: new Date().toISOString(),
-          _prefix:   prefix,
-          ...(imageUrl ? { imageUrl } : {}),
-        };
-      }).filter((e) => e.title);
-    });
- 
-    if (events.length > 0) break;
-    console.log(`  WMC: 0 cards on attempt ${attempt}, retrying...`);
-    await new Promise(r => setTimeout(r, 3_000));
-  }
- 
-  // Resolve sub-venues
-  for (const event of events) {
-    const subVenue = wmcParseSubVenue(event._prefix);
-    if (subVenue) event.subVenue = subVenue;
-    delete event._prefix;
-  }
- 
-  await page.close();
-  console.log(`  WMC: ${events.length} events found, fetching availability + descriptions...`);
- 
-  // ── Description fetch: concurrency 4 ──────────────────────────────────────
-  const DESC_CONCURRENCY = 4;
-  async function fetchDescription(event) {
-    if (!event.url) return;
-    const descPage = await context.newPage();
     try {
-      await descPage.goto(event.url, { waitUntil: 'domcontentloaded', timeout: 30_000 });
-      // Wait for Angular to render the production detail content.
-      // Try for up to 6 s; fall through gracefully if it never appears.
-      await descPage.waitForSelector('.production-details, .o-lede, [class*="elemental"]', { timeout: 6_000 }).catch(() => {});
-      await descPage.waitForTimeout(1000);
-      const pageData = await descPage.evaluate(() => {
-        // Description — try structured elemental content blocks first
-        const detailsEl = document.querySelector('.production-details');
-        let description = '';
-        if (detailsEl) {
-          const contentBlocks = detailsEl.querySelectorAll('.dnadesign__elemental__models__elementcontent .content-element__content');
-          const paragraphs = [];
-          contentBlocks.forEach(block => {
-            // Only skip blocks that are *entirely* a .o-well (practical info box);
-            // blocks that merely contain one should still yield their other paragraphs.
-            const wells = block.querySelectorAll('.o-well');
-            block.querySelectorAll('p').forEach(p => {
-              // skip paragraphs that live inside an .o-well
-              let inWell = false;
-              for (const w of wells) { if (w.contains(p)) { inWell = true; break; } }
-              if (inWell) return;
-              // Use textContent rather than innerText: wow.js starts elements with
-              // visibility:hidden, and innerText returns "" for hidden elements.
-              const text = (p.textContent || '').trim();
-              if (text) paragraphs.push(text);
-            });
-          });
-          if (paragraphs.length) {
-            description = paragraphs.join('\n\n');
-          } else {
-            // Fallbacks: lede, any paragraph, or the whole details block text
-            const lede = detailsEl.querySelector('p.o-lede, .o-lede p');
-            if (lede) {
-              description = (lede.textContent || '').trim();
-            } else {
-              const firstP = detailsEl.querySelector('p');
-              description = (firstP?.textContent || detailsEl.textContent || '').trim().slice(0, 1000);
-            }
-          }
-        }
-        // Last-resort: og:description meta tag
-        if (!description) {
-          description = document.querySelector('meta[property="og:description"], meta[name="description"]')?.getAttribute('content')?.trim() || '';
-        }
-
-        // Sub-venue from event page header (fallback when card had no prefix)
-        // textContent used for the same visibility reason
-        const headerVenue = (document.querySelector('.production-header__venue')?.textContent || '').trim();
-
-        // Booking ticket URL from the CTA button
-        const ticketUrl = document.querySelector('.production-header__cta a[href]')?.href || '';
-
-        // Price shown on the booking button
-        const ticketPrice = (document.querySelector('.production-header__btn-price')?.textContent || '').trim();
-
-        // On-sale schedule (.production-header__onsale) — only rendered when the
-        // production isn't bookable yet but has scheduled pre-sale/public on-sale
-        // dates. Grab the "on sale to public" tier (or the last tier if there's
-        // no public one) so we can show a real date instead of guessing at
-        // availability. textContent is used since these items can be ng-hide'd.
-        let onSaleDate = '';
-        const onsaleEl = document.querySelector('.production-header__onsale');
-        if (onsaleEl && onsaleEl.getAttribute('aria-hidden') !== 'true') {
-          const items = Array.from(onsaleEl.querySelectorAll('.production-header__onsale-item'));
-          const publicItem = items.find((it) =>
-            /public/i.test((it.querySelector('.production-header__onsale-label')?.textContent || ''))
-          ) || items[items.length - 1];
-          if (publicItem) {
-            onSaleDate = (publicItem.querySelector('.production-header__onsale-date')?.textContent || '').trim();
-          }
-        }
-
-        return { description, headerVenue, ticketUrl, ticketPrice, onSaleDate };
-      });
-
-      event.description = pageData.description;
-
-      // Apply sub-venue from header if not already resolved from listing card prefix
-      if (!event.subVenue && pageData.headerVenue) {
-        const subVenue = wmcParseSubVenue(pageData.headerVenue);
-        if (subVenue) event.subVenue = subVenue;
+      const res = await context.request.get(WMC_INSTANCES_API, { timeout: 60_000 });
+      if (!res.ok()) throw new Error(`HTTP ${res.status()}`);
+      const body = await res.json();
+      docs = Array.isArray(body?.docs) ? body.docs : [];
+      if (body?.hasNextPage) {
+        console.warn(`  WMC: feed reports more pages (totalDocs=${body.totalDocs}, limit=${body.limit}); only page 1 read`);
       }
-
-      // Stash ticket URL, price and on-sale date for use in the availability pass
-      if (pageData.ticketUrl) event._ticketUrl = pageData.ticketUrl;
-      if (pageData.onSaleDate) event._onSaleDate = pageData.onSaleDate;
-      if (pageData.ticketPrice && !event.ticketPriceLabel) {
-        const m = pageData.ticketPrice.match(/£(\d+(?:\.\d+)?)/);
-        if (m) {
-          event.ticketPriceFrom = Number(m[1]);
-          event.ticketPriceTo   = Number(m[1]);
-          event.ticketCurrency  = 'GBP';
-          event.ticketPriceLabel = `£${m[1]}`;
-        }
-      }
+      if (docs.length) break;
+      throw new Error('empty feed');
     } catch (err) {
-      console.warn(`  WMC: could not scrape description for ${event.url}: ${err.message}`);
-      event.description = '';
-    } finally {
-      await descPage.close();
+      console.log(`  WMC: feed attempt ${attempt} failed: ${err.message}`);
+      if (attempt < 3) await new Promise((r) => setTimeout(r, 3_000));
     }
   }
 
-  // Run descriptions in batches of DESC_CONCURRENCY
-  for (let i = 0; i < events.length; i += DESC_CONCURRENCY) {
-    await Promise.all(events.slice(i, i + DESC_CONCURRENCY).map(fetchDescription));
+  // Group performances by parent event, dropping past performances and
+  // events WMC hides from its own What's On listing.
+  const nowMs = Date.now();
+  const byEvent = new Map();
+  for (const inst of docs) {
+    const ev = inst?.event;
+    if (!ev?.id || !ev.url || inst._status !== 'published') continue;
+    if (ev.attributes?.custom?.hide_in_whats_on === true) continue;
+    const startMs = Date.parse(inst.startDate);
+    if (!Number.isNaN(startMs) && startMs < nowMs - 3 * 3600_000) continue;
+    if (!byEvent.has(ev.id)) byEvent.set(ev.id, { ev, instances: [] });
+    byEvent.get(ev.id).instances.push(inst);
   }
 
-  // ── Availability (sequential — hits /performances sub-page, with ticket-page fallback) ──
+  const scrapedAt = new Date().toISOString();
+  const events = [];
+  for (const { ev, instances } of byEvent.values()) {
+    instances.sort((a, b) => Date.parse(a.startDate) - Date.parse(b.startDate));
+    // Run dates come from the event itself (covers performances already past),
+    // falling back to the instances we kept.
+    const startIso = ev.startDate || instances[0]?.startDate;
+    const endIso   = ev.endDate   || instances[instances.length - 1]?.startDate;
+    const s = startIso && wmcLondonDateParts(startIso);
+    const e = endIso && wmcLondonDateParts(endIso);
+    let date = '';
+    if (s) {
+      date = `${s.weekday} ${s.day} ${s.month} ${s.year}`;
+      if (e && `${e.day} ${e.month} ${e.year}` !== `${s.day} ${s.month} ${s.year}`) {
+        date += ` – ${e.weekday} ${e.day} ${e.month} ${e.year}`;
+      }
+    }
+
+    const imageSrc = ev.image?.url || ev.image?.src || '';
+    const venueTitle = ev.venue?.title || '';
+    const out = {
+      title:     String(ev.title || instances[0]?.displayTitle || '').trim(),
+      date,
+      url:       new URL(ev.url, WMC_ORIGIN).href,
+      venue:     'Wales Millennium Centre',
+      scrapedAt,
+      ...(imageSrc ? { imageUrl: `${imageSrc}?w=600&h=400` } : {}),
+      ...(s ? { eventStartDate: s.ymdhm } : {}),
+      ...(e ? { eventEndDate: e.ymdhm } : {}),
+    };
+    if (!out.title) continue;
+    const subVenue = wmcParseSubVenue(venueTitle);
+    if (subVenue) out.subVenue = subVenue;
+    out._instances = instances;
+    events.push(out);
+  }
+
+  console.log(`  WMC: ${events.length} events (${docs.length} performances in feed), fetching descriptions...`);
+
+  // ── Descriptions: event pages are server-rendered, no browser needed ──────
+  const DESC_CONCURRENCY = 4;
+  for (let i = 0; i < events.length; i += DESC_CONCURRENCY) {
+    await Promise.all(events.slice(i, i + DESC_CONCURRENCY).map(async (event) => {
+      try {
+        const pageData = await wmcFetchEventPage(context, event.url);
+        event.description = pageData.description;
+        if (!event.subVenue) {
+          const subVenue = wmcParseSubVenue(pageData.headerVenue);
+          if (subVenue) event.subVenue = subVenue;
+        }
+      } catch (err) {
+        console.warn(`  WMC: could not scrape description for ${event.url}: ${err.message}`);
+        event.description = '';
+      }
+    }));
+  }
+
+  // ── Availability straight from the feed's per-performance seat counts ─────
   for (const event of events) {
-    if (!event.url) continue;
-    const computed = await wmcScrapeAvailability(context, event.url);
+    const instances = event._instances;
+    delete event._instances;
+    const entries = instances
+      .map((inst) => {
+        const label = wmcInstanceAvailabilityLabel(inst);
+        if (!label) return null;
+        const p = wmcLondonDateParts(inst.startDate);
+        const date = p ? `${p.weekday.slice(0, 3)} ${p.day} ${p.month.slice(0, 3)} ${p.year}, ${p.time}` : null;
+        return { date, label };
+      })
+      .filter(Boolean);
+    const computed = wmcComputeAvailability(entries);
     if (computed) {
       event.availability         = computed.availability;
       event.availabilityRange    = computed.availabilityRange;
@@ -1825,53 +1758,19 @@ async function scrapeWMC(context) {
       if (computed.performances && computed.performances.length > 1) {
         event.performances = computed.performances;
       }
-      Object.assign(event, wmcComputePopularity(event));
-    } else if (event._onSaleDate) {
-      // Not bookable yet, but the page told us exactly when it goes on sale —
-      // show that instead of guessing at a tier or a generic "unknown".
-      event.availability         = `Tickets on sale: ${event._onSaleDate}`;
+    } else if (instances.length && instances.every((inst) => inst.bookingStatus === 'comingSoon')) {
+      event.availability         = 'COMING SOON';
       event.availabilityRange    = null;
       event.availabilityEstimate = null;
-      Object.assign(event, wmcComputePopularity(event));
-    } else if (event._ticketUrl) {
-      // No /performances page — check the direct booking page for sold-out status
-      const bestAvailUrl = event._ticketUrl.replace(
-        /\/en\/booking\/production\/(\d+)$/,
-        '/en/booking/production/bestavailable/$1'
-      );
-      const ticketPage = await context.newPage();
-      try {
-        await ticketPage.goto(bestAvailUrl, { waitUntil: 'domcontentloaded', timeout: 30_000 });
-        await ticketPage.waitForTimeout(1000);
-        const soldOut = await ticketPage.evaluate(() => {
-          const content = document.querySelector('.content.group, #page-content');
-          if (!content) return false;
-          return /\bsold\s*out\b/i.test(content.innerText || '');
-        });
-        if (soldOut) {
-          event.availability         = 'SOLD OUT';
-          event.availabilityRange    = '100%';
-          event.availabilityEstimate = 100;
-        } else {
-          // No seat-map/tier breakdown is exposed on this page — it's just an
-          // unreserved "on sale" or not-yet-public "upcoming" allocation, so
-          // there's no real signal to estimate a tier from. Don't guess.
-          event.availability         = 'UNKNOWN';
-          event.availabilityRange    = null;
-          event.availabilityEstimate = null;
-        }
-        Object.assign(event, wmcComputePopularity(event));
-      } catch {
-        // leave availability unset
-      } finally {
-        await ticketPage.close();
-      }
+    } else {
+      event.availability         = 'UNKNOWN';
+      event.availabilityRange    = null;
+      event.availabilityEstimate = null;
     }
-    delete event._ticketUrl;
-    delete event._onSaleDate;
+    Object.assign(event, wmcComputePopularity(event));
   }
 
-  const withAvailability = events.filter((e) => e.availability).length;
+  const withAvailability = events.filter((e) => e.availabilityEstimate != null).length;
   const withSubVenue     = events.filter((e) => e.subVenue).length;
   const withDescription  = events.filter((e) => e.description).length;
   console.log(`  WMC: done. ${withAvailability}/${events.length} with availability, ${withSubVenue}/${events.length} with sub-venue, ${withDescription}/${events.length} with description.`);
@@ -4344,172 +4243,345 @@ async function scrapeLlandaffCathedral(context) {
 // ---------------------------------------------------------------------------
 // Paradise Garden
 // ---------------------------------------------------------------------------
+//
+// Paradise Garden publishes one Squarespace page per month
+// (/events/november2026) as a hand-typed text block, and the markup changes
+// from month to month. Layouts seen so far:
+//
+//   nov 2025      <h3>sat 1</h3> <p>title</p> <p>dj - genres</p>
+//   dec 2025      <h3>wed 3: title</h3> <p>live - genres</p>
+//   jan–jul 2026  <h4|p>fri 9</h4|p> <h3>title</h3> <h3>2nd title</h3>
+//                 <p|h4>dj - genres</p|h4>, plus named days ("good friday")
+//   aug 2026 on   all <p>: date, title wrapped over several lines, genre
+//                 line, then an empty <p> between events
+//
+// So the parser ignores tags as far as possible: it flattens the block into
+// lines and classifies each line by its text (date / genre / continuation /
+// blank separator). Tags are only used as a hint when the page has them: a
+// heading inside a day starts a new event. test/paradise-garden.test.js runs
+// it against a snapshot of every archived month.
+
+const PG_MONTHS = ['january', 'february', 'march', 'april', 'may', 'june',
+  'july', 'august', 'september', 'october', 'november', 'december'];
+
+const PG_WEEKDAYS = {
+  sun: 0, sunday: 0, mon: 1, monday: 1, tue: 2, tues: 2, tuesday: 2,
+  wed: 3, weds: 3, wednesday: 3, thu: 4, thur: 4, thurs: 4, thursday: 4,
+  fri: 5, friday: 5, sat: 6, saturday: 6,
+};
+const PG_WEEKDAY_RE = '(?:mon|tue|tues|wed|weds|thu|thur|thurs|fri|sat|sun)(?:day|nesday|sday|rsday|urday)?';
+
+// "wed 3", "thur 14th", "sat 4:", "fri 5 (new distraktions)", "wed 3: ffondŵ",
+// "friday 5th - title", "5 fri" (day first).
+const PG_DATE_LINE_RE = new RegExp(
+  `^(?:(${PG_WEEKDAY_RE})\\.?,?\\s+(\\d{1,2})(?:st|nd|rd|th)?|(\\d{1,2})(?:st|nd|rd|th)?\\s+(${PG_WEEKDAY_RE})\\.?)` +
+  `(?![:.]\\d)(?=$|[\\s:.,\\-–—(])\\s*[:.,\\-–—]?\\s*(.*)$`,
+  'i'
+);
+
+// Named days with no number. Fixed dates as [month, day]; for the rest the
+// weekday inside the name ("good friday") resolves to the next such day.
+const PG_FIXED_DAYS = [
+  [/^hallowe'?en\b/i, [10, 31]],
+  [/^christmas eve\b/i, [12, 24]],
+  [/^christmas( day)?\b/i, [12, 25]],
+  [/^boxing day\b/i, [12, 26]],
+  [/^new year'?s eve\b|^nye\b/i, [12, 31]],
+  [/^new year'?s day\b/i, [1, 1]],
+  [/^st\.? david'?s day\b/i, [3, 1]],
+  [/^valentine'?s( day)?\b/i, [2, 14]],
+];
+
+// Lines that describe the event rather than name it: "dj - house", "live – folk".
+const PG_GENRE_LINE_RE = /^(?:dj|djs|dj set|live|live music|market|film|talk|workshop|quiz|comedy|club|party|social)\s*[-–—:\/]/i;
+
+// Not events: opening hours, closures, private bookings, drinks offers.
+const PG_SKIP_TITLE_RE = /^(?:private\s+(?:hire|party|event|booking)|closed\b|open from\b|open\s+\d|two-for|2\s*for|2-4-|happy hour)|[:\-–—]\s*closed\s*$|\bcocktails (?:from|until)\b/i;
+
+function pgPad(n) { return String(n).padStart(2, '0'); }
+
+/**
+ * Parse one month's page into [{ dateStr, title, description }].
+ * `html` may be the whole page or just the content block.
+ */
+function parseParadiseGardenMonth(html, { year: pageYear, month: pageMonth }) {
+  const $ = cheerio.load(html);
+  // A page can run into the next month under a heading like "february".
+  let year = pageYear;
+  let month = pageMonth;
+
+  // Turn <br> into line breaks so wrapped text inside one <p> splits too.
+  $('br').replaceWith('\n');
+
+  const LINE_TAGS = 'h1,h2,h3,h4,h5,h6,p,li';
+  const blockLines = (block) => {
+    const lines = [];
+    $(block).find(LINE_TAGS).each((_, el) => {
+      if ($(el).find(LINE_TAGS).length) return; // only leaf text elements
+      const tag = el.tagName.toLowerCase();
+      const parts = $(el).text().split('\n').map((s) => s.replace(/\s+/g, ' ').trim());
+      if (parts.every((p) => !p)) { lines.push({ tag, text: '' }); return; }
+      for (const p of parts) if (p) lines.push({ tag, text: p });
+    });
+    return lines;
+  };
+
+  // The listing is whichever text block has the most date lines.
+  let lines = [];
+  let bestDates = 0;
+  $('.sqs-html-content').each((_, block) => {
+    const ls = blockLines(block);
+    const n = ls.filter((l) => PG_DATE_LINE_RE.test(l.text)).length;
+    if (n > bestDates) { bestDates = n; lines = ls; }
+  });
+  if (!bestDates) {
+    // Not a Squarespace block (or a new wrapper): fall back to the whole body.
+    lines = blockLines($('body').length ? $('body') : $.root());
+  }
+
+  const events = [];
+  let day = null;        // { y, m, d } of the current date heading
+  let segments = [];     // events being assembled for the current day
+  let seg = null;        // { titleLines: [], descLines: [], titleClosed }
+
+  const newSeg = () => { seg = { titleLines: [], descLines: [], titleClosed: false, afterGenre: false }; segments.push(seg); };
+  const flushDay = () => {
+    if (day) {
+      for (const s of segments) {
+        let title = s.titleLines.join(' ').replace(/\s+/g, ' ').trim();
+        const descLines = [...s.descLines];
+        // Genre run on after the title on the same line: "... & willow dj - house, acid"
+        const tail = title.match(/\s((?:live\s*(?:&|and)\s*dj|dj set|djs|dj|live)\s*[-–—]\s.*)$/i);
+        if (tail && tail.index > 0) {
+          descLines.unshift(tail[1]);
+          title = title.slice(0, tail.index);
+        }
+        title = title.replace(/[\s,:;&+–—-]+$/, '').trim();
+        if (!title || PG_SKIP_TITLE_RE.test(title)) continue;
+        events.push({
+          dateStr: `${day.y}-${pgPad(day.m)}-${pgPad(day.d)}`,
+          title,
+          description: descLines.join('\n').trim(),
+        });
+      }
+    }
+    segments = [];
+    seg = null;
+  };
+  const startDay = (y, m, d) => { flushDay(); day = { y, m, d }; };
+
+  const nextWeekday = (wd) => {
+    // Next date in this month with weekday `wd`, after the current day (or from the 1st).
+    const startD = day && day.m === month && day.y === year ? day.d + 1 : 1;
+    for (let d = startD; d <= 31; d++) {
+      const dt = new Date(Date.UTC(year, month - 1, d));
+      if (dt.getUTCMonth() !== month - 1) break;
+      if (dt.getUTCDay() === wd) return d;
+    }
+    return null;
+  };
+
+  const isContinuation = (prev, text) =>
+    /[,&+:\/]$|\s(?:w\/|with|and|x|vs\.?|feat\.?|ft\.?)$/i.test(prev) ||
+    /^(?:w\/|with\s|&|\+|and\s|x\s|feat\.?\s|ft\.?\s)/i.test(text);
+
+  for (const { tag, text } of lines) {
+    if (!text) { seg = null; continue; }                      // blank line ends an event
+    if (/events at paradise garden/i.test(text)) continue;     // page heading
+
+    // ── Month heading ("february", "march 2026") ──
+    const mh = text.toLowerCase().match(/^([a-z]+)(?:\s+(\d{4}))?:?$/);
+    const mhIdx = mh ? PG_MONTHS.indexOf(mh[1]) : -1;
+    if (mhIdx >= 0) {
+      flushDay();
+      day = null;
+      const m = mhIdx + 1;
+      year = mh[2] ? Number(mh[2]) : (m < month ? year + 1 : year);
+      month = m;
+      continue;
+    }
+
+    // ── Date line ──
+    const dm = text.match(PG_DATE_LINE_RE);
+    if (dm) {
+      const d = Number(dm[2] || dm[3]);
+      if (d >= 1 && d <= 31) {
+        // Numbers wrapping round ("thur 30" then "fri 1") with no month
+        // heading means the page has run into next month.
+        if (day && day.y === year && day.m === month && d < day.d - 7) {
+          month = month === 12 ? 1 : month + 1;
+          if (month === 1) year += 1;
+        }
+        // Weekday and number disagree ("sun 25" when the 25th is a Wednesday):
+        // trust the weekday if it lands within 3 days and after the previous date.
+        const wdName = (dm[1] || dm[4] || '').toLowerCase();
+        const wantWd = PG_WEEKDAYS[wdName] ?? PG_WEEKDAYS[wdName.replace(/(day|nesday|sday|rsday|urday)$/, '')];
+        let dd = d;
+        if (wantWd != null && new Date(Date.UTC(year, month - 1, d)).getUTCDay() !== wantWd) {
+          const after = day && day.y === year && day.m === month ? day.d : 0;
+          for (const off of [-1, 1, -2, 2, -3, 3]) {
+            const c = d + off;
+            const cd = new Date(Date.UTC(year, month - 1, c));
+            if (c > after && cd.getUTCMonth() === month - 1 && cd.getUTCDay() === wantWd) { dd = c; break; }
+          }
+        }
+        startDay(year, month, dd);
+        const rest = (dm[5] || '').replace(/^\(.*?\)\s*/, '').trim();
+        if (rest) { newSeg(); seg.titleLines.push(rest); }
+        continue;
+      }
+    }
+
+    // ── Weekday list with no numbers ("fri, sat & sun") → the next such first day ──
+    const wdList = text.toLowerCase().match(new RegExp(`^(${PG_WEEKDAY_RE})\\.?(?:\\s*(?:,|&|\\+|and|-|–|to)\\s*${PG_WEEKDAY_RE}\\.?)+:?$`));
+    if (wdList) {
+      const first = wdList[1].replace(/(day|nesday|sday|rsday|urday)$/, '');
+      const wd = PG_WEEKDAYS[first] ?? PG_WEEKDAYS[wdList[1]];
+      const d = wd != null ? nextWeekday(wd) : null;
+      if (d) { startDay(year, month, d); continue; }
+    }
+
+    // ── Named day ("good friday", "halloween", "easter sunday") ──
+    const short = text.split(/\s+/).length <= 4 && !/\d/.test(text);
+    if (short) {
+      const fixed = PG_FIXED_DAYS.find(([re]) => re.test(text));
+      if (fixed) {
+        const [fm, fd] = fixed[1];
+        // A fixed day from an adjacent month (halloween on the november page).
+        const fy = fm === 12 && month === 1 ? year - 1 : fm === 1 && month === 12 ? year + 1 : year;
+        startDay(fy, fm, fd);
+        continue;
+      }
+      const wdMatch = text.toLowerCase().match(new RegExp(`\\b(${Object.keys(PG_WEEKDAYS).join('|')})\\b`));
+      if (wdMatch && /^(?:good|easter|holy|bank|black|super|shrove|ash|palm|maundy|pancake)\b/i.test(text)) {
+        const d = nextWeekday(PG_WEEKDAYS[wdMatch[1]]);
+        if (d) { startDay(year, month, d); continue; }
+      }
+    }
+
+    if (!day) continue; // intro text before the first date
+
+    // ── Event body ──
+    const isHeading = /^h[1-6]$/.test(tag);
+    const isGenre = PG_GENRE_LINE_RE.test(text);
+
+    if (isGenre) {
+      if (!seg) newSeg();
+      seg.descLines.push(text);
+      seg.titleClosed = true;
+      seg.afterGenre = true;
+      continue;
+    }
+
+    // A title-level heading (h3, or any heading when the page uses headings
+    // for titles) starts a new event within the day, unless it continues one.
+    if (isHeading && tag !== 'h4' && tag !== 'h5' && tag !== 'h6') {
+      const prev = seg && seg.titleLines[seg.titleLines.length - 1];
+      if (seg && !seg.titleClosed && prev && isContinuation(prev, text)) seg.titleLines.push(text);
+      else { newSeg(); seg.titleLines.push(text); }
+      continue;
+    }
+
+    if (!seg) { newSeg(); seg.titleLines.push(text); continue; }
+
+    // After a genre line, a fresh line is the day's next event
+    // ("early: band / live - rock / from 9.30pm: dj / dj - house"), unless it
+    // carries on the line-up ("w/ ...") or is an aside ("(invite only)").
+    if (seg.afterGenre && !/^(?:w\/|with\s|&|\+|and\s|\()/i.test(text)) {
+      newSeg(); seg.titleLines.push(text); continue;
+    }
+
+    const prev = seg.titleLines[seg.titleLines.length - 1];
+    if (!seg.titleClosed && prev && isContinuation(prev, text)) {
+      seg.titleLines.push(text);
+    } else if (!seg.titleLines.length) {
+      seg.titleLines.push(text);
+    } else {
+      seg.descLines.push(text);
+      seg.titleClosed = true;
+    }
+  }
+  flushDay();
+
+  return events;
+}
+
+/** Month pages to scrape: from the /events index, falling back to this + next month. */
+function paradiseGardenMonthSlugs(indexHtml, now = new Date()) {
+  const curKey = now.getFullYear() * 12 + now.getMonth();
+  const found = new Map();
+  if (indexHtml) {
+    const $ = cheerio.load(indexHtml);
+    $('a[href]').each((_, a) => {
+      const href = $(a).attr('href') || '';
+      const m = href.match(/\/events\/([a-z]+)[-_]?(\d{4})\/?(?:[?#].*)?$/i);
+      if (!m) return;
+      const mi = PG_MONTHS.findIndex((name) => name.startsWith(m[1].toLowerCase().slice(0, 3)));
+      if (mi < 0) return;
+      const key = Number(m[2]) * 12 + mi;
+      if (key < curKey || key > curKey + 3) return;
+      found.set(key, { path: href.replace(/^https?:\/\/[^/]+/i, '').replace(/[?#].*$/, ''), year: Number(m[2]), month: mi + 1 });
+    });
+  }
+  for (const key of [curKey, curKey + 1]) {
+    if (!found.has(key)) {
+      const y = Math.floor(key / 12), mi = key % 12;
+      found.set(key, { path: `/events/${PG_MONTHS[mi]}${y}`, year: y, month: mi + 1 });
+    }
+  }
+  return [...found.entries()].sort((a, b) => a[0] - b[0]).map(([, v]) => v);
+}
 
 async function scrapeParadiseGarden(context) {
   console.log('Scraping Paradise Garden...');
-  const page = await context.newPage();
+  const ORIGIN = 'https://www.paradise-garden.co.uk';
+  const get = async (url) => {
+    const res = await context.request.get(url, { timeout: 45_000 });
+    if (!res.ok()) throw Object.assign(new Error(`HTTP ${res.status()}`), { status: res.status() });
+    return res.text();
+  };
 
-  // Determine the current and next month slugs (e.g. "june2026", "july2026")
-  const MONTH_NAMES = ['january','february','march','april','may','june',
-                       'july','august','september','october','november','december'];
-  const now = new Date();
-  const monthSlugs = [
-    MONTH_NAMES[now.getMonth()] + now.getFullYear(),
-    MONTH_NAMES[(now.getMonth() + 1) % 12] + (now.getMonth() === 11 ? now.getFullYear() + 1 : now.getFullYear()),
-  ];
+  let indexHtml = '';
+  try { indexHtml = await get(`${ORIGIN}/events`); }
+  catch (err) { console.warn(`  Paradise Garden: could not load /events index: ${err.message}`); }
 
   const events = [];
-
-  for (const slug of monthSlugs) {
-    const url = `https://www.paradise-garden.co.uk/events/${slug}`;
+  for (const { path: monthPath, year, month } of paradiseGardenMonthSlugs(indexHtml)) {
+    const url = `${ORIGIN}${monthPath}`;
     try {
-      await page.goto(url, { waitUntil: 'networkidle', timeout: 45_000 }).catch(() => {});
-      // Wait for the event text block to appear (Squarespace renders via JS)
-      await page.waitForSelector('.sqs-html-content h3, .sqs-html-content h4, .sqs-html-content p strong', { timeout: 8_000 }).catch(() => {});
-      await page.waitForTimeout(1500);
+      const html = await get(url);
+      const parsed = parseParadiseGardenMonth(html, { year, month });
 
-      // Check the page actually has content (month may not be published yet)
-      const hasContent = await page.evaluate(() =>
-        !!document.querySelector('.sqs-html-content h3, .sqs-html-content h4')
-      );
-      if (!hasContent) {
-        console.log(`  Paradise Garden: no event content at ${url}, skipping`);
-        continue;
-      }
+      // First gallery image on the page — used for all events this month.
+      const $ = cheerio.load(html);
+      const img = $('.gallery-grid-item img, figure[class*="gallery"] img, [class*="gallery-grid"] img, .sqs-gallery img').first();
+      const imageUrl = (img.attr('data-image') || img.attr('data-src') || img.attr('src') || '').split('?format=')[0];
 
-      const pageData = await page.evaluate((slug) => {
-        // Extract month/year from slug (e.g. "june2026")
-        const monthMatch = slug.match(/^([a-z]+)(\d{4})$/);
-        const monthName = monthMatch ? monthMatch[1] : '';
-        const year = monthMatch ? parseInt(monthMatch[2], 10) : new Date().getFullYear();
-        const MONTH_MAP = {
-          january:1, february:2, march:3, april:4, may:5, june:6,
-          july:7, august:8, september:9, october:10, november:11, december:12,
-        };
-        const monthNum = MONTH_MAP[monthName] || 1;
-
-        // First image from the gallery grid — used for all events this month.
-        // Squarespace can use data-src, data-image, or src on the img element.
-        const gridImg = document.querySelector(
-          '.gallery-grid-item img, figure[class*="gallery"] img, [class*="gallery-grid"] img'
-        );
-        const imageUrl = gridImg
-          ? (
-              gridImg.getAttribute('data-image') ||
-              gridImg.getAttribute('data-src') ||
-              gridImg.getAttribute('src') || ''
-            ).split('?format=')[0]
-          : '';
-
-        // Find the .sqs-html-content block that contains the event listing.
-        // There may be several blocks; pick the one with the most h3/h4 headings.
-        const allBlocks = Array.from(document.querySelectorAll('.sqs-html-content'));
-        const content = allBlocks.reduce((best, block) => {
-          const count = block.querySelectorAll('h3, h4').length;
-          return count > (best ? best.querySelectorAll('h3, h4').length : 0) ? block : best;
-        }, null);
-
-        if (!content) return { imageUrl, events: [], debug: 'no .sqs-html-content found' };
-
-        // Flatten all descendant elements (not just direct children) so we handle
-        // nested wrappers that Squarespace sometimes injects.
-        const elements = Array.from(content.querySelectorAll('h1,h2,h3,h4,h5,p'));
-
-        const parsedEvents = [];
-        let currentDate = null;
-        let currentTitle = null;
-        let currentDesc = [];
-
-        function flushEvent() {
-          if (!currentDate || !currentTitle) return;
-          const titleText = currentTitle.trim();
-          if (titleText) {
-            const dateStr = `${year}-${String(monthNum).padStart(2,'0')}-${String(currentDate.day).padStart(2,'0')}`;
-            parsedEvents.push({ dateStr, title: titleText, description: currentDesc.join('\n').trim() });
-          }
-          currentTitle = null;
-          currentDesc = [];
-        }
-
-        function tryParseDate(text) {
-          const m = text.trim().match(/^(?:mon|tue|tues|wed|thur|thu|fri|sat|sun)\.?\s+(\d{1,2})(?:\s|\(|$)/i);
-          return m ? parseInt(m[1], 10) : null;
-        }
-
-        for (const el of elements) {
-          const tag = el.tagName.toLowerCase();
-         const rawText = (el.textContent || '').trim();
-          if (!rawText) continue;
-
-          // Date: h4 like "wed 3", or p>strong like "fri 5" or "fri 5 (new distraktions)"
-          if (tag === 'h4' || tag === 'h5') {
-            const dayNum = tryParseDate(rawText);
-            if (dayNum != null) {
-              flushEvent();
-              currentDate = { day: dayNum };
-              continue;
-            }
-            // h4 with no day number may be a sub-description — treat as desc if we have a title
-            if (currentTitle) currentDesc.push(rawText);
-            continue;
-          }
-
-          if (tag === 'p') {
-            // Bold paragraph used as date marker: <p><strong>fri 5</strong></p>
-            const strongText = (el.querySelector('strong, b')?.textContent || '').trim();
-            const candidateText = strongText || rawText;
-            const dayNum = tryParseDate(candidateText);
-            if (dayNum != null) {
-              flushEvent();
-              currentDate = { day: dayNum };
-              // If the <p> had extra text after the date (e.g. "(new distraktions)") ignore it
-              continue;
-            }
-            if (currentTitle) currentDesc.push(rawText);
-            continue;
-          }
-
-          if (tag === 'h3') {
-            if (!currentDate) continue;
-            // Each h3 is a distinct event on the same date
-            flushEvent();
-            currentTitle = rawText;
-            continue;
-          }
-
-          if (tag === 'h2') {
-            // Section headers like "june 2026 events at paradise garden:" — skip
-            continue;
-          }
-        }
-        flushEvent();
-
-        return { imageUrl, events: parsedEvents };
-      }, slug);
-
-      for (const ev of pageData.events) {
-        // Skip "private hire" and blank titles
-        if (!ev.title || /^private\s+hire$/i.test(ev.title)) continue;
+      const todayStr = new Date().toISOString().slice(0, 10);
+      for (const ev of parsed) {
+        if (ev.dateStr < todayStr) continue;
         events.push({
           title: ev.title,
           date: ev.dateStr,
           eventStartDate: ev.dateStr,
           description: ev.description || '',
           venue: 'Paradise Garden',
-          url: url,
-          imageUrl: pageData.imageUrl,
+          url,
+          ...(imageUrl ? { imageUrl } : {}),
           scrapedAt: new Date().toISOString(),
         });
       }
-
-      console.log(`  Paradise Garden: ${pageData.events.length} events from ${slug}`);
+      console.log(`  Paradise Garden: ${parsed.length} events parsed from ${monthPath}`);
+      if (!parsed.length && /\b(?:mon|tue|wed|thu|fri|sat|sun)\w*\s+\d{1,2}\b/i.test(cheerio.load(html)('body').text())) {
+        console.warn(`  Paradise Garden: ${monthPath} has date-like text but nothing parsed — the layout may have changed again`);
+      }
     } catch (err) {
-      console.warn(`  Paradise Garden: failed to scrape ${url}: ${err.message}`);
+      if (err.status === 404) console.log(`  Paradise Garden: ${monthPath} not published yet`);
+      else console.warn(`  Paradise Garden: failed to scrape ${url}: ${err.message}`);
     }
   }
 
-  await page.close();
-  console.log(`  Paradise Garden: ${events.length} total events`);
+  console.log(`  Paradise Garden: ${events.length} upcoming events`);
   return events;
 }
 
@@ -4997,3 +5069,5 @@ if (require.main === module && process.argv.includes('--dates-only')) {
 } else if (require.main === module) {
   scrapeAll(resolveScrapers(process.argv.slice(2))).catch(console.error);
 }
+
+module.exports = { parseParadiseGardenMonth, paradiseGardenMonthSlugs };
